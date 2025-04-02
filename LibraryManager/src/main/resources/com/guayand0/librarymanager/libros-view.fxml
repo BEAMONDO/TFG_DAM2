@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.LibrosController">
+   <children>
+      <VBox alignment="CENTER_LEFT">
+         <Label text="Obtener datos de libro">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font></Label>
+         <Label text="Búsqueda por:">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <ComboBox fx:id="comboBusqueda" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></ComboBox>
+         <Label text="Introduce los datos">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="campoBusquedaTitulo" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Título">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <ComboBox fx:id="comboLibros" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></ComboBox>
+
+         <Label text="ISBN">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="isbnLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Autor">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="autorLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Categoría">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="categoriaLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Editorial">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="editorialLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Número de Páginas">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="paginasLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Idioma">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="idiomaLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Año de Publicación">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="anyoLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <Label text="Estado">
+            <font>
+               <Font size="14.0" />
+            </font></Label>
+         <TextField fx:id="estadoLibro" editable="false" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0">
+            <VBox.margin>
+               <Insets bottom="10.0" />
+            </VBox.margin></TextField>
+         <VBox alignment="CENTER">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <children>
+               <Button fx:id="btnLimpiarCampos" alignment="CENTER" onAction="#actionEvent" prefHeight="50.0" prefWidth="125.0" text="Limpiar Campos" />
+            </children>
+         </VBox>
+
+         <padding>
+            <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+         </padding>
+      </VBox>
+
+
+      <VBox>
+         <ComboBox disable="true" minHeight="25.0" prefHeight="50.0" prefWidth="200.0" GridPane.rowIndex="0" />
+         <padding>
+            <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+         </padding>
+      </VBox>
+   </children>
+</HBox>
