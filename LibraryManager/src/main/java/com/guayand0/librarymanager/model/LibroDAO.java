@@ -22,7 +22,8 @@ public class LibroDAO {
                         sql = "SELECT titulo FROM Libros WHERE ISBN LIKE ? ORDER BY titulo ASC";
                         break;
                     case "autor":
-                        sql = "SELECT L.titulo, A.nombre, A.apellido FROM Libros L JOIN Autores A ON L.autor = A.ID WHERE A.nombre LIKE ? OR A.apellido LIKE ? ORDER BY L.titulo ASC";
+                        sql = "SELECT titulo FROM Libros WHERE autor LIKE ? ORDER BY titulo ASC";
+                        //sql = "SELECT L.titulo, A.nombre, A.apellido FROM Libros L JOIN Autores A ON L.autor = A.ID WHERE A.nombre LIKE ? OR A.apellido LIKE ? ORDER BY L.titulo ASC";
                         break;
                     case "categoría":
                         sql = "SELECT titulo FROM Libros WHERE categoria LIKE ? ORDER BY titulo ASC";
@@ -293,7 +294,8 @@ public class LibroDAO {
                         sql = "SELECT ISBN FROM Libros WHERE titulo = ?";
                         break;
                     case "autor":
-                        sql = "SELECT CONCAT(A.nombre, ' ', A.apellido) AS autor FROM Libros L JOIN Autores A ON L.autor = A.ID WHERE L.titulo = ?";
+                        sql = "SELECT autor FROM Libros WHERE titulo = ?";
+                        //sql = "SELECT CONCAT(A.nombre, ' ', A.apellido) AS autor FROM Libros L JOIN Autores A ON L.autor = A.ID WHERE L.titulo = ?";
                         break;
                     case "categoría":
                         sql = "SELECT categoria FROM Libros WHERE titulo = ?";
@@ -378,5 +380,70 @@ public class LibroDAO {
         }
     }*/
 
+    public void insertLibro(Libro libro) {
+        try {
+            connection = ConnectionDatabase.getConnection();
+            if (connection != null) {
+                sql = "INSERT INTO Libros (ISBN, titulo, autor, categoria, editorial, numero_paginas, idioma, anio_publicacion, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                // Asignar los valores a los parámetros de la consulta
+                preparedStatement.setString(1, libro.getISBN());
+                preparedStatement.setString(2, libro.getTitulo());
+                preparedStatement.setString(3, libro.getAutor());
+                preparedStatement.setString(4, libro.getCategoria());
+                preparedStatement.setString(5, libro.getEditorial());
+                preparedStatement.setInt(6, libro.getNumeroPaginas());
+                preparedStatement.setString(7, libro.getIdioma());
+                preparedStatement.setInt(8, libro.getAnioPublicacion());
+                preparedStatement.setString(9, libro.getEstado());
+
+                // Ejecutar la consulta
+                int rowsAffected = preparedStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Libro insertado con éxito");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error al insertar el libro: " + e.getMessage());
+        }
+    }
+
+    public void eliminarLibro(String isbn) {
+        String query = "DELETE FROM libros WHERE isbn = ?";
+        try (Connection conn = ConnectionDatabase.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, isbn);
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Libro eliminado correctamente.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public boolean existeIsbn(String isbn) {
+        // Consulta SQL para verificar si el ISBN existe
+        String sql = "SELECT COUNT(*) FROM libros WHERE ISBN = ?";
+
+        try (Connection conn = ConnectionDatabase.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, isbn);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Si el resultado es mayor que 0, el ISBN existe
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 
 }

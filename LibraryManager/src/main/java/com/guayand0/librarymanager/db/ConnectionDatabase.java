@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class ConnectionDatabase {
 
     static String nombreBaseDatos = "biblioteca";
-    static final String USER = "root", PASSWORD = "";
+    static final String USER = "root", PASSWORD = "qwewe";
     static final String URL = "jdbc:mysql://localhost/" + nombreBaseDatos;
 
     // Para usar la base de datos MySQL

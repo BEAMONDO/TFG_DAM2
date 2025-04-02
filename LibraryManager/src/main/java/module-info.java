@@ -5,6 +5,7 @@ module com.guayand0.librarymanager {
     requires java.sql;
 
     requires org.controlsfx.controls;
+    requires java.desktop;
 
     //requires mysql.connector.java;  // Asegúrate de que se agrega el conector JDBC
 

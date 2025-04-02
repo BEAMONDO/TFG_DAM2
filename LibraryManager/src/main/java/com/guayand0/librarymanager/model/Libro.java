@@ -5,7 +5,7 @@ public class Libro {
     private int ID;
     private String ISBN;
     private String titulo;
-    private int autor;
+    private String autor;
     private String categoria;
     private String editorial;
     private int numeroPaginas;
@@ -13,7 +13,7 @@ public class Libro {
     private int anioPublicacion;
     private String estado;
 
-    public Libro(int ID, String ISBN, String titulo, int autor, String categoria, String editorial, int numeroPaginas, String idioma, int anioPublicacion, String estado) {
+    public Libro(int ID, String ISBN, String titulo, String autor, String categoria, String editorial, int numeroPaginas, String idioma, int anioPublicacion, String estado) {
         this.ID = ID;
         this.ISBN = ISBN;
         this.titulo = titulo;
@@ -53,11 +53,11 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public int getAutor() {
+    public String getAutor() {
         return autor;
     }
 
-    public void setAutor(int autor) {
+    public void setAutor(String autor) {
         this.autor = autor;
     }
 

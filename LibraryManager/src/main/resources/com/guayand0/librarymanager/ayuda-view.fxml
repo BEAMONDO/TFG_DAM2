@@ -3,8 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.AyudaController">
+<HBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.AyudaController">
    <children>
-      <Button mnemonicParsing="false" text="Ayuda" />
+      <VBox>
+         <Label text="Centro de Ayuda" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+         <Label text="Si tienes dudas o problemas, contáctanos a través del siguiente enlace:" wrapText="true" maxWidth="400" />
+         <Button text="Ir a la página de soporte" onAction="#abrirPaginaSoporte" />
+      </VBox>
    </children>
 </HBox>

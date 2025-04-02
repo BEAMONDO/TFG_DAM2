@@ -12,26 +12,17 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     fecha_de_registro DATE DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE IF NOT EXISTS Autores (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    pais VARCHAR(50) NOT NULL,
-    fecha_de_nacimiento DATE NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS Libros (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     ISBN VARCHAR(20) UNIQUE NOT NULL,
     titulo VARCHAR(255) NOT NULL,
-    autor INT NOT NULL,
+    autor VARCHAR(255) NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     editorial VARCHAR(100) NOT NULL,
     numero_paginas INT NOT NULL,
     idioma VARCHAR(50) NOT NULL,
     anio_publicacion INT NOT NULL,
-    estado ENUM('disponible', 'prestado', 'deteriorado', 'bloqueado') DEFAULT 'disponible',
-    FOREIGN KEY (autor) REFERENCES Autores(ID) ON DELETE CASCADE
+    estado ENUM('disponible', 'prestado', 'deteriorado', 'bloqueado')  NOT NULL DEFAULT 'disponible'
 );
 
 CREATE TABLE IF NOT EXISTS Prestamos (
@@ -63,21 +54,13 @@ VALUES
 ('78912345D', 'María', 'Hernández', 'maria.hernandez@example.com', '555-4321', 'Calle Luna 78', '1988-07-10'),
 ('32165498E', 'Lucía', 'Martínez', 'lucia.martinez@example.com', '555-9876', 'Calle Estrella 90', '1995-11-30');
 
-INSERT INTO Autores (nombre, apellido, pais, fecha_de_nacimiento)
-VALUES
-('Gabriel', 'García Márquez', 'Colombia', '1927-03-06'),
-('Isabel', 'Allende', 'Chile', '1942-08-02'),
-('Mario', 'Vargas Llosa', 'Perú', '1936-03-28'),
-('Jorge Luis', 'Borges', 'Argentina', '1899-08-24'),
-('Julio', 'Cortázar', 'Argentina', '1914-08-26');
-
 INSERT INTO Libros (ISBN, titulo, autor, categoria, editorial, numero_paginas, idioma, anio_publicacion)
 VALUES
-('978-1-56619-909-4', 'Cien años de soledad', 1, 'Novela', 'Sudamericana', 471, 'Español', 1967),
-('978-84-204-8216-3', 'La casa de los espíritus', 2, 'Novela', 'Plaza & Janés', 368, 'Inglés', 1982),
-('978-84-376-0494-7', 'La ciudad y los perros', 3, 'Novela', 'Seix Barral', 408, 'Español', 1963),
-('978-84-339-0793-8', 'Ficciones', 4, 'Relato', 'Emecé Editores', 174, 'Español', 1944),
-('978-84-339-7147-2', 'Rayuela', 5, 'Novela', 'Sudamericana', 736, 'Español', 1963);
+('978-1-56619-909-4', 'Cien años de soledad', "Gabriel García Márquez", 'Novela', 'Sudamericana', 471, 'Español', 1967),
+('978-84-204-8216-3', 'La casa de los espíritus', "Isabel Allende", 'Novela', 'Plaza & Janés', 368, 'Inglés', 1982),
+('978-84-376-0494-7', 'La ciudad y los perros', "Mario Vargas Llosa", 'Novela', 'Seix Barral', 408, 'Español', 1963),
+('978-84-339-0793-8', 'Ficciones', "Jorge Luis Borges", 'Relato', 'Emecé Editores', 174, 'Español', 1944),
+('978-84-339-7147-2', 'Rayuela', "Julio Cortázar", 'Novela', 'Sudamericana', 736, 'Español', 1963);
 
 INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion)
 VALUES
