@@ -7,10 +7,9 @@ module com.guayand0.librarymanager {
     requires org.controlsfx.controls;
     requires java.desktop;
 
-    //requires mysql.connector.java;  // Asegúrate de que se agrega el conector JDBC
-
     opens com.guayand0.librarymanager to javafx.fxml;
     exports com.guayand0.librarymanager;
     exports com.guayand0.librarymanager.controller;
-    opens com.guayand0.librarymanager.controller to javafx.fxml;
+    opens com.guayand0.librarymanager.controller;
+    opens com.guayand0.librarymanager.controller.acceso to javafx.fxml;
 }

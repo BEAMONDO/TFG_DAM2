@@ -1,5 +1,6 @@
 package com.guayand0.librarymanager.controller;
 
+import com.guayand0.librarymanager.utils.Alertas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,9 +20,9 @@ public class LibrosController {
     private Button btnLimpiarCampos;
 
     @FXML
-    private TextField insertarTituloLibro, insertarIsbnLibro, insertarAutorLibro, insertarCategoriaLibro, insertarEditorialLibro, insertarPaginasLibro, insertarIdiomaLibro, insertarAnyoLibro;
+    private TextField insertarTituloLibro, insertarIsbnLibro, insertarPaginasLibro, insertarAnyoLibro;
     @FXML
-    private ComboBox<String> insertarEstadoLibro;
+    private ComboBox<String> insertarEstadoLibro, insertarAutorLibro, insertarCategoriaLibro, insertarEditorialLibro, insertarIdiomaLibro;
     @FXML
     private Button btnInsertarLibro;
 
@@ -32,22 +33,20 @@ public class LibrosController {
     private Button btnEliminarLibro;
 
     private final LibroDAO libroDAO = new LibroDAO();
+    private final Alertas alertas = new Alertas();
 
     // Método para cargar los títulos de los libros en el ComboBox
     public void initialize() {
         cargarComboLibros();
         cargarComboBusqueda();
-        cargarComboEstadoInsertar();
         configurarListeners();
+
+        configurarComboInsertar();
 
         // Establecer el límite de caracteres en los TextFields
         insertarIsbnLibro.setTextFormatter(createTextFormatter(20));
         insertarTituloLibro.setTextFormatter(createTextFormatter(255));
-        insertarAutorLibro.setTextFormatter(createTextFormatter(255));
-        insertarCategoriaLibro.setTextFormatter(createTextFormatter(50));
-        insertarEditorialLibro.setTextFormatter(createTextFormatter(100));
         insertarPaginasLibro.setTextFormatter(createTextFormatter(6));
-        insertarIdiomaLibro.setTextFormatter(createTextFormatter(50));
         insertarAnyoLibro.setTextFormatter(createTextFormatter(4));
     }
 
@@ -78,14 +77,6 @@ public class LibrosController {
         comboBusqueda.getSelectionModel().select(1);
     }
 
-    private void cargarComboEstadoInsertar() {
-        ObservableList<String> estados = FXCollections.observableArrayList(
-                "disponible", "prestado", "deteriorado", "bloqueado"
-        );
-        insertarEstadoLibro.setItems(estados);
-        insertarEstadoLibro.getSelectionModel().select(0);
-    }
-
     private void configurarListeners() {
         // Listener para el campo de búsqueda
         campoBusquedaTitulo.textProperty().addListener((observable, oldValue, newValue) -> actualizarComboBoxLibrosBusqueda(newValue));
@@ -110,15 +101,18 @@ public class LibrosController {
 
     private void manejarSeleccionDeComboLibros(String tituloSeleccionado) {
         if (tituloSeleccionado != null) {
-            // Obtener datos del libro seleccionado
-            isbnLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "isbn"));
-            autorLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "autor"));
-            categoriaLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "categoría"));
-            editorialLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "editorial"));
-            paginasLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "número de páginas"));
-            idiomaLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "idioma"));
-            anyoLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "año de publicación"));
-            estadoLibro.setText(libroDAO.selectDatos(tituloSeleccionado, "estado"));
+            // Obtener todos los datos del libro seleccionado con una única consulta
+            String[] datosLibro = libroDAO.selectDatos(tituloSeleccionado);
+
+            // Asignar los valores a los campos correspondientes
+            isbnLibro.setText(datosLibro[0]); // ISBN
+            autorLibro.setText(datosLibro[1]); // Autor
+            categoriaLibro.setText(datosLibro[2]); // Categoría
+            editorialLibro.setText(datosLibro[3]); // Editorial
+            paginasLibro.setText(datosLibro[4]); // Número de páginas
+            idiomaLibro.setText(datosLibro[5]); // Idioma
+            anyoLibro.setText(datosLibro[6]); // Año de publicación
+            estadoLibro.setText(datosLibro[7]); // Estado
         } else {
             clearTextFields();
         }
@@ -143,54 +137,61 @@ public class LibrosController {
         clearTextFields();
     }
 
+
+
+
+
+
+
+
+
+
+    private void configurarComboInsertar() {
+        ObservableList<String> autores = FXCollections.observableArrayList(
+                "", "qwe", "asd", "zxc"
+        );
+        insertarAutorLibro.setItems(autores);
+        insertarAutorLibro.getSelectionModel().select(0);
+
+        ObservableList<String> estados = FXCollections.observableArrayList(
+                "disponible", "prestado", "deteriorado", "bloqueado"
+        );
+        insertarEstadoLibro.setItems(estados);
+        insertarEstadoLibro.getSelectionModel().select(0);
+    }
+
     @FXML
     public void actionEvent2(ActionEvent e) {
         // Validar que los campos no estén vacíos
         if (insertarIsbnLibro.getText().isEmpty()) {
-            showAlert("El campo ISBN no tiene un valor permitido");
+            alertas.showWarning("El campo ISBN no tiene un valor permitido");
             return;
         }
 
         // Validar el formato del ISBN
         String isbn = insertarIsbnLibro.getText();
         if (!isbn.matches("\\d{3}-\\d-\\d{5}-\\d{3}-\\d")) {
-            showAlert("El formato del ISBN no es válido. Debe tener este formato: 000-0-00000-000-0");
+            alertas.showWarning("El formato del ISBN no es válido. Debe tener este formato: 000-0-00000-000-0");
             return;
         }
 
         // Verificar si el ISBN ya existe en la base de datos
         if (libroDAO.existeIsbn(isbn)) {
-            showAlert("El ISBN ya existe en la base de datos.");
+            alertas.showWarning("El ISBN ya existe en la base de datos.");
             return;
         }
 
         // Validar que otros campos no estén vacíos
         if (insertarTituloLibro.getText().isEmpty()) {
-            showAlert("El campo Título no tiene un valor permitido");
-            return;
-        }
-        if (insertarAutorLibro.getText().isEmpty()) {
-            showAlert("El campo Autor no tiene un valor permitido");
-            return;
-        }
-        if (insertarCategoriaLibro.getText().isEmpty()) {
-            showAlert("El campo Categoría no tiene un valor permitido");
-            return;
-        }
-        if (insertarEditorialLibro.getText().isEmpty()) {
-            showAlert("El campo Editorial no tiene un valor permitido");
+            alertas.showWarning("El campo Título no tiene un valor permitido");
             return;
         }
         if (insertarPaginasLibro.getText().isEmpty()) {
-            showAlert("El campo Número de Páginas no tiene un valor permitido");
-            return;
-        }
-        if (insertarIdiomaLibro.getText().isEmpty()) {
-            showAlert("El campo Idioma no tiene un valor permitido");
+            alertas.showWarning("El campo Número de Páginas no tiene un valor permitido");
             return;
         }
         if (insertarAnyoLibro.getText().isEmpty()) {
-            showAlert("El campo Año de Publicación no tiene un valor permitido");
+            alertas.showWarning("El campo Año de Publicación no tiene un valor permitido");
             return;
         }
 
@@ -198,23 +199,23 @@ public class LibrosController {
         Libro libro = new Libro();
         libro.setISBN(insertarIsbnLibro.getText());
         libro.setTitulo(insertarTituloLibro.getText());
-        libro.setAutor(insertarAutorLibro.getText());
-        libro.setCategoria(insertarCategoriaLibro.getText());
-        libro.setEditorial(insertarEditorialLibro.getText());
+        libro.setAutor(Integer.parseInt(insertarAutorLibro.getValue()));
+        libro.setCategoria(Integer.parseInt(insertarCategoriaLibro.getValue()));
+        libro.setEditorial(Integer.parseInt(insertarEditorialLibro.getValue()));
 
         try {
             libro.setNumeroPaginas(Integer.parseInt(insertarPaginasLibro.getText()));
         } catch (NumberFormatException ex) {
-            showAlert("El campo Número de Páginas debe ser un número válido.");
+            alertas.showWarning("El campo Número de Páginas debe ser un número válido.");
             return;
         }
 
-        libro.setIdioma(insertarIdiomaLibro.getText());
+        libro.setIdioma(Integer.parseInt(insertarIdiomaLibro.getValue()));
 
         try {
             libro.setAnioPublicacion(Integer.parseInt(insertarAnyoLibro.getText()));
         } catch (NumberFormatException ex) {
-            showAlert("El campo Año de Publicación debe ser un número válido.");
+            alertas.showWarning("El campo Año de Publicación debe ser un número válido.");
             return;
         }
 
@@ -229,7 +230,6 @@ public class LibrosController {
         // Limpiar los campos de inserción después de insertar
         clearInsertFields();
     }
-
 
     private void showBookDetailsAlert(Libro libro) {
         String mensaje = "Se ha añadido un libro con los siguientes valores:\n" +
@@ -253,11 +253,11 @@ public class LibrosController {
     private void clearInsertFields() {
         insertarIsbnLibro.setText("");
         insertarTituloLibro.setText("");
-        insertarAutorLibro.setText("");
-        insertarCategoriaLibro.setText("");
-        insertarEditorialLibro.setText("");
+        insertarAutorLibro.getSelectionModel().select(0);
+        insertarCategoriaLibro.getSelectionModel().select(0);
+        insertarEditorialLibro.getSelectionModel().select(0);
         insertarPaginasLibro.setText("");
-        insertarIdiomaLibro.setText("");
+        insertarIdiomaLibro.getSelectionModel().select(0);
         insertarAnyoLibro.setText("");
         insertarEstadoLibro.getSelectionModel().select(0);
     }
@@ -267,30 +267,30 @@ public class LibrosController {
         // Validar que el campo ISBN no esté vacío
         String isbn = eliminarIsbnLibro.getText();
         if (isbn.isEmpty()) {
-            showAlert("El campo ISBN no puede estar vacío.");
+            alertas.showWarning("El campo ISBN no puede estar vacío.");
             return;
         }
 
         // Validar el formato del ISBN
         if (!isbn.matches("\\d{3}-\\d-\\d{5}-\\d{3}-\\d")) {
-            showAlert("El formato del ISBN no es válido. Debe tener este formato: 000-0-00000-000-0");
+            alertas.showWarning("El formato del ISBN no es válido. Debe tener este formato: 000-0-00000-000-0");
             return;
         }
 
         // Verificar si el libro con el ISBN existe en la base de datos
         if (!libroDAO.existeIsbn(isbn)) {
-            showAlert("El libro con el ISBN proporcionado no existe en la base de datos.");
+            alertas.showWarning("El libro con el ISBN proporcionado no existe en la base de datos.");
             return;
         }
 
         // Mostrar una ventana de confirmación antes de eliminar el libro
-        boolean confirmar = showConfirmationAlert("¿Está seguro de que desea eliminar el libro con ISBN: " + isbn + "?");
+        boolean confirmar = alertas.showConfirmation("¿Está seguro de que desea eliminar el libro con ISBN: " + isbn + "?");
         if (confirmar) {
             // Eliminar el libro
             libroDAO.eliminarLibro(isbn);
 
             // Mostrar un mensaje de confirmación
-            showAlert("El libro con ISBN " + isbn + " ha sido eliminado correctamente.");
+            alertas.showWarning("El libro con ISBN " + isbn + " ha sido eliminado correctamente.");
 
             // Limpiar los campos de eliminación
             clearDeleteFields();
@@ -299,15 +299,6 @@ public class LibrosController {
 
     private void clearDeleteFields() {
         eliminarIsbnLibro.setText("");
-    }
-
-    // Método para mostrar alertas
-    private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Advertencia");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     // Método para mostrar la ventana de confirmación

@@ -6,16 +6,18 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
+    private String contrasena;
     private String telefono;
     private String direccion;
     private String fechaDeNacimiento;
     private String fechaDeRegistro;
 
-    public Usuario(String DNI, String nombre, String apellido, String email, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro) {
+    public Usuario(String DNI, String nombre, String apellido, String email, String contrasena, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
+        this.contrasena = contrasena;
         this.telefono = telefono;
         this.direccion = direccion;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -55,6 +57,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getTelefono() {

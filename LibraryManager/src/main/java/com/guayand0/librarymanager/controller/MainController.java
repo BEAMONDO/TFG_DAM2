@@ -31,109 +31,64 @@ public class MainController implements Initializable {
 
     @FXML
     protected void actionEvent(ActionEvent e) {
-
         Object evt = e.getSource();
+
+        resetFormVisibility();
 
         if (evt.equals(btnLibros)) {
             librosForm.setVisible(true);
             lblLibros.setStyle("-fx-font-weight: bold;");
-            usuariosForm.setVisible(false);
-            lblUsuarios.setStyle("-fx-font-weight: normal;");
-            prestamosForm.setVisible(false);
-            lblPrestamos.setStyle("-fx-font-weight: normal;");
-            devolucionesForm.setVisible(false);
-            lblDevoluciones.setStyle("-fx-font-weight: normal;");
-            informesForm.setVisible(false);
-            lblInformes.setStyle("-fx-font-weight: normal;");
-            ayudaForm.setVisible(false);
-            lblAyuda.setStyle("-fx-font-weight: normal;");
         } else if (evt.equals(btnUsuarios)) {
-            librosForm.setVisible(false);
-            lblLibros.setStyle("-fx-font-weight: normal;");
             usuariosForm.setVisible(true);
             lblUsuarios.setStyle("-fx-font-weight: bold;");
-            prestamosForm.setVisible(false);
-            lblPrestamos.setStyle("-fx-font-weight: normal;");
-            devolucionesForm.setVisible(false);
-            lblDevoluciones.setStyle("-fx-font-weight: normal;");
-            informesForm.setVisible(false);
-            lblInformes.setStyle("-fx-font-weight: normal;");
-            ayudaForm.setVisible(false);
-            lblAyuda.setStyle("-fx-font-weight: normal;");
         } else if (evt.equals(btnPrestamos)) {
-            librosForm.setVisible(false);
-            lblLibros.setStyle("-fx-font-weight: normal;");
-            usuariosForm.setVisible(false);
-            lblUsuarios.setStyle("-fx-font-weight: normal;");
             prestamosForm.setVisible(true);
             lblPrestamos.setStyle("-fx-font-weight: bold;");
-            devolucionesForm.setVisible(false);
-            lblDevoluciones.setStyle("-fx-font-weight: normal;");
-            informesForm.setVisible(false);
-            lblInformes.setStyle("-fx-font-weight: normal;");
-            ayudaForm.setVisible(false);
-            lblAyuda.setStyle("-fx-font-weight: normal;");
         } else if (evt.equals(btnDevoluciones)) {
-            librosForm.setVisible(false);
-            lblLibros.setStyle("-fx-font-weight: normal;");
-            usuariosForm.setVisible(false);
-            lblUsuarios.setStyle("-fx-font-weight: normal;");
-            prestamosForm.setVisible(false);
-            lblPrestamos.setStyle("-fx-font-weight: normal;");
             devolucionesForm.setVisible(true);
             lblDevoluciones.setStyle("-fx-font-weight: bold;");
-            informesForm.setVisible(false);
-            lblInformes.setStyle("-fx-font-weight: normal;");
-            ayudaForm.setVisible(false);
-            lblAyuda.setStyle("-fx-font-weight: normal;");
         } else if (evt.equals(btnInformes)) {
-            librosForm.setVisible(false);
-            lblLibros.setStyle("-fx-font-weight: normal;");
-            usuariosForm.setVisible(false);
-            lblUsuarios.setStyle("-fx-font-weight: normal;");
-            prestamosForm.setVisible(false);
-            lblPrestamos.setStyle("-fx-font-weight: normal;");
-            devolucionesForm.setVisible(false);
-            lblDevoluciones.setStyle("-fx-font-weight: normal;");
             informesForm.setVisible(true);
             lblInformes.setStyle("-fx-font-weight: bold;");
-            ayudaForm.setVisible(false);
-            lblAyuda.setStyle("-fx-font-weight: normal;");
         } else if (evt.equals(btnAyuda)) {
-            librosForm.setVisible(false);
-            lblLibros.setStyle("-fx-font-weight: normal;");
-            usuariosForm.setVisible(false);
-            lblUsuarios.setStyle("-fx-font-weight: normal;");
-            prestamosForm.setVisible(false);
-            lblPrestamos.setStyle("-fx-font-weight: normal;");
-            devolucionesForm.setVisible(false);
-            lblDevoluciones.setStyle("-fx-font-weight: normal;");
-            informesForm.setVisible(false);
-            lblInformes.setStyle("-fx-font-weight: normal;");
             ayudaForm.setVisible(true);
             lblAyuda.setStyle("-fx-font-weight: bold;");
         }
     }
 
+    // Método que oculta todas las secciones y restablece los estilos
+    private void resetFormVisibility() {
+        librosForm.setVisible(false);
+        lblLibros.setStyle("-fx-font-weight: normal;");
+        usuariosForm.setVisible(false);
+        lblUsuarios.setStyle("-fx-font-weight: normal;");
+        prestamosForm.setVisible(false);
+        lblPrestamos.setStyle("-fx-font-weight: normal;");
+        devolucionesForm.setVisible(false);
+        lblDevoluciones.setStyle("-fx-font-weight: normal;");
+        informesForm.setVisible(false);
+        lblInformes.setStyle("-fx-font-weight: normal;");
+        ayudaForm.setVisible(false);
+        lblAyuda.setStyle("-fx-font-weight: normal;");
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            librosForm = loadForm("libros-view.fxml");
-            usuariosForm = loadForm("usuarios-view.fxml");
-            prestamosForm = loadForm("prestamos-view.fxml");
-            devolucionesForm = loadForm("devoluciones-view.fxml");
-            informesForm = loadForm("informes-view.fxml");
-            ayudaForm = loadForm("ayuda-view.fxml");
+            librosForm = loadForm("libros/libros-view.fxml");
+            usuariosForm = loadForm("usuarios/usuarios-view.fxml");
+            prestamosForm = loadForm("prestamos/prestamos-view.fxml");
+            devolucionesForm = loadForm("devoluciones/devoluciones-view.fxml");
+            informesForm = loadForm("informes/informes-view.fxml");
+            ayudaForm = loadForm("ayuda/ayuda-view.fxml");
 
             containerData.getChildren().addAll(librosForm, usuariosForm, prestamosForm, devolucionesForm, informesForm, ayudaForm);
 
+            resetFormVisibility();
+
             librosForm.setVisible(true);
             lblLibros.setStyle("-fx-font-weight: bold;");
-            usuariosForm.setVisible(false);
-            prestamosForm.setVisible(false);
-            devolucionesForm.setVisible(false);
-            informesForm.setVisible(false);
-            ayudaForm.setVisible(false);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }

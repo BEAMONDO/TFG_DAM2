@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER" prefHeight="600.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.acceso.LoginViewController">
+    <AnchorPane prefHeight="600.0" prefWidth="530.0">
+        <VBox alignment="CENTER" AnchorPane.topAnchor="40.0" layoutX="50" prefHeight="520.0" prefWidth="420.0" spacing="20">
+            <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;" text="Iniciar Sesión" />
+
+            <Region prefHeight="85.0" />
+
+            <TextField fx:id="loginDNI" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="DNI" />
+
+            <TextField fx:id="loginEmail" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Email" />
+
+            <TextField fx:id="loginPassword" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Contraseña de Acceso" />
+
+            <Region prefHeight="85.0" />
+
+            <!-- Separador de 20px antes del botón -->
+            <Region prefHeight="15.0" />
+            <Button fx:id="btnLoginUser" onAction="#actionEvent" text="Iniciar sesión" prefWidth="150" prefHeight="40" style="-fx-font-size: 14px;" />
+
+        </VBox>
+    </AnchorPane>
+</HBox>

@@ -5,15 +5,15 @@ public class Libro {
     private int ID;
     private String ISBN;
     private String titulo;
-    private String autor;
-    private String categoria;
-    private String editorial;
+    private int autor;
+    private int categoria;
+    private int editorial;
     private int numeroPaginas;
-    private String idioma;
+    private int idioma;
     private int anioPublicacion;
     private String estado;
 
-    public Libro(int ID, String ISBN, String titulo, String autor, String categoria, String editorial, int numeroPaginas, String idioma, int anioPublicacion, String estado) {
+    public Libro(int ID, String ISBN, String titulo, int autor, int categoria, int editorial, int numeroPaginas, int idioma, int anioPublicacion, String estado) {
         this.ID = ID;
         this.ISBN = ISBN;
         this.titulo = titulo;
@@ -53,27 +53,27 @@ public class Libro {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
+    public int getAutor() {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setAutor(int autor) {
         this.autor = autor;
     }
 
-    public String getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
-    public String getEditorial() {
+    public int getEditorial() {
         return editorial;
     }
 
-    public void setEditorial(String editorial) {
+    public void setEditorial(int editorial) {
         this.editorial = editorial;
     }
 
@@ -85,11 +85,11 @@ public class Libro {
         this.numeroPaginas = numeroPaginas;
     }
 
-    public String getIdioma() {
+    public int getIdioma() {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
+    public void setIdioma(int idioma) {
         this.idioma = idioma;
     }
 
@@ -109,37 +109,4 @@ public class Libro {
         this.estado = estado;
     }
 
-    // ---------- -- ---------- //
-    /*public boolean registrarLibroValido(String ISBN, String titulo, int autor, String categoria, String editorial, int numeroPaginas, String idioma, int anioPublicacion, String estado) {
-        return ISBN != null && !ISBN.isEmpty() &&
-                titulo != null && !titulo.isEmpty() &&
-                autor > 0 &&
-                categoria != null && !categoria.isEmpty() &&
-                editorial != null && !editorial.isEmpty() &&
-                numeroPaginas > 0 &&
-                idioma != null && !idioma.isEmpty() &&
-                anioPublicacion > 0 && anioPublicacion < LocalDate.now().getYear() &&
-                estado != null && !estado.isEmpty();
-    }
-
-    // Comparación de libros (por nombre)
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Libro libro = (Libro) obj;
-        return titulo.equals(libro.titulo);
-    }
-
-    @Override
-    public int hashCode() {
-        return titulo.hashCode();
-    }
-
-    // Representación en String para depuración y uso
-    @Override
-    public String toString() {
-        return String.format("Libro{ID=%d, ISBN='%s', titulo='%s', autor='%d', categoria='%s', editorial='%s', numeroPaginas=%d, idioma='%s', anioPublicacion=%d, estado='%s}",
-                ID, ISBN, titulo, autor, categoria, editorial, numeroPaginas, idioma, anioPublicacion, estado);
-    }*/
 }
