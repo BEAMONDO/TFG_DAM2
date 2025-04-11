@@ -1,72 +1,98 @@
 package com.guayand0.librarymanager.controller.acceso;
 
-import com.guayand0.librarymanager.Main;
 import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.model.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoginViewController {
+public class LoginViewController implements Initializable {
 
     @FXML
     private Button btnLoginUser;
 
     @FXML
-    private TextField loginDNI, loginEmail, loginPassword;
+    private TextField loginDNI_Email, loginPassword;
+
+    @FXML
+    private PasswordField loginPasswordMask;
+
+    @FXML
+    private CheckBox loginPasswordOpen;
 
     private final Alertas alertas = new Alertas();
 
     @FXML
     protected void actionEvent(ActionEvent e) {
         if (e.getSource().equals(btnLoginUser)) {
-            // Obtener los datos de los campos
-            String dni = loginDNI.getText();
-            String email = loginEmail.getText();
+            String dniEmail = loginDNI_Email.getText();
             String password = loginPassword.getText();
 
-            // Comprobar si todos los campos tienen datos
-            if (dni.isEmpty()) {
-                alertas.showWarning("El campo DNI es obligatorio.");
+            // Validar campos
+            if (!validarCamposLogin(dniEmail, password)) {
                 return;
             }
 
-            if (email.isEmpty()) {
-                alertas.showWarning("El campo Email es obligatorio.");
-                return;
-            }
-
-            if (password.isEmpty()) {
-                alertas.showWarning("El campo Contraseña es obligatorio.");
-                return;
-            }
-
-            // Intentar hacer login
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            Usuario usuario = usuarioDAO.login(dni, email, password);
+            // Intentar iniciar sesión
+            Usuario usuario = iniciarSesion(dniEmail, password);
 
             if (usuario != null) {
-                alertas.showInformation("Login Exitoso");
-
-                // Cerrar la ventana de login
-                Stage stage = (Stage) btnLoginUser.getScene().getWindow();
-                stage.close();
-
-                // Abrir la nueva ventana principal
+                alertas.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
+                ((Stage) btnLoginUser.getScene().getWindow()).close();
                 openMainWindow();
             } else {
-                // Login fallido
-                alertas.showWarning("DNI, Email o Contraseña no son correctos.");
+                alertas.showWarning("Credenciales incorrectas.");
             }
         }
     }
+
+    // Método para validar los campos de login
+    private boolean validarCamposLogin(String dniEmail, String password) {
+        if (dniEmail.isEmpty()) {
+            alertas.showWarning("El campo DNI o Email es obligatorio.");
+            return false;
+        }
+        if (password.isEmpty()) {
+            alertas.showWarning("El campo Contraseña es obligatorio.");
+            return false;
+        }
+        return true;
+    }
+
+    // Método para intentar iniciar sesión
+    private Usuario iniciarSesion(String dniEmail, String password) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.login(dniEmail, password);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        maskPassword(loginPasswordMask, loginPassword, loginPasswordOpen);
+    }
+
+    public void maskPassword(PasswordField pass, TextField text, CheckBox check) {
+
+        text.setVisible(false);
+        text.setManaged(false);
+
+        text.managedProperty().bind(check.selectedProperty());
+        text.visibleProperty().bind(check.selectedProperty());
+
+        text.textProperty().bindBidirectional(pass.textProperty());
+    }
+
 
     // Método para abrir la ventana principal
     public void openMainWindow() {

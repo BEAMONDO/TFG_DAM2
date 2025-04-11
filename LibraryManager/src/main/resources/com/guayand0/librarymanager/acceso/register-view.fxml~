@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER" prefHeight="600.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.acceso.RegisterViewController">
+<AnchorPane prefHeight="600.0" prefWidth="530.0">
+    <VBox alignment="CENTER" AnchorPane.topAnchor="40.0" layoutX="50" prefHeight="520.0" prefWidth="420.0" spacing="20">
+        <Label style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: white;" text="Registrarse" />
+
+        <HBox spacing="20">
+            <TextField fx:id="registerNombre" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Nombre" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="registerApellidos" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Apellidos" HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <TextField fx:id="registerDNI" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="DNI" />
+
+        <TextField fx:id="registerEmail" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Email" />
+
+        <HBox spacing="20">
+            <StackPane>
+                <children>
+                    <PasswordField fx:id="registerPasswordMask" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Contraseña de Acceso" />
+                    <TextField fx:id="registerPassword" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Contraseña de Acceso" />
+                </children>
+            </StackPane>
+
+            <StackPane>
+                <children>
+                    <PasswordField fx:id="registerPasswordConfirmationMask" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Confirmar Contraseña" />
+                    <TextField fx:id="registerPasswordConfirmation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Confirmar Contraseña" />
+                </children>
+            </StackPane>
+
+            <!-- <TextField fx:id="registerPassword" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Contraseña de Acceso" /> -->
+            <!-- <TextField fx:id="registerPasswordConfirmation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Confirmar Contraseña" /> -->
+        </HBox>
+
+        <CheckBox fx:id="registerPasswordOpen" mnemonicParsing="false" text="Ver Contraseña" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" />
+
+        <HBox spacing="20">
+            <TextField fx:id="registerTelefono" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Teléfono" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="registerDireccion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Dirección" HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <DatePicker fx:id="registerFechaNacimiento" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Fecha de Nacimiento" />
+
+        <!-- Separador de 15px antes del botón -->
+        <Region prefHeight="15.0" />
+        <Button fx:id="btnRegisterUser" onAction="#actionEvent" text="Registrarse" prefWidth="150" prefHeight="45" style="-fx-font-size: 14px;" />
+
+    </VBox>
+</AnchorPane>
+</HBox>
+
+
+<!--
+        <HBox spacing="20">
+            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(180, 180, 250, 0.8);" prefHeight="50.0" promptText="Nombre" HBox.hgrow="ALWAYS" />
+            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 134, 0.8);" prefHeight="50.0" promptText="Apellidos" HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(152, 251, 152, 0.8);" prefHeight="50.0" promptText="Email" />
+
+        <HBox spacing="20">
+            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(123, 216, 230, 0.8);" prefHeight="50.0" promptText="Teléfono" HBox.hgrow="ALWAYS" />
+            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Dirección" HBox.hgrow="ALWAYS" />
+        </HBox>
+-->

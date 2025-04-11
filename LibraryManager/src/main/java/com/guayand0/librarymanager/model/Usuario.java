@@ -4,7 +4,7 @@ public class Usuario {
 
     private String DNI;
     private String nombre;
-    private String apellido;
+    private String apellidos;
     private String email;
     private String contrasena;
     private String telefono;
@@ -12,10 +12,10 @@ public class Usuario {
     private String fechaDeNacimiento;
     private String fechaDeRegistro;
 
-    public Usuario(String DNI, String nombre, String apellido, String email, String contrasena, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro) {
+    public Usuario(String DNI, String nombre, String apellidos, String email, String contrasena, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro) {
         this.DNI = DNI;
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.apellidos = apellidos;
         this.email = email;
         this.contrasena = contrasena;
         this.telefono = telefono;
@@ -43,12 +43,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEmail() {

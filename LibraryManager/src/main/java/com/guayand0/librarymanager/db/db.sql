@@ -3,11 +3,11 @@ USE biblioteca2;
 
 CREATE TABLE IF NOT EXISTS Usuarios (
     DNI VARCHAR(9) PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    nombre VARCHAR(255) NOT NULL,
+    apellidos VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     contrasena VARCHAR(255) NOT NULL,
-    telefono VARCHAR(15) NOT NULL,
+    telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(255) NOT NULL,
     fecha_de_nacimiento DATE NOT NULL,
     fecha_de_registro DATETIME DEFAULT CURRENT_TIMESTAMP

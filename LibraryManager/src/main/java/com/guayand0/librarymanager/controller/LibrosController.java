@@ -301,13 +301,4 @@ public class LibrosController {
         eliminarIsbnLibro.setText("");
     }
 
-    // Método para mostrar la ventana de confirmación
-    private boolean showConfirmationAlert(String message) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmación");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        return alert.showAndWait().filter(response -> response == ButtonType.OK).isPresent();
-    }
 }

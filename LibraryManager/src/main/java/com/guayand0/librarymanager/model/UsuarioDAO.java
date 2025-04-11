@@ -1,6 +1,8 @@
 package com.guayand0.librarymanager.model;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
+import com.guayand0.librarymanager.utils.CapitalizarPalabras;
+import com.guayand0.librarymanager.utils.EncriptarContrasenas;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,23 +13,26 @@ public class UsuarioDAO {
     private Connection connection = null;
     private String sql;
 
-    public Usuario login(String dni, String email, String password) {
+    private final EncriptarContrasenas EC = new EncriptarContrasenas();
+    private final CapitalizarPalabras CP = new CapitalizarPalabras();
+
+    public Usuario login(String dniOrEmail, String password) {
         Usuario usuario = null;
-        sql = "SELECT * FROM Usuarios WHERE DNI = ? AND email = ? AND contrasena = ?";
+        sql = "SELECT * FROM Usuarios WHERE (DNI = ? OR email = ?) AND contrasena = ?";
 
         try {
             connection = ConnectionDatabase.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, dni);
-            statement.setString(2, email);
-            statement.setString(3, password);
+            statement.setString(1, dniOrEmail);
+            statement.setString(2, dniOrEmail);
+            statement.setString(3, EC.encriptar(password));
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 usuario = new Usuario(
                         resultSet.getString("DNI"),
                         resultSet.getString("nombre"),
-                        resultSet.getString("apellido"),
+                        resultSet.getString("apellidos"),
                         resultSet.getString("email"),
                         resultSet.getString("contrasena"),
                         resultSet.getString("telefono"),
@@ -51,7 +56,7 @@ public class UsuarioDAO {
     }
 
     public boolean register(Usuario usuario) {
-        sql = "INSERT INTO Usuarios (DNI, nombre, apellido, email, contrasena," +
+        sql = "INSERT INTO Usuarios (DNI, nombre, apellidos, email, contrasena," +
                 "telefono, direccion, fecha_de_nacimiento, fecha_de_registro) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -59,12 +64,12 @@ public class UsuarioDAO {
             connection = ConnectionDatabase.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, usuario.getDNI());
-            statement.setString(2, usuario.getNombre());
-            statement.setString(3, usuario.getApellido());
+            statement.setString(2, CP.capitalizar(usuario.getNombre()));
+            statement.setString(3, CP.capitalizar(usuario.getApellidos()));
             statement.setString(4, usuario.getEmail());
-            statement.setString(5, usuario.getContrasena());
+            statement.setString(5, EC.encriptar(usuario.getContrasena()));
             statement.setString(6, usuario.getTelefono());
-            statement.setString(7, usuario.getDireccion());
+            statement.setString(7, CP.capitalizar(usuario.getDireccion()));
             statement.setString(8, usuario.getFechaDeNacimiento());
             statement.setString(9, usuario.getFechaDeRegistro());
 
@@ -80,4 +85,5 @@ public class UsuarioDAO {
             }
         }
     }
+
 }
