@@ -1,8 +1,11 @@
 package com.guayand0.librarymanager.controller;
 
+import com.guayand0.librarymanager.Main;
 import com.guayand0.librarymanager.utils.Alertas;
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
@@ -10,7 +13,10 @@ import java.net.URI;
 
 public class MainController {
 
-    Alertas alertas = new Alertas();
+    private final Alertas ALERT = new Alertas();
+    private final Main main = new Main();
+
+    @FXML private Label usuario, permiso;
 
     // Menú central
 
@@ -24,47 +30,60 @@ public class MainController {
     @FXML private void onDevolucionesClick() {}
     @FXML private void onInformesClick() {}
 
+    // Menu izquierdo
+
+    @FXML private void onSessionClose() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        main.openAccessWindow();
+    }
+
+    public void setUsuarioTexto(String texto) {
+        usuario.setText("Nombre: " + texto);
+    }
+    public void setPermisoTexto(String texto) {
+        permiso.setText("Permiso: " + texto);
+    }
+
     // Menú derecho
 
     @FXML private void onMenuClick() {}
 
     // Menú superior
 
-    @FXML
-    private void onSalir() {
+    @FXML private void onSalir() {
         Platform.exit();
     }
 
-    @FXML
-    private void onAcercaDe() {
-        alertas.showInformation("LibraryManager v1.0.1\nDesarrollado por David Beamonde.");
+    @FXML private void onAcercaDe() {
+        ALERT.showInformation("LibraryManager v1.0.1\nDesarrollado por David Beamonde.");
     }
 
-    @FXML
-    private void wiki() {
-        boolean confirmar = alertas.showConfirmation("¿Desea abrir la página de la wiki con información sobre el funcionamiento de la aplicación?");
+    @FXML private void wiki() {
+        boolean confirmar = ALERT.showConfirmation("¿Desea abrir la página de la wiki con información sobre el funcionamiento de la aplicación?");
         if (confirmar) {
-            alertas.showInformation("La página web todavia no está creada.");
+            ALERT.showInformation("La página web todavia no está creada.");
             /*try {
                 Desktop.getDesktop().browse(new URI(""));
             } catch (IOException | java.net.URISyntaxException e) {
                 e.printStackTrace();
             }
-            alertas.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");*/
+            ALERT.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");*/
         }
     }
 
-    @FXML
-    private void reportarProblema() {
-        boolean confirmar = alertas.showConfirmation("¿Desea abrir la página web para reportar un problema o fallo de la aplicación?");
+    @FXML private void reportarProblema() {
+        boolean confirmar = ALERT.showConfirmation("¿Desea abrir la página web para reportar un problema o fallo de la aplicación?");
         if (confirmar) {
             try {
                 Desktop.getDesktop().browse(new URI("https://github.com/BEAMONDO/TFG_DAM2/issues/new"));
-                alertas.showInformation("Se ha abierto la página para reportar problemas en su navegador.");
+                ALERT.showInformation("Se ha abierto la página para reportar problemas en su navegador.");
             } catch (IOException | java.net.URISyntaxException e) {
                 e.printStackTrace();
-                alertas.showError("Ha ocurrido un error al intentar abrir la página.");
+                ALERT.showError("Ha ocurrido un error al intentar abrir la página.");
             }
         }
     }
+
 }

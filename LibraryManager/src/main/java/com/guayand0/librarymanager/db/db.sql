@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     telefono VARCHAR(9) NOT NULL,
     direccion VARCHAR(255) NOT NULL,
     fecha_de_nacimiento DATE NOT NULL,
-    fecha_de_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+    fecha_de_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    permiso VARCHAR(50) NOT NULL DEFAULT 'Usuario'
 );
 
 CREATE TABLE IF NOT EXISTS Autores (

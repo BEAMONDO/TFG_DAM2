@@ -38,7 +38,8 @@ public class UsuarioDAO {
                         resultSet.getString("telefono"),
                         resultSet.getString("direccion"),
                         resultSet.getString("fecha_de_nacimiento"),
-                        resultSet.getString("fecha_de_registro")
+                        resultSet.getString("fecha_de_registro"),
+                        resultSet.getString("permiso")
                 );
             }
 

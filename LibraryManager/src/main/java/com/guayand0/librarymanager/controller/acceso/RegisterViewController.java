@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ResourceBundle;
 
 public class RegisterViewController implements Initializable {
@@ -54,6 +55,8 @@ public class RegisterViewController implements Initializable {
             // Obtener la fecha y hora actuales
             String fechaDeRegistro = obtenerFechaDeRegistro();
 
+            String permiso = "Usuario";
+
             // Crear el objeto Usuario
             Usuario usuario = new Usuario(
                     registerDNI.getText(),
@@ -64,7 +67,8 @@ public class RegisterViewController implements Initializable {
                     registerTelefono.getText(),
                     registerDireccion.getText(),
                     registerFechaNacimiento.getValue().toString(),
-                    fechaDeRegistro
+                    fechaDeRegistro,
+                    permiso
             );
 
             // Intentar registrar el usuario
@@ -73,6 +77,20 @@ public class RegisterViewController implements Initializable {
 
             if (registrado) {
                 ALERT.showInformation("Usuario registrado exitosamente.");
+
+                registerDNI.clear();
+                registerNombre.clear();
+                registerApellidos.clear();
+                registerEmail.clear();
+                registerPassword.clear();
+                registerPasswordConfirmation.clear();
+                registerPasswordMask.clear();
+                registerPasswordConfirmationMask.clear();
+                registerPasswordOpen.setSelected(false);
+                registerTelefono.clear();
+                registerDireccion.clear();
+                registerFechaNacimiento.setValue(null);
+
             } else {
                 ALERT.showWarning("Error al registrar usuario.");
             }
@@ -88,7 +106,7 @@ public class RegisterViewController implements Initializable {
             ALERT.showWarning("El campo DNI es obligatorio.");
             return false;
         }
-        if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
+        /*if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
             ALERT.showWarning("El DNI no es válido. Debe tener 8 números seguidos de una letra.");
             return false;
         } else {
@@ -101,7 +119,7 @@ public class RegisterViewController implements Initializable {
                 ALERT.showWarning("La letra del DNI no coincide con los números ingresados.");
                 return false;
             }
-        }
+        }*/
 
         if (registerNombre.getText().isEmpty()) {
             ALERT.showWarning("El campo Nombre es obligatorio.");
@@ -116,10 +134,10 @@ public class RegisterViewController implements Initializable {
             ALERT.showWarning("El campo Email es obligatorio.");
             return false;
         }
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        /*if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
             ALERT.showWarning("El Email no tiene un formato válido. Debe contener '@', un dominio y una extensión de al menos 2 letras.");
             return false;
-        }
+        }*/
 
         if (password.isEmpty()) {
             ALERT.showWarning("El campo Contraseña es obligatorio.");

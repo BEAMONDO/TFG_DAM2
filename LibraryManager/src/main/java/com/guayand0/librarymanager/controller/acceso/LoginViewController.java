@@ -1,5 +1,6 @@
 package com.guayand0.librarymanager.controller.acceso;
 
+import com.guayand0.librarymanager.controller.MainController;
 import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.model.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
@@ -53,9 +54,9 @@ public class LoginViewController implements Initializable {
             Usuario usuario = iniciarSesion(dniEmail, password);
 
             if (usuario != null) {
-                ALERT.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
+                //ALERT.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
                 ((Stage) btnLoginUser.getScene().getWindow()).close();
-                openMainWindow();
+                openMainWindow(usuario);
             } else {
                 ALERT.showWarning("Credenciales incorrectas.");
             }
@@ -88,10 +89,16 @@ public class LoginViewController implements Initializable {
     }
 
     // Metodo para abrir la ventana principal
-    public void openMainWindow() {
+    public void openMainWindow(Usuario usuarioLogueado) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/guayand0/librarymanager/main-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+
+            // Obtener el controlador y pasar el usuario
+            MainController controller = fxmlLoader.getController();
+            controller.setUsuarioTexto(usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellidos());
+            controller.setPermisoTexto(usuarioLogueado.getPermiso());
+
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
             stage.setScene(scene);
@@ -104,4 +111,5 @@ public class LoginViewController implements Initializable {
             ALERT.showError("Error al cargar la ventana principal.");
         }
     }
+
 }

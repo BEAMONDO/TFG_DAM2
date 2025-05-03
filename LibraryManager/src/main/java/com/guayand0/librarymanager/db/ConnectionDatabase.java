@@ -12,20 +12,27 @@ public class ConnectionDatabase {
 
     // Para usar la base de datos MySQL
     public static Connection getConnection() throws SQLException {
-        Enumeration<Driver> drivers = DriverManager.getDrivers();
-        while (drivers.hasMoreElements()) {
-            System.out.println("Loaded driver: " + drivers.nextElement().getClass().getName());
-        }
+    /*Enumeration<Driver> drivers = DriverManager.getDrivers();
+    while (drivers.hasMoreElements()) {
+        //System.out.println("Loaded driver: " + drivers.nextElement().getClass().getName());
+        System.out.println("Conexion Abierta");
+    }*/
 
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        if (conn != null && !conn.isClosed()) {
+            System.out.println("Conexión abierta");
+        }
+        return conn;
     }
 
     public static void closeConnection(Connection conn) {
         if (conn != null) {
             try {
                 conn.close();
+                System.out.println("Conexion cerrada");
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.out.println("Error al cerrar conexion");
             }
         }
     }

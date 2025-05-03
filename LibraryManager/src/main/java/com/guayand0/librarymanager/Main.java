@@ -24,7 +24,7 @@ public class Main extends Application {
     }
 
     // Metodo para abrir la ventana principal
-    private void openAccessWindow() {
+    public void openAccessWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("acceso/main-view-access.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
