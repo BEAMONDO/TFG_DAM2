@@ -3,6 +3,7 @@ package com.guayand0.librarymanager.controller.acceso;
 import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.model.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
+import com.guayand0.librarymanager.utils.MostrarContrasena;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +31,8 @@ public class RegisterViewController implements Initializable {
     @FXML
     private CheckBox registerPasswordOpen;
 
-    private final Alertas alertas = new Alertas();
+    private final Alertas ALERT = new Alertas();
+    private final MostrarContrasena MC = new MostrarContrasena();
 
     @FXML
     protected void actionEvent(ActionEvent e) {
@@ -70,58 +72,90 @@ public class RegisterViewController implements Initializable {
             boolean registrado = dao.register(usuario);
 
             if (registrado) {
-                alertas.showInformation("Usuario registrado exitosamente.");
+                ALERT.showInformation("Usuario registrado exitosamente.");
             } else {
-                alertas.showWarning("Error al registrar usuario.");
+                ALERT.showWarning("Error al registrar usuario.");
             }
         }
     }
 
-    // Método para validar los campos
     private boolean validarCampos(String password, String passwordConfirm) {
-        if (registerDNI.getText().isEmpty()) {
-            alertas.showWarning("El campo DNI es obligatorio.");
+        String dni = registerDNI.getText();
+        String email = registerEmail.getText();
+        String direccion = registerDireccion.getText();
+
+        if (dni.isEmpty()) {
+            ALERT.showWarning("El campo DNI es obligatorio.");
             return false;
         }
+        if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
+            ALERT.showWarning("El DNI no es válido. Debe tener 8 números seguidos de una letra.");
+            return false;
+        } else {
+            String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+            int numero = Integer.parseInt(dni.substring(0, 8));
+            char letraCorrecta = letras.charAt(numero % 23);
+            char letraIngresada = Character.toUpperCase(dni.charAt(8));
+
+            if (letraCorrecta != letraIngresada) {
+                ALERT.showWarning("La letra del DNI no coincide con los números ingresados.");
+                return false;
+            }
+        }
+
         if (registerNombre.getText().isEmpty()) {
-            alertas.showWarning("El campo Nombre es obligatorio.");
+            ALERT.showWarning("El campo Nombre es obligatorio.");
             return false;
         }
         if (registerApellidos.getText().isEmpty()) {
-            alertas.showWarning("El campo Apellidos es obligatorio.");
+            ALERT.showWarning("El campo Apellidos es obligatorio.");
             return false;
         }
-        if (registerEmail.getText().isEmpty()) {
-            alertas.showWarning("El campo Email es obligatorio.");
+
+        if (email.isEmpty()) {
+            ALERT.showWarning("El campo Email es obligatorio.");
             return false;
         }
+        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            ALERT.showWarning("El Email no tiene un formato válido. Debe contener '@', un dominio y una extensión de al menos 2 letras.");
+            return false;
+        }
+
         if (password.isEmpty()) {
-            alertas.showWarning("El campo Contraseña es obligatorio.");
+            ALERT.showWarning("El campo Contraseña es obligatorio.");
             return false;
         }
         if (passwordConfirm.isEmpty()) {
-            alertas.showWarning("El campo Confirmar Contraseña es obligatorio.");
+            ALERT.showWarning("El campo Confirmar Contraseña es obligatorio.");
             return false;
         }
+
         if (registerTelefono.getText().isEmpty()) {
-            alertas.showWarning("El campo Teléfono es obligatorio.");
+            ALERT.showWarning("El campo Teléfono es obligatorio.");
             return false;
         }
-        if (registerDireccion.getText().isEmpty()) {
-            alertas.showWarning("El campo Dirección es obligatorio.");
+
+        if (direccion.isEmpty()) {
+            ALERT.showWarning("El campo Dirección es obligatorio.");
             return false;
         }
+        if (!direccion.matches("^[\\p{L}0-9 ',\\.]+,\\s*\\d+(-bis)?(\\s*\\d{1,2}[A-Za-z]?)?$")) {
+            ALERT.showWarning("La direccion tiene que tener este formato 'calle, numero(-bis) (piso(letra))'. Ej. 'Calle Santos, 33'. Ej. 'Calle Cantantes, 12-bis 2º'.");
+            return false;
+        }
+
         if (registerFechaNacimiento.getValue() == null) {
-            alertas.showWarning("El campo Fecha de Nacimiento es obligatorio.");
+            ALERT.showWarning("El campo Fecha de Nacimiento es obligatorio.");
             return false;
         }
+
         return true;
     }
 
     // Método para verificar si las contraseñas coinciden
     private boolean verificarContrasenas(String password, String passwordConfirm) {
         if (!password.equals(passwordConfirm)) {
-            alertas.showWarning("Las contraseñas no coinciden.");
+            ALERT.showWarning("Las contraseñas no coinciden.");
             return false;
         }
         return true;
@@ -136,17 +170,16 @@ public class RegisterViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        maskPassword(registerPasswordMask, registerPassword, registerPasswordOpen);
-        maskPassword(registerPasswordConfirmationMask, registerPasswordConfirmation, registerPasswordOpen);
+        MC.maskPassword(registerPasswordMask, registerPassword, registerPasswordOpen);
+        MC.maskPassword(registerPasswordConfirmationMask, registerPasswordConfirmation, registerPasswordOpen);
 
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerApellidos.setTextFormatter(createTextFormatter(100));
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerNombre.setTextFormatter(createTextFormatter(50));
-        registerNombre.setTextFormatter(createTextFormatter(50));
+        registerDNI.setTextFormatter(createTextFormatter(9));
+        registerNombre.setTextFormatter(createTextFormatter(255));
+        registerApellidos.setTextFormatter(createTextFormatter(255));
+        registerEmail.setTextFormatter(createTextFormatter(255));
+        registerPassword.setTextFormatter(createTextFormatter(255));
+        registerTelefono.setTextFormatter(createTextFormatter(9));
+        registerDireccion.setTextFormatter(createTextFormatter(255));
     }
 
     private TextFormatter<String> createTextFormatter(int maxLength) {
@@ -158,16 +191,5 @@ public class RegisterViewController implements Initializable {
             }
             return change;
         });
-    }
-
-    public void maskPassword(PasswordField pass, TextField text, CheckBox check) {
-
-        text.setVisible(false);
-        text.setManaged(false);
-
-        text.managedProperty().bind(check.selectedProperty());
-        text.visibleProperty().bind(check.selectedProperty());
-
-        text.textProperty().bindBidirectional(pass.textProperty());
     }
 }

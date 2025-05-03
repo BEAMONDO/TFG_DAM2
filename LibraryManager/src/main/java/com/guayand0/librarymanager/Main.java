@@ -4,9 +4,11 @@ import com.guayand0.librarymanager.utils.Alertas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
 
@@ -21,14 +23,21 @@ public class Main extends Application {
         launch();
     }
 
-    // Método para abrir la ventana principal
+    // Metodo para abrir la ventana principal
     private void openAccessWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("acceso/main-view-access.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+            Scene scene = new Scene(fxmlLoader.load());
+
+            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+            //Scene scene = new Scene(fxmlLoader.load());
+
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager - Main Window");
+            stage.setTitle("LibraryManager");
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/guayand0/librarymanager/imagenes/logo.png"))));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

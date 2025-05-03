@@ -1,0 +1,126 @@
+/* Estilo general */
+.stack-pane {
+    -fx-background-color: rgba(0, 0, 0, 0.3); /* Fondo negro semitransparente */
+}
+
+/* Estilo de cada cuadro */
+.cuadro {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 170;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+/* Estilo general para los cuadros invisibles */
+.invisible-cuadro {
+    -fx-pref-width: 170;
+    -fx-pref-height: 170;
+}
+
+/* Efecto hover en los cuadros */
+.cuadro:hover {
+    -fx-background-color: rgba(0, 197, 255, 0.4); /* Fondo gris azulado suave */
+    -fx-border-color: rgba(0, 197, 255, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+/* Estilo del texto */
+.texto {
+    -fx-font-size: 24px; /* Tamaño de fuente más grande */
+    -fx-font-family: 'Arial', sans-serif; /* Tipografía moderna */
+    -fx-text-fill: #333333; /* Color de texto oscuro */
+    -fx-text-alignment: center;
+    -fx-font-weight: normal;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Fondo de la imagen */
+.ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Sombra sutil a la imagen */
+}
+
+/* Transición en el StackPane */
+.stack-pane {
+    -fx-transition: all 0.5s ease-in-out;
+}
+
+
+
+
+
+
+
+/* Estilos del panel derecho */
+.menu-boton {
+    -fx-pref-width: 50;
+    -fx-pref-height: 50;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    -fx-border-color: rgba(255, 255, 255, 1);
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2);
+}
+
+.menu-boton:hover {
+    -fx-background-color: rgba(0, 200, 0, 0.4);
+    -fx-border-color: rgba(0, 200, 0, 0.6);
+    -fx-effect: dropshadow(gaussian, rgba(0, 200, 0, 0.2), 10, 0.5, 0, 4);
+}
+
+
+
+
+
+
+
+/* Estilo del panel izquierdo */
+.panel-izquierdo {
+    -fx-padding: 20px;
+}
+
+/* Estilo de los títulos en el panel izquierdo */
+.panel-izquierdo .titulo {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Estilo de los subtítulos en el panel izquierdo */
+.panel-izquierdo .subtitulo {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Estilo del logo */
+.panel-izquierdo .logo {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+    -fx-padding: 10px;
+}
+
+/* Estilo de los textos de autor y versión */
+.panel-izquierdo .informacion {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.panel-izquierdo .informacion-subtitulo {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}

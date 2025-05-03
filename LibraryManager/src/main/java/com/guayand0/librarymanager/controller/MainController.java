@@ -1,102 +1,70 @@
 package com.guayand0.librarymanager.controller;
 
-import javafx.event.ActionEvent;
+import com.guayand0.librarymanager.utils.Alertas;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import com.guayand0.librarymanager.Main;
 
+import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.net.URI;
 
-public class MainController implements Initializable {
+public class MainController {
+
+    Alertas alertas = new Alertas();
+
+    // Menú central
+
+    @FXML private void onLibrosClick() {}
+    @FXML private void onAutoresClick() {}
+    @FXML private void onCategoriasClick() {}
+    @FXML private void onEditorialesClick() {}
+    @FXML private void onIdiomasClick() {}
+    @FXML private void onUsuariosClick() {}
+    @FXML private void onPrestamosClick() {}
+    @FXML private void onDevolucionesClick() {}
+    @FXML private void onInformesClick() {}
+
+    // Menú derecho
+
+    @FXML private void onMenuClick() {}
+
+    // Menú superior
 
     @FXML
-    private Button btnLibros, btnUsuarios, btnPrestamos, btnDevoluciones, btnInformes, btnAyuda;
+    private void onSalir() {
+        Platform.exit();
+    }
 
     @FXML
-    private StackPane containerData;
+    private void onAcercaDe() {
+        alertas.showInformation("LibraryManager v1.0.1\nDesarrollado por David Beamonde.");
+    }
 
     @FXML
-    private HBox librosForm, usuariosForm, prestamosForm, devolucionesForm, informesForm, ayudaForm;
-
-    @FXML
-    private Label lblLibros, lblUsuarios, lblPrestamos, lblDevoluciones, lblInformes, lblAyuda;
-
-    @FXML
-    protected void actionEvent(ActionEvent e) {
-        Object evt = e.getSource();
-
-        resetFormVisibility();
-
-        if (evt.equals(btnLibros)) {
-            librosForm.setVisible(true);
-            lblLibros.setStyle("-fx-font-weight: bold;");
-        } else if (evt.equals(btnUsuarios)) {
-            usuariosForm.setVisible(true);
-            lblUsuarios.setStyle("-fx-font-weight: bold;");
-        } else if (evt.equals(btnPrestamos)) {
-            prestamosForm.setVisible(true);
-            lblPrestamos.setStyle("-fx-font-weight: bold;");
-        } else if (evt.equals(btnDevoluciones)) {
-            devolucionesForm.setVisible(true);
-            lblDevoluciones.setStyle("-fx-font-weight: bold;");
-        } else if (evt.equals(btnInformes)) {
-            informesForm.setVisible(true);
-            lblInformes.setStyle("-fx-font-weight: bold;");
-        } else if (evt.equals(btnAyuda)) {
-            ayudaForm.setVisible(true);
-            lblAyuda.setStyle("-fx-font-weight: bold;");
+    private void wiki() {
+        boolean confirmar = alertas.showConfirmation("¿Desea abrir la página de la wiki con información sobre el funcionamiento de la aplicación?");
+        if (confirmar) {
+            alertas.showInformation("La página web todavia no está creada.");
+            /*try {
+                Desktop.getDesktop().browse(new URI(""));
+            } catch (IOException | java.net.URISyntaxException e) {
+                e.printStackTrace();
+            }
+            alertas.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");*/
         }
     }
 
-    // Método que oculta todas las secciones y restablece los estilos
-    private void resetFormVisibility() {
-        librosForm.setVisible(false);
-        lblLibros.setStyle("-fx-font-weight: normal;");
-        usuariosForm.setVisible(false);
-        lblUsuarios.setStyle("-fx-font-weight: normal;");
-        prestamosForm.setVisible(false);
-        lblPrestamos.setStyle("-fx-font-weight: normal;");
-        devolucionesForm.setVisible(false);
-        lblDevoluciones.setStyle("-fx-font-weight: normal;");
-        informesForm.setVisible(false);
-        lblInformes.setStyle("-fx-font-weight: normal;");
-        ayudaForm.setVisible(false);
-        lblAyuda.setStyle("-fx-font-weight: normal;");
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        try {
-            librosForm = loadForm("libros/libros-view.fxml");
-            usuariosForm = loadForm("usuarios/usuarios-view.fxml");
-            prestamosForm = loadForm("prestamos/prestamos-view.fxml");
-            devolucionesForm = loadForm("devoluciones/devoluciones-view.fxml");
-            informesForm = loadForm("informes/informes-view.fxml");
-            ayudaForm = loadForm("ayuda/ayuda-view.fxml");
-
-            containerData.getChildren().addAll(librosForm, usuariosForm, prestamosForm, devolucionesForm, informesForm, ayudaForm);
-
-            resetFormVisibility();
-
-            librosForm.setVisible(true);
-            lblLibros.setStyle("-fx-font-weight: bold;");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    @FXML
+    private void reportarProblema() {
+        boolean confirmar = alertas.showConfirmation("¿Desea abrir la página web para reportar un problema o fallo de la aplicación?");
+        if (confirmar) {
+            try {
+                Desktop.getDesktop().browse(new URI("https://github.com/BEAMONDO/TFG_DAM2/issues/new"));
+                alertas.showInformation("Se ha abierto la página para reportar problemas en su navegador.");
+            } catch (IOException | java.net.URISyntaxException e) {
+                e.printStackTrace();
+                alertas.showError("Ha ocurrido un error al intentar abrir la página.");
+            }
         }
-    }
-
-    private HBox loadForm(String url) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
-        HBox data = fxmlLoader.load();
-        return data;
     }
 }

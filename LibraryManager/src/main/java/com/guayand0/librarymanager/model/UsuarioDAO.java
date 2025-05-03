@@ -1,8 +1,8 @@
 package com.guayand0.librarymanager.model;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
-import com.guayand0.librarymanager.utils.CapitalizarPalabras;
-import com.guayand0.librarymanager.utils.EncriptarContrasenas;
+import com.guayand0.librarymanager.utils.CapitalizarPalabra;
+import com.guayand0.librarymanager.utils.EncriptarContrasena;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +13,8 @@ public class UsuarioDAO {
     private Connection connection = null;
     private String sql;
 
-    private final EncriptarContrasenas EC = new EncriptarContrasenas();
-    private final CapitalizarPalabras CP = new CapitalizarPalabras();
+    private final EncriptarContrasena EC = new EncriptarContrasena();
+    private final CapitalizarPalabra CP = new CapitalizarPalabra();
 
     public Usuario login(String dniOrEmail, String password) {
         Usuario usuario = null;

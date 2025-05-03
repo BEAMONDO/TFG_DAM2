@@ -1,124 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.MainController">
-   <children>
-      <HBox prefHeight="80.0">
-         <children>
+<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.MainController">
 
-            <!-- Libros section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblLibros" text="Libros">
-                  <font>
-                     <Font size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnLibros" onAction="#actionEvent" text="Gestionar Libros" />
+   <!-- Menú superior -->
+   <MenuBar>
+      <Menu text="Archivo">
+         <MenuItem text="Salir" onAction="#onSalir"/>
+      </Menu>
+      <Menu text="Ayuda">
+         <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
+         <MenuItem text="Informacion" onAction="#wiki"/>
+         <SeparatorMenuItem/>
+         <MenuItem text="Reportar problema" onAction="#reportarProblema"/>
+      </Menu>
+   </MenuBar>
+
+   <!-- Contenedor principal -->
+   <StackPane prefHeight="800.0" prefWidth="1200.0">
+
+      <!-- Imagen de fondo -->
+      <ImageView fitHeight="800.0" fitWidth="1200.0">
+         <Image url="@imagenes/fondo2.jpg" />
+      </ImageView>
+
+      <!-- Panel con los tres VBox -->
+      <HBox prefHeight="800.0" prefWidth="1200.0" alignment="CENTER">
+         <!-- Panel izquierdo -->
+         <VBox maxWidth="300" prefWidth="300" alignment="TOP_CENTER" spacing="30" styleClass="panel-izquierdo">
+            <VBox alignment="TOP_CENTER" spacing="5">
+               <Label styleClass="titulo" text="Library Manager" />
+               <Label styleClass="subtitulo" text="Sistema de Gestión para Bibliotecas" />
             </VBox>
-
-            <!-- Divider -->
-            <VBox alignment="CENTER">
-               <Region maxWidth="20.0" minWidth="10.0" prefHeight="330.0" prefWidth="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" VBox.vgrow="NEVER">
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin>
-               </Region>
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
+            <ImageView fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+               <Image url="@imagenes/logo.png" />
+            </ImageView>
+            <Region VBox.vgrow="ALWAYS"/>
+            <VBox alignment="BOTTOM_LEFT" spacing="2" style="-fx-padding: 0 0 10 10;">
+               <Label styleClass="informacion" text="Autor: David Beamonde" />
+               <Label styleClass="informacion-subtitulo" text="Versión: 1.0.1" />
             </VBox>
+         </VBox>
 
-            <!-- Usuarios section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblUsuarios" text="Usuarios">
-                  <font>
-                     <Font name="System" size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnUsuarios" onAction="#actionEvent" text="Gestionar Usuarios" />
-            </VBox>
+         <!-- Contenido principal (centro) -->
+         <VBox alignment="CENTER" prefHeight="800.0" prefWidth="600.0" spacing="20">
+            <!-- Fila 1 -->
+            <HBox alignment="CENTER" spacing="20">
+               <VBox alignment="CENTER" onMouseClicked="#onLibrosClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Libros" />
+               </VBox>
+               <VBox alignment="CENTER" onMouseClicked="#onAutoresClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Autores" />
+               </VBox>
+               <VBox alignment="CENTER" onMouseClicked="#onCategoriasClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Categorías" />
+               </VBox>
+            </HBox>
 
-            <!-- Divider -->
-            <VBox alignment="CENTER">
-               <Region maxWidth="20.0" minWidth="10.0" prefHeight="330.0" prefWidth="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" VBox.vgrow="NEVER" />
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
-            </VBox>
+            <!-- Fila 2 -->
+            <HBox alignment="CENTER" spacing="20">
+               <VBox alignment="CENTER" onMouseClicked="#onEditorialesClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Editoriales" />
+               </VBox>
+               <VBox alignment="CENTER" onMouseClicked="#onIdiomasClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Idiomas" />
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
+            </HBox>
 
-            <!-- Préstamos section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblPrestamos" text="Préstamos">
-                  <font>
-                     <Font name="System" size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnPrestamos" onAction="#actionEvent" text="Registrar Préstamo" />
-            </VBox>
+            <!-- Fila 3 -->
+            <HBox alignment="CENTER" spacing="20">
+               <VBox alignment="CENTER" onMouseClicked="#onUsuariosClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Usuarios" />
+               </VBox>
+               <VBox alignment="CENTER" onMouseClicked="#onPrestamosClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Préstamos" />
+               </VBox>
+               <VBox alignment="CENTER" onMouseClicked="#onDevolucionesClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Devoluciones" />
+               </VBox>
+            </HBox>
 
-            <!-- Divider -->
-            <VBox alignment="CENTER">
-               <Region maxWidth="20.0" minWidth="10.0" prefHeight="330.0" prefWidth="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" VBox.vgrow="NEVER" />
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
-            </VBox>
+            <!-- Fila 4 -->
+            <HBox alignment="CENTER" spacing="20">
+               <VBox alignment="CENTER" onMouseClicked="#onInformesClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Informes" />
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
+               <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
+            </HBox>
+         </VBox>
 
-            <!-- Devoluciones section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblDevoluciones" text="Devoluciones">
-                  <font>
-                     <Font name="System" size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnDevoluciones" onAction="#actionEvent" text="Registrar Devolución" />
-            </VBox>
-
-            <!-- Divider -->
-            <VBox alignment="CENTER">
-               <Region maxWidth="20.0" minWidth="10.0" prefHeight="330.0" prefWidth="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" VBox.vgrow="NEVER" />
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
-            </VBox>
-
-            <!-- Informes section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblInformes" text="Informes">
-                  <font>
-                     <Font name="System" size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnInformes" onAction="#actionEvent" text="Ver Informes" />
-            </VBox>
-
-            <!-- Divider -->
-            <VBox alignment="CENTER">
-               <Region maxWidth="20.0" minWidth="10.0" prefHeight="330.0" prefWidth="10.0" style="-fx-background-color: #333333; -fx-background-radius: 10;" VBox.vgrow="NEVER" />
-               <padding>
-                  <Insets bottom="5.0" top="5.0" />
-               </padding>
-            </VBox>
-
-            <!-- Ayuda section -->
-            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
-               <Label fx:id="lblAyuda" text="Ayuda">
-                  <font>
-                     <Font name="System" size="18.0" />
-                  </font>
-               </Label>
-               <Button fx:id="btnAyuda" onAction="#actionEvent" text="Ayuda y Soporte" />
-            </VBox>
-         </children>
+         <!-- Panel derecho -->
+         <VBox maxWidth="300" prefWidth="300">
+            <HBox alignment="CENTER_RIGHT" prefHeight="90">
+               <Region prefWidth="25"/>
+               <StackPane maxHeight="50" maxWidth="50" minHeight="50" minWidth="50" styleClass="menu-boton" onMouseClicked="#onMenuClick">
+                  <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
+                     <Image url="@imagenes/menu-lateral-derecho-1.png" />
+                  </ImageView>
+               </StackPane>
+               <Region prefWidth="25"/>
+            </HBox>
+         </VBox>
       </HBox>
-      <StackPane fx:id="containerData" VBox.vgrow="ALWAYS">
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
-      </StackPane>
-   </children>
+   </StackPane>
 </VBox>

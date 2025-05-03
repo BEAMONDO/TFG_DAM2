@@ -3,6 +3,7 @@ package com.guayand0.librarymanager.controller.acceso;
 import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.model.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
+import com.guayand0.librarymanager.utils.MostrarContrasena;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
@@ -32,7 +35,8 @@ public class LoginViewController implements Initializable {
     @FXML
     private CheckBox loginPasswordOpen;
 
-    private final Alertas alertas = new Alertas();
+    private final Alertas ALERT = new Alertas();
+    private final MostrarContrasena MC = new MostrarContrasena();
 
     @FXML
     protected void actionEvent(ActionEvent e) {
@@ -49,29 +53,30 @@ public class LoginViewController implements Initializable {
             Usuario usuario = iniciarSesion(dniEmail, password);
 
             if (usuario != null) {
-                alertas.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
+                ALERT.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
                 ((Stage) btnLoginUser.getScene().getWindow()).close();
                 openMainWindow();
             } else {
-                alertas.showWarning("Credenciales incorrectas.");
+                ALERT.showWarning("Credenciales incorrectas.");
             }
         }
     }
 
-    // Método para validar los campos de login
+    // Metodo para validar los campos de login
     private boolean validarCamposLogin(String dniEmail, String password) {
         if (dniEmail.isEmpty()) {
-            alertas.showWarning("El campo DNI o Email es obligatorio.");
+            ALERT.showWarning("El campo DNI o Email es obligatorio.");
             return false;
         }
+
         if (password.isEmpty()) {
-            alertas.showWarning("El campo Contraseña es obligatorio.");
+            ALERT.showWarning("El campo Contraseña es obligatorio.");
             return false;
         }
         return true;
     }
 
-    // Método para intentar iniciar sesión
+    // Metodo para intentar iniciar sesión
     private Usuario iniciarSesion(String dniEmail, String password) {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         return usuarioDAO.login(dniEmail, password);
@@ -79,33 +84,24 @@ public class LoginViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        maskPassword(loginPasswordMask, loginPassword, loginPasswordOpen);
+        MC.maskPassword(loginPasswordMask, loginPassword, loginPasswordOpen);
     }
 
-    public void maskPassword(PasswordField pass, TextField text, CheckBox check) {
-
-        text.setVisible(false);
-        text.setManaged(false);
-
-        text.managedProperty().bind(check.selectedProperty());
-        text.visibleProperty().bind(check.selectedProperty());
-
-        text.textProperty().bindBidirectional(pass.textProperty());
-    }
-
-
-    // Método para abrir la ventana principal
+    // Metodo para abrir la ventana principal
     public void openMainWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/guayand0/librarymanager/main-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
+            Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager - Main Window");
+            stage.setTitle("LibraryManager");
             stage.setScene(scene);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/guayand0/librarymanager/imagenes/logo.png"))));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            alertas.showError("Error al cargar la ventana principal.");
+            ALERT.showError("Error al cargar la ventana principal.");
         }
     }
 }

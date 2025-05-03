@@ -1,6 +1,6 @@
 package com.guayand0.librarymanager.utils;
 
-public class CapitalizarPalabras {
+public class CapitalizarPalabra {
 
     public String capitalizar(String texto) {
         String[] palabras = texto.toLowerCase().split(" ");
