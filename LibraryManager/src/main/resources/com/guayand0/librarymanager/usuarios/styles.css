@@ -1,0 +1,193 @@
+.cuadro_principal {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 170;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+
+
+
+
+/* Estilo de cada cuadro */
+.cuadro_registrar {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 150;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+/* Efecto hover en los cuadros */
+.cuadro_registrar:hover {
+    -fx-background-color: rgba(0, 255, 0, 0.4); /* Fondo verde suave */
+    -fx-border-color: rgba(0, 255, 0, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro_registrar:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+/* Estilo para el cuadro cuando está seleccionado (clicado) */
+.cuadro_registrar.seleccionado {
+    -fx-background-color: rgba(0, 255, 0, 0.4); /* Fondo verde suave */
+    -fx-border-color: rgba(0, 255, 0, 0.6); /* Borde más fuerte */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte */
+}
+
+/* Efecto de texto cuando el cuadro está seleccionado */
+.cuadro_registrar.seleccionado .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+
+
+
+
+/* Estilo de cada cuadro */
+.cuadro_modificar {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 150;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+/* Efecto hover en los cuadros */
+.cuadro_modificar:hover {
+    -fx-background-color: rgba(255, 255, 0, 0.5); /* Fondo verde suave */
+    -fx-border-color: rgba(255, 255, 0, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro_modificar:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+/* Estilo para el cuadro cuando está seleccionado (clicado) */
+.cuadro_modificar.seleccionado {
+    -fx-background-color: rgba(255, 255, 0, 0.5); /* Fondo verde suave */
+    -fx-border-color: rgba(255, 255, 0, 0.6); /* Borde más fuerte*/
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte */
+}
+
+/* Efecto de texto cuando el cuadro está seleccionado */
+.cuadro_modificar.seleccionado .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+
+
+
+
+/* Estilo de cada cuadro */
+.cuadro_eliminar {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 150;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+/* Efecto hover en los cuadros */
+.cuadro_eliminar:hover {
+    -fx-background-color: rgba(255, 0, 0, 0.4); /* Fondo verde suave */
+    -fx-border-color: rgba(255, 0, 0, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro_eliminar:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+/* Estilo para el cuadro cuando está seleccionado (clicado) */
+.cuadro_eliminar.seleccionado {
+    -fx-background-color: rgba(255, 0, 0, 0.4); /* Fondo verde suave */
+    -fx-border-color: rgba(255, 0, 0, 0.6); /* Borde más fuerte */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte */
+}
+
+/* Efecto de texto cuando el cuadro está seleccionado */
+.cuadro_eliminar.seleccionado .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+
+
+
+
+.cuadro_volver {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(142, 142, 142, 0.6); /* Fondo gris más sutil */
+    -fx-border-color: rgb(142, 142, 142); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 80;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+.cuadro_volver:hover {
+    -fx-background-color: rgba(255, 142, 142, 0.4); /* Fondo rosa suave */
+    -fx-border-color: rgba(255, 142, 142, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro_volver:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+
+
+
+
+/* Estilo del texto */
+.texto {
+    -fx-font-size: 26px; /* Tamaño de fuente más grande */
+    -fx-font-family: 'Arial', sans-serif; /* Tipografía moderna */
+    -fx-text-fill: #333333; /* Color de texto oscuro */
+    -fx-text-alignment: center;
+    -fx-font-weight: normal;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Fondo de la imagen */
+.ImageView {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0); /* Sombra sutil a la imagen */
+}
+
+.titulo {
+    -fx-font-size: 34px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}

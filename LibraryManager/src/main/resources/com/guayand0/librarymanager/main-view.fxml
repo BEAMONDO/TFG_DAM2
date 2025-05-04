@@ -4,19 +4,21 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
 <VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.MainController">
 
    <!-- Menú superior -->
    <MenuBar>
       <Menu text="Archivo">
+         <MenuItem text="Cerrar Sesion" onAction="#onSessionClose"/>
+         <SeparatorMenuItem/>
          <MenuItem text="Salir" onAction="#onSalir"/>
       </Menu>
       <Menu text="Ayuda">
-         <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
          <MenuItem text="Informacion" onAction="#wiki"/>
          <SeparatorMenuItem/>
          <MenuItem text="Reportar problema" onAction="#reportarProblema"/>
+         <SeparatorMenuItem/>
+         <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
       </Menu>
    </MenuBar>
 
@@ -30,6 +32,7 @@
 
       <!-- Panel con los tres VBox -->
       <HBox prefHeight="800.0" prefWidth="1200.0" alignment="CENTER">
+
          <!-- Panel izquierdo -->
          <VBox maxWidth="300" prefWidth="300" alignment="TOP_CENTER" spacing="30" styleClass="panel-izquierdo">
             <VBox alignment="TOP_CENTER" spacing="5">
@@ -42,31 +45,21 @@
             </ImageView>
 
             <Region prefHeight="25"/>
-
             <VBox style="-fx-padding: 0 0 10 10;" spacing="10">
                <Label fx:id="usuario" alignment="TOP_LEFT" styleClass="informacion" text="Nombre: NULL" />
                <Label fx:id="permiso" alignment="TOP_LEFT" styleClass="informacion" text="Permiso: NULL" />
-
                <HBox>
                   <Region HBox.hgrow="ALWAYS"/>
-
-                  <!-- StackPane para superposición -->
-                  <StackPane minWidth="200" maxWidth="200" styleClass="menu-boton">
+                  <!-- StackPane para superposición con evento de clic -->
+                  <StackPane minWidth="170" maxWidth="170" styleClass="menu-boton" onMouseClicked="#onSessionClose">
                      <!-- Label visible -->
                      <Label styleClass="texto" text="Cerrar Sesión" />
-
-                     <!-- Botón invisible encima -->
-                     <Button onAction="#onSessionClose"
-                             style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0;"
-                             maxWidth="Infinity" maxHeight="Infinity" />
                   </StackPane>
-
                   <Region HBox.hgrow="ALWAYS"/>
                </HBox>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>
-
             <VBox alignment="BOTTOM_LEFT" style="-fx-padding: 0 0 10 10;">
                <Label styleClass="informacion" text="Autor: David Beamonde" />
                <Label styleClass="informacion-subtitulo" text="Versión: 1.0.1" />
@@ -75,6 +68,7 @@
 
          <!-- Contenido principal (centro) -->
          <VBox alignment="CENTER" prefHeight="800.0" prefWidth="600.0" spacing="20">
+
             <!-- Fila 1 -->
             <HBox alignment="CENTER" spacing="20">
                <VBox alignment="CENTER" onMouseClicked="#onLibrosClick" styleClass="cuadro">

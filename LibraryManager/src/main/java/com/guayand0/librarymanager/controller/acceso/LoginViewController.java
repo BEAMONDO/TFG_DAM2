@@ -5,6 +5,7 @@ import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.model.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
 import com.guayand0.librarymanager.utils.MostrarContrasena;
+import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,7 @@ public class LoginViewController implements Initializable {
     private CheckBox loginPasswordOpen;
 
     private final Alertas ALERT = new Alertas();
+    private final Ventanas VENTANA = new Ventanas();
     private final MostrarContrasena MC = new MostrarContrasena();
 
     @FXML
@@ -56,7 +58,7 @@ public class LoginViewController implements Initializable {
             if (usuario != null) {
                 //ALERT.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
                 ((Stage) btnLoginUser.getScene().getWindow()).close();
-                openMainWindow(usuario);
+                VENTANA.mainWindow(usuario);
             } else {
                 ALERT.showWarning("Credenciales incorrectas.");
             }
@@ -87,29 +89,4 @@ public class LoginViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         MC.maskPassword(loginPasswordMask, loginPassword, loginPasswordOpen);
     }
-
-    // Metodo para abrir la ventana principal
-    public void openMainWindow(Usuario usuarioLogueado) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/guayand0/librarymanager/main-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-
-            // Obtener el controlador y pasar el usuario
-            MainController controller = fxmlLoader.getController();
-            controller.setUsuarioTexto(usuarioLogueado.getNombre() + " " + usuarioLogueado.getApellidos());
-            controller.setPermisoTexto(usuarioLogueado.getPermiso());
-
-            Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.centerOnScreen();
-            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/guayand0/librarymanager/imagenes/logo.png"))));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            ALERT.showError("Error al cargar la ventana principal.");
-        }
-    }
-
 }

@@ -1,7 +1,8 @@
 package com.guayand0.librarymanager.controller;
 
-import com.guayand0.librarymanager.Main;
+import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.utils.Alertas;
+import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.fxml.FXML;
@@ -14,9 +15,10 @@ import java.net.URI;
 public class MainController {
 
     private final Alertas ALERT = new Alertas();
-    private final Main main = new Main();
+    private final Ventanas VENTANA = new Ventanas();
 
     @FXML private Label usuario, permiso;
+    private Usuario usuarioLogueado;
 
     // Menú central
 
@@ -25,10 +27,21 @@ public class MainController {
     @FXML private void onCategoriasClick() {}
     @FXML private void onEditorialesClick() {}
     @FXML private void onIdiomasClick() {}
-    @FXML private void onUsuariosClick() {}
+
+    @FXML private void onUsuariosClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.userWindow(usuarioLogueado);
+    }
+
     @FXML private void onPrestamosClick() {}
     @FXML private void onDevolucionesClick() {}
     @FXML private void onInformesClick() {}
+
+    public void setUsuarioLogueado(Usuario usuario) {
+        this.usuarioLogueado = usuario;
+    }
 
     // Menu izquierdo
 
@@ -36,7 +49,7 @@ public class MainController {
         Stage stage = (Stage) usuario.getScene().getWindow();
         stage.close();
 
-        main.openAccessWindow();
+        VENTANA.accessWindow();
     }
 
     public void setUsuarioTexto(String texto) {
@@ -85,5 +98,4 @@ public class MainController {
             }
         }
     }
-
 }
