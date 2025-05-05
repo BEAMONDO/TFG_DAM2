@@ -20,8 +20,8 @@ public class Ventanas {
     public void accessWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("acceso/main-view-access.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/usuarios-view.fxml"));
+            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/main-view.fxml"));
+            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/usuarios-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = new Stage();
@@ -40,7 +40,13 @@ public class Ventanas {
     // Ventana principal de la aplicacion
     public void mainWindow(Usuario usuarioLogueado) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+            FXMLLoader fxmlLoader;
+
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                fxmlLoader = new FXMLLoader(Main.class.getResource("main/admin/main-view.fxml"));
+            } else {
+                fxmlLoader = new FXMLLoader(Main.class.getResource("main/user/main-view.fxml"));
+            }
             Scene scene = new Scene(fxmlLoader.load());
 
             // Obtener el controlador y pasar el usuario
@@ -64,13 +70,20 @@ public class Ventanas {
 
     // Ventana de manejo de usuarios
     public void userWindow(Usuario usuarioLogueado) {
+        FXMLLoader fxmlLoader;
+
+        if (usuarioLogueado.getPermiso().equals("Administrador")) {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/usuarios-view.fxml"));
+        } else {
+            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/usuarios-view.fxml"));
+        }
+
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/usuarios-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
-            // Obtener el controlador y pasar el usuario
             UsuariosController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
+            controller.initData(); // Se llama aquí para evitar el NullPointer
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -84,4 +97,5 @@ public class Ventanas {
             ALERT.showError("Error al cargar la ventana de usuarios.");
         }
     }
+
 }

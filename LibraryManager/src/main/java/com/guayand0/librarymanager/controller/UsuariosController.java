@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UsuariosController implements Initializable {
+public class UsuariosController {
 
     private final Ventanas VENTANA = new Ventanas();
 
@@ -85,20 +85,30 @@ public class UsuariosController implements Initializable {
         this.usuarioLogueado = usuario;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initData() {
         try {
-            registerForm = loadForm("usuarios/registrar-view.fxml");
-            modifyForm = loadForm("usuarios/modificar-view.fxml");
-            deleteForm = loadForm("usuarios/borrar-view.fxml");
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                registerForm = loadForm("usuarios/admin/registrar-view.fxml");
+                modifyForm = loadForm("usuarios/admin/modificar-view.fxml");
+                deleteForm = loadForm("usuarios/admin/borrar-view.fxml");
 
-            containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
+                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
 
-            registrar.getStyleClass().add("seleccionado");
+                registrar.getStyleClass().add("seleccionado");
 
-            registerForm.setVisible(true);
-            modifyForm.setVisible(false);
-            deleteForm.setVisible(false);
+                registerForm.setVisible(true);
+                modifyForm.setVisible(false);
+                deleteForm.setVisible(false);
+            } else {
+                modifyForm = loadForm("usuarios/user/modificar-view.fxml");
+                containerData.getChildren().add(modifyForm);
+
+                if (modificar != null) {
+                    modificar.getStyleClass().add("seleccionado");
+                }
+
+                modifyForm.setVisible(true);
+            }
 
         } catch (IOException ex) {
             ex.printStackTrace();

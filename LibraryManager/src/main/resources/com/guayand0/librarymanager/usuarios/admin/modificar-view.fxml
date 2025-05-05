@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <VBox spacing="15" alignment="CENTER">
+
+        <HBox spacing="5" alignment="CENTER">
+            <VBox>
+                <Label text="DNI" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <ComboBox fx:id="dniCombo" editable="true" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50"/>
+
+            <VBox>
+                <HBox>
+                    <Label text="Fecha nacimiento" minWidth="140" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Region prefWidth="20"/>
+                    <VBox>
+                        <Region prefHeight="2"/>
+                        <Label text="(dd/mm/aaaa)" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: Blue;"/>
+                    </VBox>
+                </HBox>
+
+                <DatePicker fx:id="fechaField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="5" alignment="CENTER">
+            <VBox>
+                <Label text="Nombre" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <TextField fx:id="nombreField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50"/>
+
+            <VBox>
+                <Label text="Apellidos" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <TextField fx:id="apellidoField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="5" alignment="CENTER">
+            <VBox>
+                <Label text="Correo electrónico" minWidth="140" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <TextField fx:id="emailField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50"/>
+
+            <VBox>
+                <VBox>
+                    <Label text="Teléfono" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <TextField fx:id="telefonoField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="5" alignment="CENTER">
+            <VBox>
+                <HBox>
+                    <Label text="Contraseña" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Region prefWidth="90"/>
+                    <VBox>
+                        <CheckBox fx:id="passwordCheckHide" mnemonicParsing="false" text="Ocultar" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                        <Region prefHeight="2"/>
+                    </VBox>
+                </HBox>
+
+                <StackPane>
+                    <children>
+                        <PasswordField fx:id="passwordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                        <TextField fx:id="passwordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+
+                    </children>
+                </StackPane>
+            </VBox>
+
+            <Region prefWidth="50"/>
+            <VBox>
+                <HBox>
+                    <Label text="Confirmar contraseña" minWidth="185" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                    <Region prefHeight="2"/>
+                </HBox>
+
+                <StackPane>
+                    <children>
+                        <PasswordField fx:id="confirmPasswordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                        <TextField fx:id="confirmPasswordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                    </children>
+                </StackPane>
+            </VBox>
+        </HBox>
+
+        <HBox spacing="5" alignment="CENTER">
+            <VBox>
+                <Label text="Dirección" minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+                <TextField fx:id="direccionField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50"/>
+
+            <VBox spacing="10" alignment="BOTTOM_CENTER" minWidth="290">
+                <Button text="Modificar" minWidth="180" style="-fx-font-size: 20px; -fx-background-color: yellow; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" />
+            </VBox>
+        </HBox>
+
+    </VBox>
+</VBox>

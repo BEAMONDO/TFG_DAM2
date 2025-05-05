@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.MainController">
+<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.MainController">
 
    <!-- Menú superior -->
    <MenuBar>
@@ -27,7 +27,7 @@
 
       <!-- Imagen de fondo -->
       <ImageView fitHeight="800.0" fitWidth="1200.0">
-         <Image url="@imagenes/fondo2.jpg" />
+         <Image url="@../../imagenes/fondo2.jpg" />
       </ImageView>
 
       <!-- Panel con los tres VBox -->
@@ -41,7 +41,7 @@
             </VBox>
 
             <ImageView fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
-               <Image url="@imagenes/logo.png" />
+               <Image url="@../../imagenes/logo.png" />
             </ImageView>
 
             <Region prefHeight="25"/>
@@ -122,7 +122,7 @@
                <Region prefWidth="25"/>
                <StackPane maxHeight="50" maxWidth="50" minHeight="50" minWidth="50" styleClass="menu-boton" onMouseClicked="#onMenuClick">
                   <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                     <Image url="@imagenes/menu-lateral-derecho-1.png" />
+                     <Image url="@../../imagenes/menu-lateral-derecho-1.png" />
                   </ImageView>
                </StackPane>
                <Region prefWidth="25"/>

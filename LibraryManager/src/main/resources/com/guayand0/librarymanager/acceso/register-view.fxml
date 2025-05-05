@@ -31,10 +31,7 @@
                     <TextField fx:id="registerPasswordConfirmation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Confirmar Contraseña" />
                 </children>
             </StackPane>
-
-            <!-- <TextField fx:id="registerPassword" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Contraseña de Acceso" /> -->
-            <!-- <TextField fx:id="registerPasswordConfirmation" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Confirmar Contraseña" /> -->
-        </HBox>
+         </HBox>
 
         <CheckBox fx:id="registerPasswordOpen" mnemonicParsing="false" text="Ver Contraseña" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
@@ -54,18 +51,3 @@
     </VBox>
 </AnchorPane>
 </HBox>
-
-
-<!--
-        <HBox spacing="20">
-            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(180, 180, 250, 0.8);" prefHeight="50.0" promptText="Nombre" HBox.hgrow="ALWAYS" />
-            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 134, 0.8);" prefHeight="50.0" promptText="Apellidos" HBox.hgrow="ALWAYS" />
-        </HBox>
-
-        <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(152, 251, 152, 0.8);" prefHeight="50.0" promptText="Email" />
-
-        <HBox spacing="20">
-            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(123, 216, 230, 0.8);" prefHeight="50.0" promptText="Teléfono" HBox.hgrow="ALWAYS" />
-            <TextField style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Dirección" HBox.hgrow="ALWAYS" />
-        </HBox>
--->
