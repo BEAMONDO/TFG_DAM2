@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<VBox prefHeight="550.0" prefWidth="920.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.UsuariosController">
+<VBox prefHeight="550.0" prefWidth="920.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.DevolucionesController">
 
     <!-- Contenedor principal -->
     <StackPane prefHeight="550.0" prefWidth="920.0">
@@ -24,11 +24,7 @@
                 </padding>
 
                 <VBox alignment="TOP_CENTER" spacing="5">
-                    <Label fx:id="usuario" styleClass="titulo" text="Usuarios" />
-                </VBox>
-
-                <VBox fx:id="modificar" alignment="CENTER" styleClass="cuadro_modificar">
-                    <Label styleClass="texto" text="Modificar" />
+                    <Label fx:id="usuario" styleClass="titulo" text="Devoluciones" />
                 </VBox>
 
                 <Region VBox.vgrow="ALWAYS"/>
@@ -37,6 +33,7 @@
                     <Label styleClass="texto" text="Volver" />
                 </VBox>
             </VBox>
+
             <padding>
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>

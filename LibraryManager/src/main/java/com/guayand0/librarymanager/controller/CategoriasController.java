@@ -6,11 +6,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class DevolucionesController {
+public class CategoriasController {
 
     private final Ventanas VENTANA = new Ventanas();
 
-    @FXML private Label usuario;
+    @FXML
+    private Label usuario;
     private Usuario usuarioLogueado;
 
     @FXML private void onBackClick() {

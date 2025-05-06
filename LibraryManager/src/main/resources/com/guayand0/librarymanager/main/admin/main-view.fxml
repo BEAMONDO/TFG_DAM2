@@ -112,7 +112,9 @@
                   <Label styleClass="texto" text="Informes" />
                </VBox>
                <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
-               <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
+               <VBox alignment="CENTER" onMouseClicked="#onAyudaClick" styleClass="cuadro">
+                  <Label styleClass="texto" text="Ayuda" />
+               </VBox>
             </HBox>
          </VBox>
 

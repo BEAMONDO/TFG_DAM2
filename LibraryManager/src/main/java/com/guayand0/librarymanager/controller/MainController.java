@@ -22,22 +22,75 @@ public class MainController {
 
     // Menú central
 
-    @FXML private void onLibrosClick() {}
-    @FXML private void onAutoresClick() {}
-    @FXML private void onCategoriasClick() {}
-    @FXML private void onEditorialesClick() {}
-    @FXML private void onIdiomasClick() {}
+    @FXML private void onLibrosClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.librosWindow(usuarioLogueado);
+    }
+
+    @FXML private void onAutoresClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.autoresWindow(usuarioLogueado);
+    }
+
+    @FXML private void onCategoriasClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.categoriasWindow(usuarioLogueado);
+    }
+
+    @FXML private void onEditorialesClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.editorialesWindow(usuarioLogueado);
+    }
+
+    @FXML private void onIdiomasClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.idiomasWindow(usuarioLogueado);
+    }
 
     @FXML private void onUsuariosClick() {
         Stage stage = (Stage) usuario.getScene().getWindow();
         stage.close();
 
-        VENTANA.userWindow(usuarioLogueado);
+        VENTANA.usuariosWindow(usuarioLogueado);
     }
 
-    @FXML private void onPrestamosClick() {}
-    @FXML private void onDevolucionesClick() {}
-    @FXML private void onInformesClick() {}
+    @FXML private void onPrestamosClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.prestamosWindow(usuarioLogueado);
+    }
+
+    @FXML private void onDevolucionesClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.devolucionesWindow(usuarioLogueado);
+    }
+
+    @FXML private void onInformesClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.informesWindow(usuarioLogueado);
+    }
+
+    @FXML private void onAyudaClick() {
+        Stage stage = (Stage) usuario.getScene().getWindow();
+        stage.close();
+
+        VENTANA.ayudaWindow(usuarioLogueado);
+    }
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
