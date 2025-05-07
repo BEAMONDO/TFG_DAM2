@@ -1,6 +1,8 @@
-package com.guayand0.librarymanager.controller;
+package com.guayand0.librarymanager.controller.usuarios;
 
 import com.guayand0.librarymanager.Main;
+import com.guayand0.librarymanager.controller.auxiliar.VistaConControlador;
+import com.guayand0.librarymanager.controller.usuarios.user.ModificarController;
 import com.guayand0.librarymanager.model.Usuario;
 import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.fxml.FXML;
@@ -85,9 +87,9 @@ public class UsuariosController {
     public void initData() {
         try {
             if (usuarioLogueado.getPermiso().equals("Administrador")) {
-                registerForm = loadForm("usuarios/admin/registrar-view.fxml");
-                modifyForm = loadForm("usuarios/admin/modificar-view.fxml");
-                deleteForm = loadForm("usuarios/admin/borrar-view.fxml");
+                registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
+                modifyForm = loadFormAdmin("usuarios/admin/modificar-view.fxml");
+                deleteForm = loadFormAdmin("usuarios/admin/eliminar-view.fxml");
 
                 containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
 
@@ -97,8 +99,16 @@ public class UsuariosController {
                 modifyForm.setVisible(false);
                 deleteForm.setVisible(false);
             } else {
-                modifyForm = loadForm("usuarios/user/modificar-view.fxml");
+
+                VistaConControlador<?> vistaControlador = loadForm("usuarios/user/modificar-view.fxml");
+                modifyForm = vistaControlador.getVista();
                 containerData.getChildren().add(modifyForm);
+
+                // Pasar usuario al controlador
+                if (vistaControlador.getControlador() instanceof ModificarController) {
+                    ModificarController controller = (ModificarController) vistaControlador.getControlador();
+                    controller.setUsuarioLogueado(usuarioLogueado);
+                }
 
                 if (modificar != null) {
                     modificar.getStyleClass().add("seleccionado");
@@ -112,10 +122,16 @@ public class UsuariosController {
         }
     }
 
-    private VBox loadForm(String url) throws IOException {
+    private VBox loadFormAdmin(String url) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
         VBox data = fxmlLoader.load();
         return data;
     }
 
+    private VistaConControlador<?> loadForm(String url) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
+        VBox data = fxmlLoader.load();
+        Object controller = fxmlLoader.getController();
+        return new VistaConControlador<>(data, controller);
+    }
 }

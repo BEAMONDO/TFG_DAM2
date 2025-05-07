@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" fx:controller="com.guayand0.librarymanager.controller.usuarios.user.ModificarController">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -78,9 +78,8 @@
 
                 <StackPane>
                     <children>
-                        <PasswordField fx:id="passwordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
-                        <TextField fx:id="passwordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
-
+                        <PasswordField fx:id="oldPasswordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                        <TextField fx:id="oldPasswordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
                     </children>
                 </StackPane>
             </VBox>
@@ -94,8 +93,8 @@
 
                 <StackPane>
                     <children>
-                        <PasswordField fx:id="confirmPasswordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
-                        <TextField fx:id="confirmPasswordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                        <PasswordField fx:id="newPasswordFieldMask" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                        <TextField fx:id="newPasswordField" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
                     </children>
                 </StackPane>
             </VBox>

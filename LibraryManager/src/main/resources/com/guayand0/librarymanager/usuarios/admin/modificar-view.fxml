@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <VBox spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
 
     <padding>
@@ -108,9 +110,28 @@
 
             <Region prefWidth="50"/>
 
-            <VBox spacing="10" alignment="BOTTOM_CENTER" minWidth="290">
-                <Button text="Modificar" minWidth="180" style="-fx-font-size: 20px; -fx-background-color: yellow; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" />
-            </VBox>
+            <HBox alignment="BOTTOM_CENTER" minWidth="290" spacing="10">
+                <VBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Sexo" />
+                    <ComboBox fx:id="sexoCombo" style="-fx-font-size: 14px;">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Hombre" />
+                                <String fx:value="Mujer" />
+                                <String fx:value="Otro" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                    <Region prefHeight="2" />
+                    <CheckBox fx:id="isAdmin" mnemonicParsing="false" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Admin" />
+                </VBox>
+                <Region prefWidth="5" />
+                <VBox>
+                    <Region prefHeight="30" />
+                    <Button minWidth="155" style="-fx-font-size: 20px; -fx-background-color: yellow; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" text="Modificar" />
+                </VBox>
+
+            </HBox>
         </HBox>
 
     </VBox>

@@ -12,4 +12,8 @@ module com.guayand0.librarymanager {
     exports com.guayand0.librarymanager.controller;
     opens com.guayand0.librarymanager.controller;
     opens com.guayand0.librarymanager.controller.acceso to javafx.fxml;
+    opens com.guayand0.librarymanager.controller.usuarios.user to javafx.fxml;
+    opens com.guayand0.librarymanager.controller.usuarios.admin to javafx.fxml;
+    exports com.guayand0.librarymanager.controller.usuarios;
+    opens com.guayand0.librarymanager.controller.usuarios;
 }

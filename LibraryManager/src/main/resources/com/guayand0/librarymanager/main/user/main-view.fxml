@@ -120,7 +120,7 @@
 
          <!-- Panel derecho -->
          <VBox maxWidth="300" prefWidth="300">
-            <HBox alignment="CENTER_RIGHT" prefHeight="90">
+            <!--<HBox alignment="CENTER_RIGHT" prefHeight="90">
                <Region prefWidth="25"/>
                <StackPane maxHeight="50" maxWidth="50" minHeight="50" minWidth="50" styleClass="menu-boton" onMouseClicked="#onMenuClick">
                   <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
@@ -128,7 +128,7 @@
                   </ImageView>
                </StackPane>
                <Region prefWidth="25"/>
-            </HBox>
+            </HBox>-->
          </VBox>
       </HBox>
    </StackPane>

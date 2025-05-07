@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
-<VBox prefHeight="550.0" prefWidth="920.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.UsuariosController">
+<VBox prefHeight="550.0" prefWidth="920.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.usuarios.UsuariosController">
 
     <!-- Contenedor principal -->
     <StackPane prefHeight="550.0" prefWidth="920.0">

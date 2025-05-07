@@ -2,6 +2,7 @@ package com.guayand0.librarymanager.utils;
 
 import com.guayand0.librarymanager.Main;
 import com.guayand0.librarymanager.controller.*;
+import com.guayand0.librarymanager.controller.usuarios.UsuariosController;
 import com.guayand0.librarymanager.model.Usuario;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
