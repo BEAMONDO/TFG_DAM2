@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     direccion VARCHAR(255) NOT NULL,
     fecha_de_nacimiento DATE NOT NULL,
     fecha_de_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    permiso VARCHAR(50) NOT NULL DEFAULT 'Usuario'
+    permiso VARCHAR(25) NOT NULL DEFAULT 'Usuario',
+    sexo VARCHAR(25) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Autores (
@@ -83,11 +84,11 @@ ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_2 FOREIGN KEY (libro) REFERE
 
 INSERT INTO Usuarios (DNI, nombre, apellido, email, contrasena, telefono, direccion, fecha_de_nacimiento)
 VALUES
-('12345678A', 'Juan', 'Pérez', 'juan.perez@example.com', 'qwewe', '555-1234', 'Calle Falsa 123', '1990-01-01'),
-('87654321B', 'Ana', 'López', 'ana.lopez@example.com', 'qwewe', '555-5678', 'Av. Siempreviva 742', '1985-05-15'),
-('45678912C', 'Carlos', 'Gómez', 'carlos.gomez@example.com', 'qwewe', '555-8765', 'Paseo del Sol 45', '1992-03-22'),
-('78912345D', 'María', 'Hernández', 'maria.hernandez@example.com', 'qwewe', '555-4321', 'Calle Luna 78', '1988-07-10'),
-('32165498E', 'Lucía', 'Martínez', 'lucia.martinez@example.com', 'qwewe', '555-9876', 'Calle Estrella 90', '1995-11-30');
+('12345678A', 'Juan', 'Pérez', 'juan.perez@example.com', 'qwewe', '555-1234', 'Calle Falsa 123', '1990-01-01', 'Usuario', 'Hombre'),
+('87654321B', 'Ana', 'López', 'ana.lopez@example.com', 'qwewe', '555-5678', 'Av. Siempreviva 742', '1985-05-15', 'Usuario', 'Mujer'),
+('45678912C', 'Carlos', 'Gómez', 'carlos.gomez@example.com', 'qwewe', '555-8765', 'Paseo del Sol 45', '1992-03-22', 'Usuario', 'Hombre'),
+('78912345D', 'María', 'Hernández', 'maria.hernandez@example.com', 'qwewe', '555-4321', 'Calle Luna 78', '1988-07-10', 'Usuario', 'Mujer'),
+('32165498E', 'Lucía', 'Martínez', 'lucia.martinez@example.com', 'qwewe', '555-9876', 'Calle Estrella 90', '1995-11-30', 'Usuario', 'Mujer');
 
 INSERT INTO Autores (nombre, apellido, pais, fecha_de_nacimiento)
 VALUES
@@ -124,4 +125,3 @@ VALUES
 INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion, fecha_devolucion_real)
 VALUES
 ('45678912C', 2, '2024-11-21', '2024-11-30', '2024-11-29');
-

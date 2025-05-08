@@ -5,7 +5,6 @@ import java.util.Enumeration;
 
 public class ConnectionDatabase {
 
-    static String nombreBaseDatos = "bwexlexwx9kllx98zihv";
     static final String USER = "uffejpqe95fnbppa";
     static final String PASSWORD = "Yhwb5UkztDlyOn2CAEDy";
     static final String URL = "jdbc:mysql://uffejpqe95fnbppa:Yhwb5UkztDlyOn2CAEDy@bwexlexwx9kllx98zihv-mysql.services.clever-cloud.com:3306/bwexlexwx9kllx98zihv";

@@ -37,7 +37,7 @@
                     <Label styleClass="texto" text="Eliminar" />
                 </VBox>
 
-                <Region VBox.vgrow="ALWAYS"/>
+                <Region prefHeight="2"/>
 
                 <VBox alignment="CENTER" onMouseClicked="#onBackClick" styleClass="cuadro_volver">
                     <Label styleClass="texto" text="Volver" />

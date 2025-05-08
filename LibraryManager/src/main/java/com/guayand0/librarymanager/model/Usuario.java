@@ -12,8 +12,9 @@ public class Usuario {
     private String fechaDeNacimiento;
     private String fechaDeRegistro;
     private String permiso;
+    private String sexo;
 
-    public Usuario(String DNI, String nombre, String apellidos, String email, String contrasena, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro, String permiso) {
+    public Usuario(String DNI, String nombre, String apellidos, String email, String contrasena, String telefono, String direccion, String fechaDeNacimiento, String fechaDeRegistro, String permiso, String sexo) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -24,6 +25,7 @@ public class Usuario {
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.fechaDeRegistro = fechaDeRegistro;
         this.permiso = permiso;
+        this.sexo = sexo;
     }
 
     public Usuario() {
@@ -107,5 +109,13 @@ public class Usuario {
 
     public void setPermiso(String permiso) {
         this.permiso = permiso;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 }

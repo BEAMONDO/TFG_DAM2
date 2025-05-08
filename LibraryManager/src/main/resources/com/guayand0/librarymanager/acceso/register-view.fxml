@@ -40,7 +40,10 @@
             <TextField fx:id="registerDireccion" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" promptText="Dirección" HBox.hgrow="ALWAYS" />
         </HBox>
 
-        <DatePicker fx:id="registerFechaNacimiento" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Fecha de Nacimiento" />
+        <HBox spacing="20">
+            <DatePicker fx:id="registerFechaNacimiento" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Fecha de Nacimiento" />
+            <ComboBox fx:id="sexo" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Sexo" />
+        </HBox>
 
         <!-- Separador de 15px antes del botón -->
         <Region prefHeight="15.0" />

@@ -24,6 +24,9 @@ public class RegisterViewController implements Initializable {
     private TextField registerNombre, registerApellidos, registerDNI, registerEmail, registerPassword, registerPasswordConfirmation, registerTelefono, registerDireccion;
 
     @FXML
+    private ComboBox sexo;
+
+    @FXML
     private DatePicker registerFechaNacimiento;
 
     @FXML
@@ -68,7 +71,8 @@ public class RegisterViewController implements Initializable {
                     registerDireccion.getText(),
                     registerFechaNacimiento.getValue().toString(),
                     fechaDeRegistro,
-                    permiso
+                    permiso,
+                    sexo.getValue().toString()
             );
 
             // Intentar registrar el usuario
@@ -90,6 +94,7 @@ public class RegisterViewController implements Initializable {
                 registerTelefono.clear();
                 registerDireccion.clear();
                 registerFechaNacimiento.setValue(null);
+                sexo.setValue(null);
 
             } else {
                 ALERT.showWarning("Error al registrar usuario.");
@@ -167,6 +172,11 @@ public class RegisterViewController implements Initializable {
             return false;
         }
 
+        if (sexo.getValue() == null) {
+            ALERT.showWarning("El campo Sexo es obligatorio.");
+            return false;
+        }
+
         return true;
     }
 
@@ -188,6 +198,8 @@ public class RegisterViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        sexo.getItems().addAll("Hombre", "Mujer", "Otro");
+
         MC.maskPassword(registerPasswordMask, registerPassword, registerPasswordOpen);
         MC.maskPassword(registerPasswordConfirmationMask, registerPasswordConfirmation, registerPasswordOpen);
 

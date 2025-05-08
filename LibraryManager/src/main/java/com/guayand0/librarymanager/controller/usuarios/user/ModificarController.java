@@ -16,11 +16,15 @@ public class ModificarController {
     private final Alertas ALERT = new Alertas();
     private final LimiteCaracteres LC = new LimiteCaracteres();
 
-
     private Usuario usuarioLogueado;
 
     @FXML private TextField dniField, nombreField, apellidoField, emailField, telefonoField, direccionField;
+    @FXML private CheckBox passwordCheckHide;
+    @FXML private TextField oldPasswordField, newPasswordField;
+    @FXML private PasswordField oldPasswordFieldMask, newPasswordFieldMask;
     @FXML private DatePicker fechaField;
+    @FXML private ComboBox sexoCombo;
+    @FXML private Button modificarButton;
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
@@ -31,6 +35,7 @@ public class ModificarController {
         cargarEmailUsuario();
         cargarTelefonoUsuario();
         cargarDireccionUsuario();
+        cargarSexoUsuario();
     }
 
     // Método para iniciar el controlador
@@ -58,7 +63,7 @@ public class ModificarController {
     // Método para cargar el Nombre en el TextField
     private void cargarNombreUsuario() {
         try {
-            nombreField.setText(usuarioLogueado.getNombre().toUpperCase());
+            nombreField.setText(usuarioLogueado.getNombre());
         } catch (Exception e) {
             ALERT.showError("No se pudo obtener el nombre, añádelo de nuevo.");
         }
@@ -67,7 +72,7 @@ public class ModificarController {
     // Método para cargar el Apellido en el TextField
     private void cargarApellidosUsuario() {
         try {
-            apellidoField.setText(usuarioLogueado.getApellidos().toUpperCase());
+            apellidoField.setText(usuarioLogueado.getApellidos());
         } catch (Exception e) {
             ALERT.showError("No se pudo obtener los apellidos, añádelos de nuevo.");
         }
@@ -76,7 +81,7 @@ public class ModificarController {
     // Método para cargar el Email en el TextField
     private void cargarEmailUsuario() {
         try {
-            emailField.setText(usuarioLogueado.getEmail().toUpperCase());
+            emailField.setText(usuarioLogueado.getEmail());
         } catch (Exception e) {
             ALERT.showError("No se pudo obtener el email, añádelo de nuevo.");
         }
@@ -85,7 +90,7 @@ public class ModificarController {
     // Método para cargar el Telefono en el TextField
     private void cargarTelefonoUsuario() {
         try {
-            telefonoField.setText(usuarioLogueado.getTelefono().toUpperCase());
+            telefonoField.setText(usuarioLogueado.getTelefono());
         } catch (Exception e) {
             ALERT.showError("No se pudo obtener el télefono, añádelo de nuevo.");
         }
@@ -94,10 +99,25 @@ public class ModificarController {
     // Método para cargar la Direccion en el TextField
     private void cargarDireccionUsuario() {
         try {
-            direccionField.setText(usuarioLogueado.getDireccion().toUpperCase());
+            direccionField.setText(usuarioLogueado.getDireccion());
         } catch (Exception e) {
             ALERT.showError("No se pudo obtener la dirección, añádela de nuevo.");
         }
+    }
+
+    // Método para cargar el Sexo en el Combobox
+    private void cargarSexoUsuario() {
+        try {
+            sexoCombo.setValue(usuarioLogueado.getSexo());
+        } catch (Exception e) {
+            ALERT.showError("No se pudo obtener el sexo, añádelo de nuevo.");
+        }
+    }
+
+    // Método para activar el botón que modifica los datos
+    @FXML private void onModifyClick() {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        //usuarioDAO.modify(usuarioLogueado, String.valueOf(oldPasswordField));
     }
 
 }
