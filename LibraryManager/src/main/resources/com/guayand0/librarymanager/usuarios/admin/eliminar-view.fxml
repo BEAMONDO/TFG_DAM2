@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="20.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.usuarios.admin.EliminarController">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
@@ -20,7 +20,7 @@
         </HBox>
 
         <HBox spacing="5" alignment="CENTER">
-            <Button text="Eliminar" minWidth="180" style="-fx-font-size: 20px; -fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" />
+            <Button onAction="#eliminarUsuario" text="Eliminar" minWidth="180" style="-fx-font-size: 20px; -fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" />
         </HBox>
 
     </VBox>

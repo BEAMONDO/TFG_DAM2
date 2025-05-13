@@ -1,7 +1,7 @@
 package com.guayand0.librarymanager.controller.acceso;
 
-import com.guayand0.librarymanager.model.Usuario;
-import com.guayand0.librarymanager.model.UsuarioDAO;
+import com.guayand0.librarymanager.model.usuario.Usuario;
+import com.guayand0.librarymanager.model.usuario.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
 import com.guayand0.librarymanager.utils.MostrarContrasena;
 import javafx.event.ActionEvent;
@@ -88,8 +88,6 @@ public class RegisterViewController implements Initializable {
                 registerEmail.clear();
                 registerPassword.clear();
                 registerPasswordConfirmation.clear();
-                registerPasswordMask.clear();
-                registerPasswordConfirmationMask.clear();
                 registerPasswordOpen.setSelected(false);
                 registerTelefono.clear();
                 registerDireccion.clear();
@@ -111,7 +109,7 @@ public class RegisterViewController implements Initializable {
             ALERT.showWarning("El campo DNI es obligatorio.");
             return false;
         }
-        /*if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
+        if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
             ALERT.showWarning("El DNI no es válido. Debe tener 8 números seguidos de una letra.");
             return false;
         } else {
@@ -124,7 +122,7 @@ public class RegisterViewController implements Initializable {
                 ALERT.showWarning("La letra del DNI no coincide con los números ingresados.");
                 return false;
             }
-        }*/
+        }
 
         if (registerNombre.getText().isEmpty()) {
             ALERT.showWarning("El campo Nombre es obligatorio.");
@@ -139,10 +137,10 @@ public class RegisterViewController implements Initializable {
             ALERT.showWarning("El campo Email es obligatorio.");
             return false;
         }
-        /*if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
             ALERT.showWarning("El Email no tiene un formato válido. Debe contener '@', un dominio y una extensión de al menos 2 letras.");
             return false;
-        }*/
+        }
 
         if (password.isEmpty()) {
             ALERT.showWarning("El campo Contraseña es obligatorio.");

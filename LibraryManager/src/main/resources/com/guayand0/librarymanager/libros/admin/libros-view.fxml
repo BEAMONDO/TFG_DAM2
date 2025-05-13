@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+<VBox prefHeight="550.0" prefWidth="920.0" stylesheets="@../../menus-interiores.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.libros.LibrosController">
+
+   <!-- Contenedor principal -->
+   <StackPane prefHeight="550.0" prefWidth="920.0">
+
+      <!-- Imagen de fondo -->
+      <ImageView fitHeight="550.0" fitWidth="920.0">
+         <Image url="@../../imagenes/fondo1.jpg" />
+      </ImageView>
+
+      <!-- Menú izquierdo -->
+      <HBox>
+         <VBox prefWidth="200" spacing="20">
+            <padding>
+               <Insets bottom="20" right="20"/>
+            </padding>
+
+            <VBox alignment="TOP_CENTER" spacing="5">
+               <Label fx:id="usuario" styleClass="titulo" text="Libros" />
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <VBox alignment="CENTER" onMouseClicked="#onBackClick" styleClass="cuadro_volver">
+               <Label styleClass="texto" text="Volver" />
+            </VBox>
+         </VBox>
+
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+
+         <!-- Área central vacía por ahora -->
+         <StackPane fx:id="containerData" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" styleClass="cuadro_principal">
+         </StackPane>
+      </HBox>
+   </StackPane>
+</VBox>

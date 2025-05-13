@@ -1,9 +1,18 @@
 package com.guayand0.librarymanager.utils;
 
 import com.guayand0.librarymanager.Main;
-import com.guayand0.librarymanager.controller.*;
+import com.guayand0.librarymanager.controller.autores.AutoresController;
+import com.guayand0.librarymanager.controller.ayuda.AyudaController;
+import com.guayand0.librarymanager.controller.categorias.CategoriasController;
+import com.guayand0.librarymanager.controller.devoluciones.DevolucionesController;
+import com.guayand0.librarymanager.controller.editoriales.EditorialesController;
+import com.guayand0.librarymanager.controller.idiomas.IdiomasController;
+import com.guayand0.librarymanager.controller.informes.InformesController;
+import com.guayand0.librarymanager.controller.libros.LibrosController;
+import com.guayand0.librarymanager.controller.main.MainController;
+import com.guayand0.librarymanager.controller.prestamos.PrestamosController;
 import com.guayand0.librarymanager.controller.usuarios.UsuariosController;
-import com.guayand0.librarymanager.model.Usuario;
+import com.guayand0.librarymanager.model.usuario.Usuario;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -20,8 +29,6 @@ public class Ventanas {
     public void accessWindow() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("acceso/main-view-access.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/main-view.fxml"));
-            //FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/usuarios-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = new Stage();
@@ -72,9 +79,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/libros-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("libros/admin/libros-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/libros-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("libros/user/libros-view.fxml"));
         }
 
         try {
@@ -101,9 +108,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/autores-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("autores/admin/autores-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/autores-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("autores/user/autores-view.fxml"));
         }
 
         try {
@@ -130,9 +137,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/categorias-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("categorias/admin/categorias-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/categorias-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("categorias/user/categorias-view.fxml"));
         }
 
         try {
@@ -159,9 +166,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/editoriales-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("editoriales/admin/editoriales-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/editoriales-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("editoriales/admin/editoriales-view.fxml/user/editoriales-view.fxml"));
         }
 
         try {
@@ -188,9 +195,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/idiomas-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("idiomas/admin/idiomas-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/idiomas-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("idiomas/user/idiomas-view.fxml"));
         }
 
         try {
@@ -246,9 +253,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/devoluciones-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("devoluciones/admin/devoluciones-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/devoluciones-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("devoluciones/user/devoluciones-view.fxml"));
         }
 
         try {
@@ -275,9 +282,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/prestamos-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("prestamos/admin/prestamos-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/prestamos-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("prestamos/user/prestamos-view.fxml"));
         }
 
         try {
@@ -304,9 +311,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/informes-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("informes/admin/informes-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/informes-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("informes/user/informes-view.fxml"));
         }
 
         try {
@@ -333,9 +340,9 @@ public class Ventanas {
         FXMLLoader fxmlLoader;
 
         if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/ayuda-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("ayuda/admin/ayuda-view.fxml"));
         } else {
-            fxmlLoader = new FXMLLoader(Main.class.getResource("usuarios/user/ayuda-view.fxml"));
+            fxmlLoader = new FXMLLoader(Main.class.getResource("ayuda/user/ayuda-view.fxml"));
         }
 
         try {

@@ -41,7 +41,7 @@
         </HBox>
 
         <HBox spacing="20">
-            <DatePicker fx:id="registerFechaNacimiento" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Fecha de Nacimiento" />
+            <DatePicker fx:id="registerFechaNacimiento" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Fecha Nacimiento" />
             <ComboBox fx:id="sexo" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Sexo" />
         </HBox>
 

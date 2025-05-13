@@ -1,9 +1,8 @@
 package com.guayand0.librarymanager.controller.usuarios;
 
 import com.guayand0.librarymanager.Main;
-import com.guayand0.librarymanager.controller.auxiliar.VistaConControlador;
-import com.guayand0.librarymanager.controller.usuarios.user.ModificarController;
-import com.guayand0.librarymanager.model.Usuario;
+import com.guayand0.librarymanager.utils.VistaConControlador;
+import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,7 +85,8 @@ public class UsuariosController {
 
     public void initData() {
         try {
-            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+
+            /*if (usuarioLogueado.getPermiso().equals("Administrador")) {
                 registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
                 modifyForm = loadFormAdmin("usuarios/admin/modificar-view.fxml");
                 deleteForm = loadFormAdmin("usuarios/admin/eliminar-view.fxml");
@@ -115,7 +115,41 @@ public class UsuariosController {
                 }
 
                 modifyForm.setVisible(true);
+            }*/
+
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
+
+                FXMLLoader modificarLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/modificar-view.fxml"));
+                modifyForm = modificarLoader.load();
+                Object controller = modificarLoader.getController();
+                if (controller instanceof com.guayand0.librarymanager.controller.usuarios.admin.ModificarController) {
+                    ((com.guayand0.librarymanager.controller.usuarios.admin.ModificarController) controller).setUsuarioLogueado(usuarioLogueado);
+                }
+
+                deleteForm = loadFormAdmin("usuarios/admin/eliminar-view.fxml");
+
+                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
+
+                registrar.getStyleClass().add("seleccionado");
+                registerForm.setVisible(true);
+                modifyForm.setVisible(false);
+                deleteForm.setVisible(false);
+
+            } else {
+                VistaConControlador<?> vistaControlador = loadForm("usuarios/user/modificar-view.fxml");
+                modifyForm = vistaControlador.getVista();
+                containerData.getChildren().add(modifyForm);
+
+                if (vistaControlador.getControlador() instanceof com.guayand0.librarymanager.controller.usuarios.user.ModificarController) {
+                    ((com.guayand0.librarymanager.controller.usuarios.user.ModificarController) vistaControlador.getControlador()).setUsuarioLogueado(usuarioLogueado);
+                }
+
+                if (modificar != null) modificar.getStyleClass().add("seleccionado");
+
+                modifyForm.setVisible(true);
             }
+
 
         } catch (IOException ex) {
             ex.printStackTrace();
