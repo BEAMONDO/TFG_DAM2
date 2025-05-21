@@ -48,6 +48,7 @@
             <VBox style="-fx-padding: 0 0 10 10;" spacing="10">
                <Label fx:id="usuario" alignment="TOP_LEFT" styleClass="informacion" text="Nombre: NULL" />
                <Label fx:id="permiso" alignment="TOP_LEFT" styleClass="informacion" text="Permiso: NULL" />
+               <Region prefHeight="25" />
                <HBox>
                   <Region HBox.hgrow="ALWAYS"/>
                   <!-- StackPane para superposición con evento de clic -->

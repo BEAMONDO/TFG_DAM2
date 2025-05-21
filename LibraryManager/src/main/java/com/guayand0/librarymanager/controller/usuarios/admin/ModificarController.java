@@ -15,6 +15,7 @@ import java.util.List;
 public class ModificarController {
 
     private final Alertas ALERT = new Alertas();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final LimiteCaracteres LC = new LimiteCaracteres();
     private final MostrarContrasena MC = new MostrarContrasena();
 
@@ -56,7 +57,7 @@ public class ModificarController {
     }
 
     private void cargarDNIUsuarios() {
-        List<Usuario> usuarios = new UsuarioDAO().obtenerUsuarios();
+        List<Usuario> usuarios = usuarioDAO.obtenerUsuarios();
         dniCombo.getItems().clear();
 
         for (Usuario usuario : usuarios) {
@@ -67,10 +68,10 @@ public class ModificarController {
     }
 
     private void cargarDatosUsuario() {
-        String dniSeleccionado = (String) dniCombo.getValue();
+        String dniSeleccionado = dniCombo.getValue();
         if (dniSeleccionado == null) return;
 
-        List<Usuario> usuarios = new UsuarioDAO().obtenerUsuarios();
+        List<Usuario> usuarios = usuarioDAO.obtenerUsuarios();
 
         for (Usuario usuario : usuarios) {
             if (usuario.getDNI().equals(dniSeleccionado)) {
@@ -124,7 +125,7 @@ public class ModificarController {
                 fechaNacimiento, sexo, permiso
         };
 
-        boolean actualizado = new UsuarioDAO().modify(datos, contrasenaOriginal, usuarioLogueado.getPermiso());
+        boolean actualizado = usuarioDAO.modify(datos, contrasenaOriginal, usuarioLogueado.getPermiso());
 
         if (actualizado) {
             ALERT.showInformation("Datos actualizados correctamente.");

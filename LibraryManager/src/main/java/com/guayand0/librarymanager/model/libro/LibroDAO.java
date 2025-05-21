@@ -211,7 +211,6 @@ public class LibroDAO {
         }
     }
 
-
     public boolean existeIsbn(String isbn) {
         // Consulta SQL para verificar si el ISBN existe
         String sql = "SELECT COUNT(*) FROM Libros WHERE ISBN = ?";

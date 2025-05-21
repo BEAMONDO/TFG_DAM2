@@ -1,6 +1,8 @@
 package com.guayand0.librarymanager.controller.acceso;
 
 import com.guayand0.librarymanager.Main;
+import com.guayand0.librarymanager.utils.Alertas;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,17 +18,15 @@ import java.util.ResourceBundle;
 
 public class MainViewAccessController implements Initializable {
 
-    @FXML
-    private Button  btnLogin, btnRegister;
+    private final Alertas ALERT = new Alertas();
 
-    @FXML
-    private StackPane containerSessionData;
+    @FXML private Button  btnLogin, btnRegister;
 
-    @FXML
-    private HBox loginForm, registerForm;
+    @FXML private StackPane containerSessionData;
 
-    @FXML
-    protected void actionEvent(ActionEvent e) {
+    @FXML private HBox loginForm, registerForm;
+
+    @FXML protected void actionEvent(ActionEvent e) {
         Object evt = e.getSource();
 
         if (evt.equals(btnLogin)) {
@@ -61,5 +62,15 @@ public class MainViewAccessController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
         HBox data = fxmlLoader.load();
         return data;
+    }
+
+    // Menú superior
+
+    @FXML private void onSalir() {
+        Platform.exit();
+    }
+
+    @FXML private void onAcercaDe() {
+        ALERT.showInformation("LibraryManager v1.0.1\nDesarrollado por David Beamonde.");
     }
 }

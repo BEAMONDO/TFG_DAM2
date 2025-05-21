@@ -30,8 +30,7 @@ public class RegistrarController {
         this.usuarioLogueado = usuario;
     }
 
-    @FXML
-    public void initialize() {
+    @FXML public void initialize() {
         aplicarMascaras();
         aplicarLimitesCaracteres();
     }
@@ -52,8 +51,7 @@ public class RegistrarController {
         direccionField.setTextFormatter(LC.createTextFormatter(255));
     }
 
-    @FXML
-    private void onRegisterClick() {
+    @FXML private void onRegisterClick() {
         if (!validarCampos()) return;
 
         String dni = dniField.getText();
@@ -88,7 +86,7 @@ public class RegistrarController {
             ALERT.showInformation("Usuario registrado correctamente.");
             limpiarCampos();
         } else {
-            ALERT.showWarning("Error al registrar usuario.");
+            ALERT.showWarning("Error al registrar el usuario.");
         }
     }
 

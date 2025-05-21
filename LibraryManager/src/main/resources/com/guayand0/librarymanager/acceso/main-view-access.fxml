@@ -7,8 +7,18 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.acceso.MainViewAccessController">
 
+    <!-- Menú superior fijado arriba -->
+    <MenuBar prefWidth="900.0">
+        <Menu text="Archivo">
+            <MenuItem text="Salir" onAction="#onSalir"/>
+        </Menu>
+        <Menu text="Ayuda">
+            <MenuItem text="Acerca de" onAction="#onAcercaDe"/>
+        </Menu>
+    </MenuBar>
+
     <!-- Mitad izquierda: imagen de fondo, título, imagen, botones -->
-    <AnchorPane prefHeight="600.0" prefWidth="370.0">
+    <AnchorPane layoutY="25.0" prefHeight="575.0" prefWidth="900.0">
         <ImageView fitHeight="600.0" fitWidth="900.0">
             <Image url="@../imagenes/fondo-login.jpg" />
         </ImageView>

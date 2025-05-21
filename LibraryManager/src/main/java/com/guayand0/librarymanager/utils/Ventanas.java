@@ -147,7 +147,7 @@ public class Ventanas {
 
             CategoriasController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData(); // Se llama aquí para evitar el NullPointer
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -176,7 +176,7 @@ public class Ventanas {
 
             EditorialesController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData(); // Se llama aquí para evitar el NullPointer
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -205,7 +205,7 @@ public class Ventanas {
 
             IdiomasController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData(); // Se llama aquí para evitar el NullPointer
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");

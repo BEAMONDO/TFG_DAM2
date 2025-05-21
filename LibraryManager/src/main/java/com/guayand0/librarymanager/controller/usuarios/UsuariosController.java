@@ -86,37 +86,6 @@ public class UsuariosController {
     public void initData() {
         try {
 
-            /*if (usuarioLogueado.getPermiso().equals("Administrador")) {
-                registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
-                modifyForm = loadFormAdmin("usuarios/admin/modificar-view.fxml");
-                deleteForm = loadFormAdmin("usuarios/admin/eliminar-view.fxml");
-
-                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
-
-                registrar.getStyleClass().add("seleccionado");
-
-                registerForm.setVisible(true);
-                modifyForm.setVisible(false);
-                deleteForm.setVisible(false);
-            } else {
-
-                VistaConControlador<?> vistaControlador = loadForm("usuarios/user/modificar-view.fxml");
-                modifyForm = vistaControlador.getVista();
-                containerData.getChildren().add(modifyForm);
-
-                // Pasar usuario al controlador
-                if (vistaControlador.getControlador() instanceof ModificarController) {
-                    ModificarController controller = (ModificarController) vistaControlador.getControlador();
-                    controller.setUsuarioLogueado(usuarioLogueado);
-                }
-
-                if (modificar != null) {
-                    modificar.getStyleClass().add("seleccionado");
-                }
-
-                modifyForm.setVisible(true);
-            }*/
-
             if (usuarioLogueado.getPermiso().equals("Administrador")) {
                 registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
 
@@ -149,7 +118,6 @@ public class UsuariosController {
 
                 modifyForm.setVisible(true);
             }
-
 
         } catch (IOException ex) {
             ex.printStackTrace();

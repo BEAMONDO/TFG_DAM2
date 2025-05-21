@@ -26,8 +26,7 @@ public class Libro {
         this.estado = estado;
     }
 
-    public Libro() {
-    }
+    public Libro() {}
 
     public int getID() {
         return ID;

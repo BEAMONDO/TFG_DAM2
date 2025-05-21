@@ -19,7 +19,7 @@ public class EliminarController {
         cargarDNIUsuarios();
     }
 
-    @FXML private void eliminarUsuario() {
+    @FXML private void onDeleteClick() {
         String dniSeleccionado = dniCombo.getValue();
 
         if (dniSeleccionado == null || dniSeleccionado.isEmpty()) {
@@ -34,7 +34,7 @@ public class EliminarController {
             dniCombo.getItems().remove(dniSeleccionado);
             dniCombo.setValue(null);
         } else {
-            ALERT.showError("No se pudo eliminar el usuario.");
+            ALERT.showError("Error al eliminar el usuario.");
         }
     }
 

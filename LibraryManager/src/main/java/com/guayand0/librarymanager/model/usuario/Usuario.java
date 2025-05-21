@@ -28,8 +28,7 @@ public class Usuario {
         this.sexo = sexo;
     }
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public String getDNI() {
         return DNI;
