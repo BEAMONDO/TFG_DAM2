@@ -118,7 +118,7 @@ public class Ventanas {
 
             AutoresController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData(); // Se llama aquí para evitar el NullPointer
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");

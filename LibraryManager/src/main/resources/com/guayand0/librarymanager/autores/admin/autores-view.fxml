@@ -27,7 +27,17 @@
                     <Label fx:id="usuario" styleClass="titulo" text="Autores" />
                 </VBox>
 
-                <Region VBox.vgrow="ALWAYS"/>
+                <VBox fx:id="registrar" alignment="CENTER" onMouseClicked="#onRegisterClick" styleClass="cuadro_registrar">
+                    <Label styleClass="texto" text="Registrar" />
+                </VBox>
+                <VBox fx:id="modificar" alignment="CENTER" onMouseClicked="#onModifyClick" styleClass="cuadro_modificar">
+                    <Label styleClass="texto" text="Modificar" />
+                </VBox>
+                <VBox fx:id="eliminar" alignment="CENTER" onMouseClicked="#onDeleteClick" styleClass="cuadro_eliminar">
+                    <Label styleClass="texto" text="Eliminar" />
+                </VBox>
+
+                <Region prefHeight="2"/>
 
                 <VBox alignment="CENTER" onMouseClicked="#onBackClick" styleClass="cuadro_volver">
                     <Label styleClass="texto" text="Volver" />
