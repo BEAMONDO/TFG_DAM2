@@ -1,13 +1,139 @@
 package com.guayand0.librarymanager.model.libro;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
+import com.guayand0.librarymanager.model.idioma.Idioma;
+import com.guayand0.librarymanager.model.usuario.Usuario;
+import com.guayand0.librarymanager.utils.CapitalizarPalabra;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LibroDAO {
 
     private Connection connection = null;
+    private PreparedStatement statement = null;
+    private String sql;
+
+    private final CapitalizarPalabra CP = new CapitalizarPalabra();
+
+    public boolean register(Libro libro) {
+        sql = "INSERT INTO Libros (ISBN, titulo, autor, id_categoria, id_editorial," +
+                "numero_paginas, id_idioma, anio_publicacion, estado) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, libro.getISBN());
+            statement.setString(2, libro.getTitulo());
+            statement.setInt(3, libro.getAutor());
+            statement.setInt(4, libro.getCategoria());
+            statement.setInt(5, libro.getEditorial());
+            statement.setInt(6, libro.getNumeroPaginas());
+            statement.setInt(7, libro.getIdioma());
+            statement.setInt(8, libro.getAnioPublicacion());
+            statement.setString(9, libro.getEstado());
+
+            int rowsInserted = statement.executeUpdate();
+            statement.close();
+            return rowsInserted > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {if (statement != null) statement.close();
+            } catch (Exception ex) {ex.printStackTrace();}
+            try {if (connection != null) ConnectionDatabase.closeConnection(connection);
+            } catch (Exception ex) {ex.printStackTrace();}
+        }
+    }
+
+    public boolean modify(String[] arrayDatos) {
+        sql = "UPDATE Libros SET titulo = ?, autor = ?, id_categoria = ?, id_editorial = ?," +
+                "numero_paginas = ?, id_idioma = ?, anio_publicacion = ?, estado = ? WHERE ISBN = ?";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, CP.capitalizar(arrayDatos[1]));
+            statement.setString(2, CP.capitalizar(arrayDatos[2]));
+            statement.setString(3, arrayDatos[3]);
+            statement.setString(4, arrayDatos[4]);
+            statement.setString(5, arrayDatos[5]);
+            statement.setString(6, arrayDatos[6]);
+            statement.setString(7, arrayDatos[7]);
+            statement.setString(8, CP.capitalizar(arrayDatos[8]));
+            statement.setString(9, arrayDatos[0]);
+
+            int rowsUpdated = statement.executeUpdate();
+            statement.close();
+
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try { if (statement != null) statement.close();
+            } catch (Exception ex) {ex.printStackTrace();}
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection);
+            } catch (Exception ex) {ex.printStackTrace();}
+        }
+    }
+
+    public boolean delete(String titulo) {
+        sql = "DELETE FROM Libros WHERE titulo = ?";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, titulo);
+
+            int rowsDeleted = statement.executeUpdate();
+            return rowsDeleted > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try { if (statement != null) statement.close();
+            } catch (Exception ex) {ex.printStackTrace();}
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection);
+            } catch (Exception ex) {ex.printStackTrace();}
+        }
+    }
+
+    public List<String> obtenerLibros() {
+        List<String> nombreLibros = new ArrayList<>();
+        String sql = "SELECT titulo FROM Libros";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String libro = resultSet.getString("titulo");
+                nombreLibros.add(libro);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {if (statement != null) statement.close();
+            } catch (Exception ex) {ex.printStackTrace();}
+            try {if (connection != null) ConnectionDatabase.closeConnection(connection);
+            } catch (Exception ex) {ex.printStackTrace();}
+        }
+
+        return nombreLibros;
+    }
+}
+
+
+    /*private Connection connection = null;
     private String sql;
 
     public ArrayList<Libro> selectTitulos(String textoBusqueda, String campoBusqueda) {
@@ -233,6 +359,4 @@ public class LibroDAO {
         }
 
         return false;
-    }
-
-}
+    }*/

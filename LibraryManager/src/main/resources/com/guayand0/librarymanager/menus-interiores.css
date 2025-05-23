@@ -143,6 +143,49 @@
 
 
 
+/* Estilo de cada cuadro */
+.cuadro_consultar {
+    -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
+    -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */
+    -fx-background-color: rgba(255, 255, 255, 0.6); /* Fondo blanco más sutil */
+    -fx-border-color: rgba(255, 255, 255, 1); /* Borde suave y oscuro */
+    -fx-pref-width: 170;
+    -fx-pref-height: 150;
+    -fx-alignment: center;
+    -fx-transition: all 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.5, 0, 2); /* Sombra suave */
+}
+
+/* Efecto hover en los cuadros */
+.cuadro_consultar:hover {
+    -fx-background-color: rgba(100, 0, 255, 0.4); /* Fondo morado suave */
+    -fx-border-color: rgba(100, 0, 255, 0.6); /* Borde más fuerte en hover */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte en hover */
+}
+
+/* Efecto de texto en hover */
+.cuadro_consultar:hover .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto en hover */
+}
+
+/* Estilo para el cuadro cuando está seleccionado (clicado) */
+.cuadro_consultar.seleccionado {
+    -fx-background-color: rgba(100, 0, 255, 0.4); /* Fondo morado suave */
+    -fx-border-color: rgba(100, 0, 255, 0.6); /* Borde más fuerte */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 4); /* Sombra más fuerte */
+}
+
+/* Efecto de texto cuando el cuadro está seleccionado */
+.cuadro_consultar.seleccionado .texto {
+    -fx-font-weight: bold; /* Texto en negrita */
+    -fx-text-fill: white; /* Color del texto */
+}
+
+
+
+
+
 .cuadro_volver {
     -fx-border-radius: 15px; /* Esquinas redondeadas del borde */
     -fx-background-radius: 15px; /* Esquinas redondeadas del fondo */

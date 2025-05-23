@@ -7,15 +7,16 @@ public class ConnectionDatabase {
 
     static final String USER = "uffejpqe95fnbppa";
     static final String PASSWORD = "Yhwb5UkztDlyOn2CAEDy";
-    static final String URL = "jdbc:mysql://uffejpqe95fnbppa:Yhwb5UkztDlyOn2CAEDy@bwexlexwx9kllx98zihv-mysql.services.clever-cloud.com:3306/bwexlexwx9kllx98zihv";
+    //static final String URL = "jdbc:mysql://uffejpqe95fnbppa:Yhwb5UkztDlyOn2CAEDy@bwexlexwx9kllx98zihv-mysql.services.clever-cloud.com:3306/bwexlexwx9kllx98zihv";
+    static final String URL = "jdbc:mysql://uffejpqe95fnbppa:Yhwb5UkztDlyOn2CAEDy@bwexlexwx9kllx98zihv-mysql.services.clever-cloud.com:3306/bwexlexwx9kllx98zihv?useUnicode=true&characterEncoding=UTF-8";
 
     // Para usar la base de datos MySQL
     public static Connection getConnection() throws SQLException {
-    /*Enumeration<Driver> drivers = DriverManager.getDrivers();
-    while (drivers.hasMoreElements()) {
-        //System.out.println("Loaded driver: " + drivers.nextElement().getClass().getName());
-        System.out.println("Conexion Abierta");
-    }*/
+        /*Enumeration<Driver> drivers = DriverManager.getDrivers();
+        while (drivers.hasMoreElements()) {
+            //System.out.println("Loaded driver: " + drivers.nextElement().getClass().getName());
+            System.out.println("Conexion Abierta");
+        }*/
 
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
         if (conn != null && !conn.isClosed()) {

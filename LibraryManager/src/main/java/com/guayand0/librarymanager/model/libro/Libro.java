@@ -2,7 +2,6 @@ package com.guayand0.librarymanager.model.libro;
 
 public class Libro {
 
-    private int ID;
     private String ISBN;
     private String titulo;
     private int autor;
@@ -13,8 +12,7 @@ public class Libro {
     private int anioPublicacion;
     private String estado;
 
-    public Libro(int ID, String ISBN, String titulo, int autor, int categoria, int editorial, int numeroPaginas, int idioma, int anioPublicacion, String estado) {
-        this.ID = ID;
+    public Libro(String ISBN, String titulo, int autor, int categoria, int editorial, int numeroPaginas, int idioma, int anioPublicacion, String estado) {
         this.ISBN = ISBN;
         this.titulo = titulo;
         this.autor = autor;
@@ -27,14 +25,6 @@ public class Libro {
     }
 
     public Libro() {}
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getISBN() {
         return ISBN;

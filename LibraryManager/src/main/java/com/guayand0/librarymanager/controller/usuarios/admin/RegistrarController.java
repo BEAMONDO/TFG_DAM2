@@ -2,9 +2,7 @@ package com.guayand0.librarymanager.controller.usuarios.admin;
 
 import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.model.usuario.UsuarioDAO;
-import com.guayand0.librarymanager.utils.Alertas;
-import com.guayand0.librarymanager.utils.LimiteCaracteres;
-import com.guayand0.librarymanager.utils.MostrarContrasena;
+import com.guayand0.librarymanager.utils.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -16,6 +14,8 @@ public class RegistrarController {
     private final Alertas ALERT = new Alertas();
     private final LimiteCaracteres LC = new LimiteCaracteres();
     private final MostrarContrasena MC = new MostrarContrasena();
+    private final ComprobarDNI CDNI = new ComprobarDNI();
+    private final ComprobarEmail CE = new ComprobarEmail();
 
     private Usuario usuarioLogueado;
 
@@ -115,13 +115,8 @@ public class RegistrarController {
             return false;
         }
 
-        if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
-            ALERT.showWarning("DNI inválido. Debe tener 8 números y una letra.");
-            return false;
-        }
-
-        if (!validarLetraDNI(dni)) {
-            ALERT.showWarning("La letra del DNI no coincide con los números.");
+        if (!CDNI.validarDNI(dni)) {
+            ALERT.showWarning("El DNI está mal formado.");
             return false;
         }
 
@@ -140,8 +135,8 @@ public class RegistrarController {
             return false;
         }
 
-        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
-            ALERT.showWarning("Formato de Email inválido.");
+        if (!CE.validarEmail(email)) {
+            ALERT.showWarning("El Email está mal formado.");
             return false;
         }
 

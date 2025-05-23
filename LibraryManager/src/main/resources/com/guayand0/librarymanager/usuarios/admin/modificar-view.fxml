@@ -28,7 +28,7 @@
                     <Region prefWidth="20"/>
                     <VBox>
                         <Region prefHeight="2"/>
-                        <Label text="(dd/mm/aaaa)" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: Blue;"/>
+                        <Label text="(d/m/aaaa)" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: Blue;"/>
                     </VBox>
                 </HBox>
 

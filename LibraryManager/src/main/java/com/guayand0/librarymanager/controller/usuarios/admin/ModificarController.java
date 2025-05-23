@@ -2,9 +2,7 @@ package com.guayand0.librarymanager.controller.usuarios.admin;
 
 import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.model.usuario.UsuarioDAO;
-import com.guayand0.librarymanager.utils.Alertas;
-import com.guayand0.librarymanager.utils.LimiteCaracteres;
-import com.guayand0.librarymanager.utils.MostrarContrasena;
+import com.guayand0.librarymanager.utils.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,6 +16,8 @@ public class ModificarController {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final LimiteCaracteres LC = new LimiteCaracteres();
     private final MostrarContrasena MC = new MostrarContrasena();
+    private final ComprobarDNI CDNI = new ComprobarDNI();
+    private final ComprobarEmail CE = new ComprobarEmail();
 
     private Usuario usuarioLogueado;
     private String contrasenaOriginal;
@@ -149,23 +149,13 @@ public class ModificarController {
         String email = emailField.getText();
         String direccion = direccionField.getText();
 
-        if (dni == null) {
+        if (dni.isEmpty()) {
             ALERT.showWarning("El campo DNI es obligatorio.");
             return false;
         }
 
-        if (!dni.matches("^[0-9]{8}[A-Za-z]$")) {
-            ALERT.showWarning("DNI inválido. Debe tener 8 dígitos seguidos de una letra.");
-            return false;
-        }
-
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int numero = Integer.parseInt(dni.substring(0, 8));
-        char letraCorrecta = letras.charAt(numero % 23);
-        char letraIngresada = Character.toUpperCase(dni.charAt(8));
-
-        if (letraCorrecta != letraIngresada) {
-            ALERT.showWarning("La letra del DNI no coincide con los números.");
+        if (!CDNI.validarDNI(dni)) {
+            ALERT.showWarning("El DNI está mal formado.");
             return false;
         }
 
@@ -184,8 +174,8 @@ public class ModificarController {
             return false;
         }
 
-        if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
-            ALERT.showWarning("Formato de email inválido.");
+        if (!CE.validarEmail(email)) {
+            ALERT.showWarning("El Email está mal formado.");
             return false;
         }
 

@@ -21,8 +21,8 @@ public class LibrosController {
     private Usuario usuarioLogueado;
 
     @FXML private StackPane containerData;
-    @FXML private VBox registerForm, modifyForm, deleteForm;
-    @FXML private VBox registrar, modificar, eliminar;
+    @FXML private VBox registerForm, modifyForm, deleteForm, consultarForm;
+    @FXML private VBox registrar, modificar, eliminar, consultar;
 
     // Menú izquierdo
 
@@ -31,6 +31,7 @@ public class LibrosController {
         registrar.getStyleClass().remove("seleccionado");
         modificar.getStyleClass().remove("seleccionado");
         eliminar.getStyleClass().remove("seleccionado");
+        consultar.getStyleClass().remove("seleccionado");
 
         // Agrega la clase "seleccionado" al cuadro registrar
         registrar.getStyleClass().add("seleccionado");
@@ -39,6 +40,7 @@ public class LibrosController {
         registerForm.setVisible(true);
         modifyForm.setVisible(false);
         deleteForm.setVisible(false);
+        consultarForm.setVisible(false);
     }
 
 
@@ -47,14 +49,16 @@ public class LibrosController {
         registrar.getStyleClass().remove("seleccionado");
         modificar.getStyleClass().remove("seleccionado");
         eliminar.getStyleClass().remove("seleccionado");
+        consultar.getStyleClass().remove("seleccionado");
 
-        // Agrega la clase "seleccionado" al cuadro register
+        // Agrega la clase "seleccionado" al cuadro modificar
         modificar.getStyleClass().add("seleccionado");
 
         // Muestra el formulario de inserción y oculta los demás formularios
         registerForm.setVisible(false);
         modifyForm.setVisible(true);
         deleteForm.setVisible(false);
+        consultarForm.setVisible(false);
     }
 
     @FXML private void onDeleteClick() {
@@ -62,14 +66,33 @@ public class LibrosController {
         registrar.getStyleClass().remove("seleccionado");
         modificar.getStyleClass().remove("seleccionado");
         eliminar.getStyleClass().remove("seleccionado");
+        consultar.getStyleClass().remove("seleccionado");
 
-        // Agrega la clase "seleccionado" al cuadro register
+        // Agrega la clase "seleccionado" al cuadro eliminar
         eliminar.getStyleClass().add("seleccionado");
 
         // Muestra el formulario de inserción y oculta los demás formularios
         registerForm.setVisible(false);
         modifyForm.setVisible(false);
         deleteForm.setVisible(true);
+        consultarForm.setVisible(false);
+    }
+
+    @FXML private void onConsultarClick() {
+        // Elimina la clase "seleccionado" de otros cuadros
+        registrar.getStyleClass().remove("seleccionado");
+        modificar.getStyleClass().remove("seleccionado");
+        eliminar.getStyleClass().remove("seleccionado");
+        consultar.getStyleClass().remove("seleccionado");
+
+        // Agrega la clase "seleccionado" al cuadro consultar
+        consultar.getStyleClass().add("seleccionado");
+
+        // Muestra el formulario de inserción y oculta los demás formularios
+        registerForm.setVisible(false);
+        modifyForm.setVisible(false);
+        deleteForm.setVisible(false);
+        consultarForm.setVisible(true);
     }
 
     @FXML private void onBackClick() {
@@ -90,13 +113,15 @@ public class LibrosController {
                 registerForm = loadFormAdmin("libros/admin/registrar-view.fxml");
                 modifyForm = loadFormAdmin("libros/admin/modificar-view.fxml");
                 deleteForm = loadFormAdmin("libros/admin/eliminar-view.fxml");
+                consultarForm = loadFormAdmin("libros/admin/consultar-view.fxml");
 
-                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
+                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm, consultarForm);
 
                 registrar.getStyleClass().add("seleccionado");
                 registerForm.setVisible(true);
                 modifyForm.setVisible(false);
                 deleteForm.setVisible(false);
+                consultarForm.setVisible(false);
 
             }/* else {
                 VistaConControlador<?> vistaControlador = loadForm("libros/user/modificar-view.fxml");
