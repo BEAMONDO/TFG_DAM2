@@ -18,6 +18,7 @@ public class ModificarController {
 
     @FXML public ComboBox<String> categoriaComboModificar;
     @FXML private TextField categoriaField;
+
     @FXML public void initialize() {
         aplicarLimitesCaracteres();
 

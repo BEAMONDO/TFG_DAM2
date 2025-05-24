@@ -28,8 +28,7 @@ public class ModificarController {
         idiomaField.setTextFormatter(LC.createTextFormatter(50));
     }
 
-    @FXML
-    private void onModifyClick() {
+    @FXML private void onModifyClick() {
         if (!validarCampos()) return;
 
         String nombre = idiomaComboModificar.getValue();

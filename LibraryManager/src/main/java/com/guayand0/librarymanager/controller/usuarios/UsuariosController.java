@@ -1,7 +1,6 @@
 package com.guayand0.librarymanager.controller.usuarios;
 
 import com.guayand0.librarymanager.Main;
-import com.guayand0.librarymanager.utils.VistaConControlador;
 import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.fxml.FXML;
@@ -21,61 +20,35 @@ public class UsuariosController {
     private Usuario usuarioLogueado;
 
     @FXML private StackPane containerData;
-    @FXML private VBox registerForm, modifyForm, deleteForm;
     @FXML private VBox registrar, modificar, eliminar;
 
-    // Menú izquierdo
+    private VBox currentForm;
 
     @FXML private void onRegisterClick() {
-        // Elimina la clase "seleccionado" de otros cuadros
-        registrar.getStyleClass().remove("seleccionado");
-        modificar.getStyleClass().remove("seleccionado");
-        eliminar.getStyleClass().remove("seleccionado");
-
-        // Agrega la clase "seleccionado" al cuadro registrar
+        resetSeleccion();
         registrar.getStyleClass().add("seleccionado");
-
-        // Muestra el formulario de inserción y oculta los demás formularios
-        registerForm.setVisible(true);
-        modifyForm.setVisible(false);
-        deleteForm.setVisible(false);
+        cargarVistaAdmin("usuarios/admin/registrar-view.fxml");
     }
 
-
     @FXML private void onModifyClick() {
-        // Elimina la clase "seleccionado" de otros cuadros
-        registrar.getStyleClass().remove("seleccionado");
-        modificar.getStyleClass().remove("seleccionado");
-        eliminar.getStyleClass().remove("seleccionado");
-
-        // Agrega la clase "seleccionado" al cuadro register
+        resetSeleccion();
         modificar.getStyleClass().add("seleccionado");
-
-        // Muestra el formulario de inserción y oculta los demás formularios
-        registerForm.setVisible(false);
-        modifyForm.setVisible(true);
-        deleteForm.setVisible(false);
+        if (usuarioLogueado.getPermiso().equals("Administrador")) {
+            cargarVistaAdmin("usuarios/admin/modificar-view.fxml");
+        } else {
+            cargarVistaUser("usuarios/user/modificar-view.fxml");
+        }
     }
 
     @FXML private void onDeleteClick() {
-        // Elimina la clase "seleccionado" de otros cuadros
-        registrar.getStyleClass().remove("seleccionado");
-        modificar.getStyleClass().remove("seleccionado");
-        eliminar.getStyleClass().remove("seleccionado");
-
-        // Agrega la clase "seleccionado" al cuadro register
+        resetSeleccion();
         eliminar.getStyleClass().add("seleccionado");
-
-        // Muestra el formulario de inserción y oculta los demás formularios
-        registerForm.setVisible(false);
-        modifyForm.setVisible(false);
-        deleteForm.setVisible(true);
+        cargarVistaAdmin("usuarios/admin/eliminar-view.fxml");
     }
 
     @FXML private void onBackClick() {
         Stage stage = (Stage) usuario.getScene().getWindow();
         stage.close();
-
         VENTANA.mainWindow(usuarioLogueado);
     }
 
@@ -84,56 +57,47 @@ public class UsuariosController {
     }
 
     public void initData() {
-        try {
-
-            if (usuarioLogueado.getPermiso().equals("Administrador")) {
-                registerForm = loadFormAdmin("usuarios/admin/registrar-view.fxml");
-
-                FXMLLoader modificarLoader = new FXMLLoader(Main.class.getResource("usuarios/admin/modificar-view.fxml"));
-                modifyForm = modificarLoader.load();
-                Object controller = modificarLoader.getController();
-                if (controller instanceof com.guayand0.librarymanager.controller.usuarios.admin.ModificarController) {
-                    ((com.guayand0.librarymanager.controller.usuarios.admin.ModificarController) controller).setUsuarioLogueado(usuarioLogueado);
-                }
-
-                deleteForm = loadFormAdmin("usuarios/admin/eliminar-view.fxml");
-
-                containerData.getChildren().addAll(registerForm, modifyForm, deleteForm);
-
-                registrar.getStyleClass().add("seleccionado");
-                registerForm.setVisible(true);
-                modifyForm.setVisible(false);
-                deleteForm.setVisible(false);
-
-            } else {
-                VistaConControlador<?> vistaControlador = loadForm("usuarios/user/modificar-view.fxml");
-                modifyForm = vistaControlador.getVista();
-                containerData.getChildren().add(modifyForm);
-
-                if (vistaControlador.getControlador() instanceof com.guayand0.librarymanager.controller.usuarios.user.ModificarController) {
-                    ((com.guayand0.librarymanager.controller.usuarios.user.ModificarController) vistaControlador.getControlador()).setUsuarioLogueado(usuarioLogueado);
-                }
-
-                if (modificar != null) modificar.getStyleClass().add("seleccionado");
-
-                modifyForm.setVisible(true);
-            }
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        if (usuarioLogueado.getPermiso().equals("Administrador")) {
+            registrar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("usuarios/admin/registrar-view.fxml");
+        } else {
+            modificar.getStyleClass().add("seleccionado");
+            cargarVistaUser("usuarios/user/modificar-view.fxml");
         }
     }
 
-    private VBox loadFormAdmin(String url) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
-        VBox data = fxmlLoader.load();
-        return data;
+    private void resetSeleccion() {
+        registrar.getStyleClass().remove("seleccionado");
+        modificar.getStyleClass().remove("seleccionado");
+        eliminar.getStyleClass().remove("seleccionado");
     }
 
-    private VistaConControlador<?> loadForm(String url) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
-        VBox data = fxmlLoader.load();
-        Object controller = fxmlLoader.getController();
-        return new VistaConControlador<>(data, controller);
+    private void cargarVistaAdmin(String url) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
+            VBox vista = fxmlLoader.load();
+
+            containerData.getChildren().setAll(vista);
+            currentForm = vista;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarVistaUser(String url) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
+            VBox vista = fxmlLoader.load();
+
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof com.guayand0.librarymanager.controller.usuarios.user.ModificarController) {
+                ((com.guayand0.librarymanager.controller.usuarios.user.ModificarController) controller).setUsuarioLogueado(usuarioLogueado);
+            }
+
+            containerData.getChildren().setAll(vista);
+            currentForm = vista;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

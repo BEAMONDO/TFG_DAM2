@@ -6,7 +6,9 @@ import com.guayand0.librarymanager.utils.EncriptarContrasena;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AutorDAO {
 
@@ -14,7 +16,6 @@ public class AutorDAO {
     private PreparedStatement statement = null;
     private String sql;
 
-    private final EncriptarContrasena EC = new EncriptarContrasena();
     private final CapitalizarPalabra CP = new CapitalizarPalabra();
 
     public boolean register(Autor autor) {
@@ -124,4 +125,32 @@ public class AutorDAO {
 
         return autores;
     }
+
+    public Map<Integer, String> obtenerAutorIdNombreMap() {
+        Map<Integer, String> mapa = new HashMap<>();
+        String sql = "SELECT ID, nombre, apellido FROM Autores";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String nombreCompleto = resultSet.getString("nombre") + " " + resultSet.getString("apellido");
+                mapa.put(id, nombreCompleto);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception ex) { ex.printStackTrace(); }
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection); } catch (Exception ex) { ex.printStackTrace(); }
+        }
+
+        return mapa;
+    }
+
 }

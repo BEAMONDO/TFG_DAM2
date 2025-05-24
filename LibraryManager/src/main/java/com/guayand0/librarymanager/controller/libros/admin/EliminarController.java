@@ -43,7 +43,7 @@ public class EliminarController {
     private void cargarNombreLibros() {
         libroComboEliminar.getItems().clear();
 
-        List<String> libros = libroDAO.obtenerLibros();
+        List<String> libros = libroDAO.obtenerTitulos();
         libroComboEliminar.getItems().addAll(libros);
     }
 }
