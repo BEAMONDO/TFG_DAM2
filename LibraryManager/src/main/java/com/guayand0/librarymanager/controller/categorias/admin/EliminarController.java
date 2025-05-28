@@ -16,7 +16,7 @@ public class EliminarController {
     @FXML public ComboBox<String> categoriaComboEliminar;
 
     @FXML public void initialize() {
-        cargarNombreCategorias();
+        new Thread(this::cargarNombreCategorias).start();
     }
 
     @FXML private void onDeleteClick() {

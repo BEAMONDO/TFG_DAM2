@@ -4,6 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.libros.admin.ConsultarController">
 
     <padding>
@@ -12,5 +14,122 @@
 
     <VBox alignment="CENTER" spacing="15">
 
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <HBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="ISBN" />
+                </HBox>
+
+                <ComboBox fx:id="isbnCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Título" />
+                <ComboBox fx:id="tituloCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Autor" />
+                <ComboBox fx:id="autorCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Categoría" />
+                <ComboBox fx:id="categoriaCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <Label minWidth="140" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Editorial" />
+                <ComboBox fx:id="editorialCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox>
+                <VBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Idioma" />
+                    <ComboBox fx:id="idiomaCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <VBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Número páginas" />
+                    <HBox>
+                        <ComboBox fx:id="paginasCombo" minWidth="200" prefHeight="40" style="-fx-font-size: 14px;">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Más de" />
+                                    <String fx:value="Menos de" />
+                                    <String fx:value="Exactamente" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+                        <Region prefWidth="10" />
+                        <TextField fx:id="paginasField" maxWidth="80" prefHeight="40" style="-fx-font-size: 14px;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox>
+                <VBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Año publicación" />
+                    <HBox>
+                        <ComboBox fx:id="anioCombo" minWidth="200" prefHeight="40" style="-fx-font-size: 14px;">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Antes de" />
+                                    <String fx:value="Después de" />
+                                    <String fx:value="Exactamente" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+                        <Region prefWidth="10" />
+                        <TextField fx:id="anioField" maxWidth="80" prefHeight="40" style="-fx-font-size: 14px;"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Estado" />
+                <ComboBox fx:id="estadoCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Disponible" />
+                            <String fx:value="Reservado" />
+                            <String fx:value="Prestado" />
+                            <String fx:value="Deteriorado" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox prefWidth="290" alignment="CENTER">
+                <Region prefHeight="20" />
+                <HBox>
+                    <Button minWidth="155" onMouseClicked="#onConsultarClick" style="-fx-font-size: 20px; -fx-background-color: purple; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" text="Consultar" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button minWidth="40" onMouseClicked="#onLimpiarClick" style="-fx-font-size: 16px; -fx-background-color: red; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" text="Limpiar" />
+                </HBox>
+            </VBox>
+        </HBox>
     </VBox>
 </VBox>

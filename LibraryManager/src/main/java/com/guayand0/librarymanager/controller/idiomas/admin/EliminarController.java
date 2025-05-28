@@ -16,7 +16,7 @@ public class EliminarController {
     @FXML public ComboBox<String> idiomaComboEliminar;
 
     @FXML public void initialize() {
-        cargarNombreIdiomas();
+        new Thread(this::cargarNombreIdiomas).start();
     }
 
     @FXML private void onDeleteClick() {

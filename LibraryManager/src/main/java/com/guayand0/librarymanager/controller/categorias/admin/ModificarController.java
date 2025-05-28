@@ -21,8 +21,7 @@ public class ModificarController {
 
     @FXML public void initialize() {
         aplicarLimitesCaracteres();
-
-        cargarNombreCategorias();
+        new Thread(this::cargarNombreCategorias).start();
     }
 
     private void aplicarLimitesCaracteres() {

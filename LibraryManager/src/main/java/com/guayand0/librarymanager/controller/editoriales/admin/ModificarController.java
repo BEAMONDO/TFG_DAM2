@@ -21,8 +21,7 @@ public class ModificarController {
 
     @FXML public void initialize() {
         aplicarLimitesCaracteres();
-
-        cargarNombreEditoriales();
+        new Thread(this::cargarNombreEditoriales).start();
     }
 
     private void aplicarLimitesCaracteres() {

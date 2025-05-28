@@ -58,10 +58,12 @@ public class RegistrarController {
     }
 
     private void cargarDatosLibros() {
-        cargarAutor();
-        cargarCatetgoria();
-        cargarEditorial();
-        cargarIdioma();
+        new Thread(() -> {
+            cargarAutor();
+            cargarCatetgoria();
+            cargarEditorial();
+            cargarIdioma();
+        }).start();
     }
 
     private void cargarAutor() {

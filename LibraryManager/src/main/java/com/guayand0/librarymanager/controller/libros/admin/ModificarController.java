@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,15 +76,23 @@ public class ModificarController {
     }
 
     private void cargarDatos() {
-        cargarISBN();
-        cargarAutor();
-        cargarCatetgoria();
-        cargarEditorial();
-        cargarIdioma();
+        new Thread(() -> {
+            cargarISBN();
+            cargarAutor();
+            cargarCatetgoria();
+            cargarEditorial();
+            cargarIdioma();
+        }).start();
     }
 
     private void cargarISBN() {
-        List<String> isbns = libroDAO.obtenerISBN();
+        List<Libro> libros = libroDAO.obtenerLibros();
+        List<String> isbns = new ArrayList<>();
+
+        for (Libro libro : libros) {
+            isbns.add(String.valueOf(libro.getISBN()));
+        }
+
         isbnCombo.getItems().addAll(isbns);
     }
 

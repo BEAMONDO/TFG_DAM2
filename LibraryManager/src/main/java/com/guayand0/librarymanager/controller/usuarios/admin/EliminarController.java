@@ -16,7 +16,7 @@ public class EliminarController {
     @FXML private ComboBox<String> dniCombo;
 
     @FXML private void initialize() {
-        cargarDNIUsuarios();
+        new Thread(this::cargarDNIUsuarios).start();
     }
 
     @FXML private void onDeleteClick() {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+
+<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../menus-interiores.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.libros.user.TablaConsultaController">
+
+    <!-- Contenedor principal -->
+    <StackPane prefHeight="800.0" prefWidth="1200.0">
+        <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+        </padding>
+
+        <!-- Imagen de fondo -->
+        <ImageView fitHeight="800.0" fitWidth="1200.0">
+            <Image url="@../../imagenes/fondo1.jpg" />
+        </ImageView>
+
+        <!-- Tabla -->
+        <TableView fx:id="librosTable" prefHeight="750.0" prefWidth="1150.0" style="-fx-background-color: rgba(255, 255, 255, 0.6);">
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+            <columns>
+                <TableColumn fx:id="isbnCol" text="ISBN" />
+                <TableColumn fx:id="tituloCol" text="Título" />
+                <TableColumn fx:id="autorCol" text="Autor" />
+                <TableColumn fx:id="categoriaCol" text="Categoría" />
+                <TableColumn fx:id="editorialCol" text="Editorial" />
+                <TableColumn fx:id="paginasCol" text="Páginas" />
+                <TableColumn fx:id="idiomaCol" text="Idioma" />
+                <TableColumn fx:id="anioCol" text="Año" />
+                <TableColumn fx:id="estadoCol" text="Estado" />
+            </columns>
+        </TableView>
+    </StackPane>
+
+</VBox>

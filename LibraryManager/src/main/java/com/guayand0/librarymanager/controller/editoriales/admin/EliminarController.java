@@ -16,7 +16,7 @@ public class EliminarController {
     @FXML public ComboBox<String> editorialComboEliminar;
 
     @FXML public void initialize() {
-        cargarNombreEditoriales();
+        new Thread(this::cargarNombreEditoriales).start();
     }
 
     @FXML private void onDeleteClick() {

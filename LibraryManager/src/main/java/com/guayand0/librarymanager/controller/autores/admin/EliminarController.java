@@ -20,7 +20,7 @@ public class EliminarController {
     private final Map<String, Autor> autorMap = new HashMap<>();
 
     @FXML public void initialize() {
-        cargarNombreAutores();
+        new Thread(this::cargarNombreAutores).start();
     }
 
     @FXML private void onDeleteClick() {

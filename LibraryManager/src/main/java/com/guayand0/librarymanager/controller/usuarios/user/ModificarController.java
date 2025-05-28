@@ -27,7 +27,7 @@ public class ModificarController {
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
-        cargarDatosUsuario();
+        new Thread(this::cargarDatosUsuario).start();
     }
 
     @FXML

@@ -9,6 +9,8 @@ import com.guayand0.librarymanager.controller.editoriales.EditorialesController;
 import com.guayand0.librarymanager.controller.idiomas.IdiomasController;
 import com.guayand0.librarymanager.controller.informes.InformesController;
 import com.guayand0.librarymanager.controller.libros.LibrosController;
+import com.guayand0.librarymanager.controller.libros.admin.ConsultarController;
+import com.guayand0.librarymanager.controller.libros.admin.TablaConsultaController;
 import com.guayand0.librarymanager.controller.main.MainController;
 import com.guayand0.librarymanager.controller.prestamos.PrestamosController;
 import com.guayand0.librarymanager.controller.usuarios.UsuariosController;
@@ -19,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Objects;
 
 public class Ventanas {
@@ -89,7 +92,7 @@ public class Ventanas {
 
             LibrosController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -101,6 +104,48 @@ public class Ventanas {
         } catch (IOException e) {
             e.printStackTrace();
             ALERT.showError("Error al cargar la ventana de libros.");
+        }
+    }
+
+    public void consultasWindow(Usuario usuarioLogueado, String[] datosString, Integer[] datosInt) {
+        FXMLLoader fxmlLoader;
+
+        try {
+            Scene scene;
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                fxmlLoader = new FXMLLoader(Main.class.getResource("libros/admin/tabla-consulta-view.fxml"));
+                scene = new Scene(fxmlLoader.load());
+
+                com.guayand0.librarymanager.controller.libros.admin.TablaConsultaController controller =
+                        fxmlLoader.getController();
+                controller.setUsuarioLogueado(usuarioLogueado);
+                controller.setDatosString(datosString);
+                controller.setDatosInt(datosInt);
+                controller.initData();
+
+            } else {
+                fxmlLoader = new FXMLLoader(Main.class.getResource("libros/user/tabla-consulta-view.fxml"));
+                scene = new Scene(fxmlLoader.load());
+
+                com.guayand0.librarymanager.controller.libros.user.TablaConsultaController controller =
+                        fxmlLoader.getController();
+                controller.setUsuarioLogueado(usuarioLogueado);
+                controller.setDatosString(datosString);
+                controller.setDatosInt(datosInt);
+                controller.initData();
+            }
+
+            Stage stage = new Stage();
+            stage.setTitle("LibraryManager");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/guayand0/librarymanager/imagenes/logo.png"))));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            ALERT.showError("Error al cargar la ventana de consultas.");
         }
     }
 
@@ -118,7 +163,7 @@ public class Ventanas {
 
             AutoresController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -147,7 +192,7 @@ public class Ventanas {
 
             CategoriasController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -176,7 +221,7 @@ public class Ventanas {
 
             EditorialesController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -205,7 +250,7 @@ public class Ventanas {
 
             IdiomasController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -234,7 +279,7 @@ public class Ventanas {
 
             UsuariosController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            controller.initData(); // Se llama aquí para evitar el NullPointer
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -263,7 +308,7 @@ public class Ventanas {
 
             DevolucionesController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            //controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -292,7 +337,7 @@ public class Ventanas {
 
             PrestamosController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            //controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -321,7 +366,7 @@ public class Ventanas {
 
             InformesController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            //controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");
@@ -350,7 +395,7 @@ public class Ventanas {
 
             AyudaController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData(); // Se llama aquí para evitar el NullPointer
+            //controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="LibraryManager:jar">
-    <output-path>$USER_HOME$/Desktop/LibraryManager/app</output-path>
+    <output-path>D:/Tools/LibraryManager/app</output-path>
     <root id="archive" name="LibraryManager.jar">
       <element id="module-output" name="LibraryManager" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.12/javafx-base-17.0.12-win.jar" path-in-jar="/" />

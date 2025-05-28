@@ -103,62 +103,6 @@ public class LibroDAO {
         }
     }
 
-    public List<String> obtenerTitulos() {
-        List<String> nombreLibros = new ArrayList<>();
-        String sql = "SELECT titulo FROM Libros";
-
-        try {
-            connection = ConnectionDatabase.getConnection();
-            statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String libro = resultSet.getString("titulo");
-                nombreLibros.add(libro);
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {if (statement != null) statement.close();
-            } catch (Exception ex) {ex.printStackTrace();}
-            try {if (connection != null) ConnectionDatabase.closeConnection(connection);
-            } catch (Exception ex) {ex.printStackTrace();}
-        }
-
-        return nombreLibros;
-    }
-
-    public List<String> obtenerISBN() {
-        List<String> nombreLibros = new ArrayList<>();
-        String sql = "SELECT ISBN FROM Libros";
-
-        try {
-            connection = ConnectionDatabase.getConnection();
-            statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                String libro = resultSet.getString("ISBN");
-                nombreLibros.add(libro);
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {if (statement != null) statement.close();
-            } catch (Exception ex) {ex.printStackTrace();}
-            try {if (connection != null) ConnectionDatabase.closeConnection(connection);
-            } catch (Exception ex) {ex.printStackTrace();}
-        }
-
-        return nombreLibros;
-    }
-
     public List<Libro> obtenerLibros() {
         List<Libro> libros = new ArrayList<>();
         String sql = "SELECT * FROM Libros";
@@ -196,4 +140,5 @@ public class LibroDAO {
 
         return libros;
     }
+
 }

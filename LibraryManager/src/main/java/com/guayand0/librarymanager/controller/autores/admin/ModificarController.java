@@ -29,7 +29,7 @@ public class ModificarController {
 
     @FXML public void initialize() {
         aplicarLimitesCaracteres();
-        cargarNombreAutores();
+        new Thread(this::cargarNombreAutores).start();
 
         nombreCompletoCombo.setOnAction(event -> cargarDatosAutor());
     }

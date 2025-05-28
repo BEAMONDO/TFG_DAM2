@@ -85,6 +85,12 @@ public class LibrosController {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(url));
             VBox vista = fxmlLoader.load();
 
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof com.guayand0.librarymanager.controller.libros.admin.ConsultarController) {
+                ((com.guayand0.librarymanager.controller.libros.admin.ConsultarController) controller).setUsuarioLogueado(usuarioLogueado);
+                ((com.guayand0.librarymanager.controller.libros.admin.ConsultarController) controller).initData();
+            }
+
             containerData.getChildren().setAll(vista);
             currentForm = vista;
         } catch (IOException e) {
@@ -98,8 +104,14 @@ public class LibrosController {
             VBox vista = fxmlLoader.load();
 
             Object controller = fxmlLoader.getController();
+
             if (controller instanceof com.guayand0.librarymanager.controller.usuarios.user.ModificarController) {
                 ((com.guayand0.librarymanager.controller.usuarios.user.ModificarController) controller).setUsuarioLogueado(usuarioLogueado);
+            }
+
+            if (controller instanceof com.guayand0.librarymanager.controller.libros.user.ConsultarController) {
+                ((com.guayand0.librarymanager.controller.libros.user.ConsultarController) controller).setUsuarioLogueado(usuarioLogueado);
+                ((com.guayand0.librarymanager.controller.libros.user.ConsultarController) controller).initData();
             }
 
             containerData.getChildren().setAll(vista);
@@ -108,4 +120,5 @@ public class LibrosController {
             e.printStackTrace();
         }
     }
+
 }

@@ -20,8 +20,7 @@ public class ModificarController {
     @FXML private TextField idiomaField;
     @FXML public void initialize() {
         aplicarLimitesCaracteres();
-
-        cargarNombreIdiomas();
+        new Thread(this::cargarNombreIdiomas).start();
     }
 
     private void aplicarLimitesCaracteres() {
