@@ -1,21 +1,9 @@
-package com.guayand0.librarymanager.controller.prestamos.admin;
+package com.guayand0.librarymanager.controller.devoluciones.admin;
 
-import com.guayand0.librarymanager.model.prestamo.Prestamo;
-import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
-import com.guayand0.librarymanager.model.usuario.Usuario;
-import com.guayand0.librarymanager.utils.Alertas;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
-
-public class ModificarController {
-//al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados y al seleccionar el libro
-//cargar en dias la cantidad de dias que tiene para devolverlo, modificar el dia de devolucion del usuario para ese libro
+public class EliminarController {
+    //al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados, eliminar prestamo del usuario para ese libro
 
     /*private final Alertas ALERT = new Alertas();
     private final PrestamoDAO prestamoDAO = new PrestamoDAO();
@@ -56,7 +44,7 @@ public class ModificarController {
         libroCombo.getItems().addAll(mapa.values());
     }
 
-    @FXML private void onModifyClick() {
+    @FXML private void onDeleteClick() {
         if (!validarCampos()) return;
 
         String usuario = usuarioCombo.getValue();
@@ -116,5 +104,5 @@ public class ModificarController {
         return now.format(formatter);
     }*/
 
-    @FXML private void onModifyClick() {}
+    @FXML private void onDeleteClick() {}
 }

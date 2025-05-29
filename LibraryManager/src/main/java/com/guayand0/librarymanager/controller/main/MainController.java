@@ -78,20 +78,6 @@ public class MainController {
         VENTANA.devolucionesWindow(usuarioLogueado);
     }
 
-    @FXML private void onInformesClick() {
-        Stage stage = (Stage) usuario.getScene().getWindow();
-        stage.close();
-
-        VENTANA.informesWindow(usuarioLogueado);
-    }
-
-    @FXML private void onAyudaClick() {
-        Stage stage = (Stage) usuario.getScene().getWindow();
-        stage.close();
-
-        VENTANA.ayudaWindow(usuarioLogueado);
-    }
-
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
     }
@@ -111,10 +97,6 @@ public class MainController {
     public void setPermisoTexto(String texto) {
         permiso.setText("Permiso: " + texto);
     }
-
-    // Menú derecho
-
-    @FXML private void onMenuClick() {}
 
     // Menú superior
 

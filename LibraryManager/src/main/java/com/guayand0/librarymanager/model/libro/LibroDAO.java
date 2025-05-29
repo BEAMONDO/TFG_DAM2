@@ -1,8 +1,6 @@
 package com.guayand0.librarymanager.model.libro;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
-import com.guayand0.librarymanager.model.idioma.Idioma;
-import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.utils.CapitalizarPalabra;
 
 import java.sql.*;
@@ -105,7 +103,7 @@ public class LibroDAO {
 
     public List<Libro> obtenerLibros() {
         List<Libro> libros = new ArrayList<>();
-        String sql = "SELECT * FROM Libros";
+        sql = "SELECT * FROM Libros";
 
         try {
             connection = ConnectionDatabase.getConnection();

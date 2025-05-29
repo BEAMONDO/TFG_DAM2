@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../menus-exteriores.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.main.MainController">
+<VBox prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../menus-exteriores.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.main.MainController">
 
    <!-- Menú superior -->
    <MenuBar>
@@ -23,15 +23,14 @@
    </MenuBar>
 
    <!-- Contenedor principal -->
-   <StackPane prefHeight="800.0" prefWidth="1200.0">
+   <StackPane prefHeight="700.0" prefWidth="1200.0">
 
       <!-- Imagen de fondo -->
-      <ImageView fitHeight="800.0" fitWidth="1200.0">
+      <ImageView fitHeight="700.0" fitWidth="1200.0">
          <Image url="@../../imagenes/fondo2.jpg" />
       </ImageView>
 
-      <!-- Panel con los tres VBox -->
-      <HBox prefHeight="800.0" prefWidth="1200.0" alignment="CENTER">
+      <HBox prefHeight="700.0" prefWidth="1200.0" alignment="CENTER">
 
          <!-- Panel izquierdo -->
          <VBox maxWidth="300" prefWidth="300" alignment="TOP_CENTER" spacing="30" styleClass="panel-izquierdo">
@@ -40,7 +39,7 @@
                <Label styleClass="subtitulo" text="Sistema de Gestión para Bibliotecas" />
             </VBox>
 
-            <ImageView fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
+            <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" styleClass="logo">
                <Image url="@../../imagenes/logo.png" />
             </ImageView>
 
@@ -51,9 +50,7 @@
                <Region prefHeight="25" />
                <HBox>
                   <Region HBox.hgrow="ALWAYS"/>
-                  <!-- StackPane para superposición con evento de clic -->
                   <StackPane minWidth="170" maxWidth="170" styleClass="menu-boton" onMouseClicked="#onSessionClose">
-                     <!-- Label visible -->
                      <Label styleClass="texto" text="Cerrar Sesión" />
                   </StackPane>
                   <Region HBox.hgrow="ALWAYS"/>
@@ -67,7 +64,7 @@
             </VBox>
          </VBox>
 
-         <!-- Contenido principal (centro) -->
+         <!-- Panel Central -->
          <VBox alignment="CENTER" prefHeight="800.0" prefWidth="600.0" spacing="20">
 
             <!-- Fila 1 -->
@@ -107,30 +104,11 @@
                </VBox>
             </HBox>
 
-            <!-- Fila 4 -->
-            <HBox alignment="CENTER" spacing="20">
-               <VBox alignment="CENTER" onMouseClicked="#onInformesClick" styleClass="cuadro">
-                  <Label styleClass="texto" text="Informes" />
-               </VBox>
-               <VBox alignment="CENTER" prefHeight="180" prefWidth="180" styleClass="invisible-cuadro" />
-               <VBox alignment="CENTER" onMouseClicked="#onAyudaClick" styleClass="cuadro">
-                  <Label styleClass="texto" text="Ayuda" />
-               </VBox>
-            </HBox>
          </VBox>
 
          <!-- Panel derecho -->
-         <VBox maxWidth="300" prefWidth="300">
-            <!--<HBox alignment="CENTER_RIGHT" prefHeight="90">
-               <Region prefWidth="25"/>
-               <StackPane maxHeight="50" maxWidth="50" minHeight="50" minWidth="50" styleClass="menu-boton" onMouseClicked="#onMenuClick">
-                  <ImageView fitHeight="30" fitWidth="30" preserveRatio="true">
-                     <Image url="@../../imagenes/menu-lateral-derecho-1.png" />
-                  </ImageView>
-               </StackPane>
-               <Region prefWidth="25"/>
-            </HBox>-->
-         </VBox>
+         <VBox maxWidth="300" prefWidth="300" />
+
       </HBox>
    </StackPane>
 </VBox>

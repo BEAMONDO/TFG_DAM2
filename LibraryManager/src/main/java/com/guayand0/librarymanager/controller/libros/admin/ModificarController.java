@@ -167,7 +167,7 @@ public class ModificarController {
                 return entry.getKey();
             }
         }
-        return -1; // o lanzar excepción si es necesario
+        return -1;
     }
 
     private void limpiarCampos() {

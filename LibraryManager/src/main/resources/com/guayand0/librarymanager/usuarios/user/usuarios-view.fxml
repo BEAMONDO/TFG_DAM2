@@ -41,7 +41,7 @@
                 <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
 
-            <!-- Área central vacía por ahora -->
+            <!-- Menú Derecho -->
             <StackPane fx:id="containerData" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" styleClass="cuadro_principal">
             </StackPane>
         </HBox>

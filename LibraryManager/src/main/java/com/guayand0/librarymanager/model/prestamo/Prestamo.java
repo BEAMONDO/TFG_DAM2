@@ -1,16 +1,14 @@
 package com.guayand0.librarymanager.model.prestamo;
 
 public class Prestamo {
-    private int ID;
     private String usuario;
-    private int libro;
+    private String libro;
     private String fechaPrestamo;
     private String fechaDevolucion;
     private String fechaDevolucionReal;
-    private long multa;
+    private int multa;
 
-    public Prestamo(int ID, String usuario, int libro, String fechaPrestamo, String fechaDevolucion, String fechaDevolucionReal, long multa) {
-        this.ID = ID;
+    public Prestamo(String usuario, String libro, String fechaPrestamo, String fechaDevolucion, String fechaDevolucionReal, int multa) {
         this.usuario = usuario;
         this.libro = libro;
         this.fechaPrestamo = fechaPrestamo;
@@ -19,16 +17,7 @@ public class Prestamo {
         this.multa = multa;
     }
 
-    public Prestamo() {
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    public Prestamo() {}
 
     public String getUsuario() {
         return usuario;
@@ -38,11 +27,11 @@ public class Prestamo {
         this.usuario = usuario;
     }
 
-    public int getLibro() {
+    public String getLibro() {
         return libro;
     }
 
-    public void setLibro(int libro) {
+    public void setLibro(String libro) {
         this.libro = libro;
     }
 
@@ -70,11 +59,11 @@ public class Prestamo {
         this.fechaDevolucionReal = fechaDevolucionReal;
     }
 
-    public long getMulta() {
+    public int getMulta() {
         return multa;
     }
 
-    public void setMulta(long multa) {
+    public void setMulta(int multa) {
         this.multa = multa;
     }
 }

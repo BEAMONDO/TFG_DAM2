@@ -2,22 +2,17 @@ package com.guayand0.librarymanager.controller.libros.user;
 
 import com.guayand0.librarymanager.model.libro.ConsultarDAO;
 import com.guayand0.librarymanager.model.usuario.Usuario;
-import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 import java.util.List;
-import java.util.Map;
 
 public class TablaConsultaController {
 
     private final ConsultarDAO consultarDAO = new ConsultarDAO();
 
-    @FXML private Label usuario;
     private Usuario usuarioLogueado;
 
     @FXML private TableView<List<String>> librosTable;
@@ -111,10 +106,7 @@ public class TablaConsultaController {
             query.append(" AND L.estado = '").append(estado).append("'");
         }
 
-        // librosTable debe ser TableView<List<String>>
         List<List<String>> libros = consultarDAO.obtenerDatosLibros(query);
-
-        // Para cada columna, define el cellValueFactory extrayendo el índice correcto de la lista
 
         isbnCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(0)));
         tituloCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(1)));
@@ -122,14 +114,13 @@ public class TablaConsultaController {
         categoriaCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(3)));
         editorialCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(4)));
 
-        // paginasCol es Integer, si quieres usar String hazlo así:
         paginasCol.setCellValueFactory(cellData -> {
             String val = cellData.getValue().get(5);
-            Integer intVal;
+            int intVal;
             try {
                 intVal = Integer.parseInt(val);
             } catch (NumberFormatException e) {
-                intVal = 0; // o null, según convenga
+                intVal = 0;
             }
             return new javafx.beans.property.SimpleObjectProperty<>(intVal);
         });
@@ -138,7 +129,7 @@ public class TablaConsultaController {
 
         anioCol.setCellValueFactory(cellData -> {
             String val = cellData.getValue().get(7);
-            Integer intVal;
+            int intVal;
             try {
                 intVal = Integer.parseInt(val);
             } catch (NumberFormatException e) {
@@ -149,7 +140,6 @@ public class TablaConsultaController {
 
         estadoCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(8)));
 
-        // Finalmente, carga la tabla
         librosTable.getItems().setAll(libros);
 
     }

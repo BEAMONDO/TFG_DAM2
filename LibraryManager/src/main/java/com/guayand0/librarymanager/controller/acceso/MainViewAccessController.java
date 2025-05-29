@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,9 +20,7 @@ public class MainViewAccessController implements Initializable {
     private final Alertas ALERT = new Alertas();
 
     @FXML private Button  btnLogin, btnRegister;
-
     @FXML private StackPane containerSessionData;
-
     @FXML private HBox loginForm, registerForm;
 
     @FXML protected void actionEvent(ActionEvent e) {

@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS Libros (
 CREATE TABLE IF NOT EXISTS Prestamos (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(9) NOT NULL,
-    libro INT NOT NULL,
+    libro VARCHAR(20) NOT NULL,
     fecha_prestamo TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     fecha_devolucion TIMESTAMP NOT NULL,
     fecha_devolucion_real TIMESTAMP,
@@ -78,10 +78,10 @@ ALTER TABLE Idiomas CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_1 FOREIGN KEY (usuario) REFERENCES Usuarios(DNI);
 
-ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_2 FOREIGN KEY (libro) REFERENCES Libros(ID);
+ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_2 FOREIGN KEY (libro) REFERENCES Libros(ISBN);
 
 
-INSERT INTO Usuarios (DNI, nombre, apellido, email, contrasena, telefono, direccion, fecha_de_nacimiento)
+INSERT INTO Usuarios (DNI, nombre, apellidos, email, contrasena, telefono, direccion, fecha_de_nacimiento, sexo)
 VALUES
 ('12345678A', 'Juan', 'Pérez', 'juan.perez@example.com', 'qwewe', '555-1234', 'Calle Falsa 123', '1990-01-01', 'Usuario', 'Hombre'),
 ('87654321B', 'Ana', 'López', 'ana.lopez@example.com', 'qwewe', '555-5678', 'Av. Siempreviva 742', '1985-05-15', 'Usuario', 'Mujer'),
@@ -113,14 +113,14 @@ VALUES
 
 INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion)
 VALUES
-('12345678A', 1, '2024-11-01', '2024-11-15'),
-('87654321B', 2, '2024-11-05', '2024-11-20'),
-('45678912C', 3, '2024-11-10', '2024-11-25'),
-('78912345D', 4, '2024-11-12', '2024-11-26');
+('12345678A', '978-1-56619-909-4', '2024-11-01', '2024-11-15'),
+('87654321B', '978-84-204-8216-3', '2024-11-05', '2024-11-20'),
+('45678912C', '978-84-376-0494-7', '2024-11-10', '2024-11-25'),
+('78912345D', '978-84-339-0793-8', '2024-11-12', '2024-11-26');
 INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion, fecha_devolucion_real, multa)
 VALUES
-('32165498E', 5, '2024-11-15', '2024-11-30', '2024-12-05',
+('32165498E', '978-84-339-7147-2', '2024-11-15', '2024-11-30', '2024-12-05',
     DATEDIFF('2024-12-05', '2024-11-30') * 1.00);
 INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion, fecha_devolucion_real)
 VALUES
-('45678912C', 2, '2024-11-21', '2024-11-30', '2024-11-29');
+('45678912C', '978-84-204-8216-3', '2024-11-21', '2024-11-30', '2024-11-29');

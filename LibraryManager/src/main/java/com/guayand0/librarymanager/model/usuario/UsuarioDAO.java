@@ -122,7 +122,6 @@ public class UsuarioDAO {
                 }
             }
 
-            // Actualizar datos
             sql = "UPDATE Usuarios SET nombre = ?, apellidos = ?, email = ?, contrasena = ?, telefono = ?, " +
                     "direccion = ?, fecha_de_nacimiento = ?, sexo = ?, permiso = ? WHERE DNI = ?";
 
@@ -213,4 +212,5 @@ public class UsuarioDAO {
 
         return usuarios;
     }
+
 }

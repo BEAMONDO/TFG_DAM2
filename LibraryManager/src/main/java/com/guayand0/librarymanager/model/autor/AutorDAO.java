@@ -2,7 +2,6 @@ package com.guayand0.librarymanager.model.autor;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
 import com.guayand0.librarymanager.utils.CapitalizarPalabra;
-import com.guayand0.librarymanager.utils.EncriptarContrasena;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,28 +1,19 @@
 package com.guayand0.librarymanager.controller.libros.admin;
 
-import com.guayand0.librarymanager.model.autor.Autor;
 import com.guayand0.librarymanager.model.autor.AutorDAO;
-import com.guayand0.librarymanager.model.categoria.Categoria;
 import com.guayand0.librarymanager.model.categoria.CategoriaDAO;
-import com.guayand0.librarymanager.model.editorial.Editorial;
 import com.guayand0.librarymanager.model.editorial.EditorialDAO;
-import com.guayand0.librarymanager.model.idioma.Idioma;
 import com.guayand0.librarymanager.model.idioma.IdiomaDAO;
 import com.guayand0.librarymanager.model.libro.Libro;
 import com.guayand0.librarymanager.model.libro.LibroDAO;
 import com.guayand0.librarymanager.model.usuario.Usuario;
-import com.guayand0.librarymanager.model.usuario.UsuarioDAO;
 import com.guayand0.librarymanager.utils.Alertas;
 import com.guayand0.librarymanager.utils.ComprobarISBN;
 import com.guayand0.librarymanager.utils.LimiteCaracteres;
-import com.guayand0.librarymanager.utils.MostrarContrasena;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class RegistrarController {
@@ -133,7 +124,7 @@ public class RegistrarController {
                 return entry.getKey();
             }
         }
-        return -1; // o lanzar excepción si es necesario
+        return -1;
     }
 
     private void limpiarCampos() {

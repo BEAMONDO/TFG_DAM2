@@ -22,8 +22,6 @@ public class LibrosController {
     @FXML private StackPane containerData;
     @FXML private VBox registrar, modificar, eliminar, consultar;
 
-    private VBox currentForm;
-
     @FXML private void onRegisterClick() {
         resetSeleccion();
         registrar.getStyleClass().add("seleccionado");
@@ -92,7 +90,6 @@ public class LibrosController {
             }
 
             containerData.getChildren().setAll(vista);
-            currentForm = vista;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,7 +112,6 @@ public class LibrosController {
             }
 
             containerData.getChildren().setAll(vista);
-            currentForm = vista;
         } catch (IOException e) {
             e.printStackTrace();
         }

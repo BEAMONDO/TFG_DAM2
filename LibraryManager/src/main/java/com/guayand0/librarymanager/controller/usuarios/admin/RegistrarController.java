@@ -172,12 +172,4 @@ public class RegistrarController {
 
         return true;
     }
-
-    private boolean validarLetraDNI(String dni) {
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int numero = Integer.parseInt(dni.substring(0, 8));
-        char letraCorrecta = letras.charAt(numero % 23);
-        char letraIngresada = Character.toUpperCase(dni.charAt(8));
-        return letraCorrecta == letraIngresada;
-    }
 }

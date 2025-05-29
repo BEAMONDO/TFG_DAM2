@@ -1,4 +1,4 @@
-package com.guayand0.librarymanager.controller.prestamos.admin;
+package com.guayand0.librarymanager.controller.devoluciones.admin;
 
 import com.guayand0.librarymanager.model.prestamo.Prestamo;
 import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
@@ -13,17 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ModificarController {
-//al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados y al seleccionar el libro
-//cargar en dias la cantidad de dias que tiene para devolverlo, modificar el dia de devolucion del usuario para ese libro
+public class RegistrarController {
 
-    /*private final Alertas ALERT = new Alertas();
+    private final Alertas ALERT = new Alertas();
     private final PrestamoDAO prestamoDAO = new PrestamoDAO();
 
     private Usuario usuarioLogueado;
 
-    @FXML
-    private ComboBox<String> libroCombo, usuarioCombo;
+    @FXML private ComboBox<String> libroCombo, usuarioCombo;
     @FXML private TextField diasField;
 
     private final Map<String, String> usuarioMap = new HashMap<>();
@@ -56,7 +53,7 @@ public class ModificarController {
         libroCombo.getItems().addAll(mapa.values());
     }
 
-    @FXML private void onModifyClick() {
+    @FXML private void onRegisterClick() {
         if (!validarCampos()) return;
 
         String usuario = usuarioCombo.getValue();
@@ -107,14 +104,13 @@ public class ModificarController {
                 return entry.getKey();
             }
         }
-        return "null"; // o lanzar excepción si es necesario
+        return "null";
     }
 
     private String obtenerFechaPrestamo(int dias) {
         LocalDateTime now = LocalDateTime.now().plusDays(dias);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
-    }*/
+    }
 
-    @FXML private void onModifyClick() {}
 }

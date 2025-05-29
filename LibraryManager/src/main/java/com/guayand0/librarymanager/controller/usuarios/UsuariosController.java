@@ -22,8 +22,6 @@ public class UsuariosController {
     @FXML private StackPane containerData;
     @FXML private VBox registrar, modificar, eliminar;
 
-    private VBox currentForm;
-
     @FXML private void onRegisterClick() {
         resetSeleccion();
         registrar.getStyleClass().add("seleccionado");
@@ -78,7 +76,6 @@ public class UsuariosController {
             VBox vista = fxmlLoader.load();
 
             containerData.getChildren().setAll(vista);
-            currentForm = vista;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,7 +92,6 @@ public class UsuariosController {
             }
 
             containerData.getChildren().setAll(vista);
-            currentForm = vista;
         } catch (IOException e) {
             e.printStackTrace();
         }

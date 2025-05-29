@@ -26,8 +26,8 @@
 
             <Region prefHeight="85.0" />
 
-            <!-- Separador de 15px antes del botón -->
             <Region prefHeight="15.0" />
+
             <VBox alignment="CENTER">
                 <Button fx:id="btnLoginUser" onAction="#actionEvent" prefHeight="45" prefWidth="150" style="-fx-font-size: 14px;" text="Iniciar sesión" />
             </VBox>

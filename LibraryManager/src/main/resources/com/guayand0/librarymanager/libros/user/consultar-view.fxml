@@ -91,8 +91,8 @@
                         <ComboBox fx:id="anioCombo" minWidth="200" prefHeight="40" style="-fx-font-size: 14px;">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Antes de" />
                                     <String fx:value="Después de" />
+                                    <String fx:value="Antes de" />
                                     <String fx:value="Exactamente" />
                                 </FXCollections>
                             </items>

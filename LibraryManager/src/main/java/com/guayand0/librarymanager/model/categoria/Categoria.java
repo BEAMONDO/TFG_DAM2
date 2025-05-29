@@ -2,7 +2,6 @@ package com.guayand0.librarymanager.model.categoria;
 
 public class Categoria {
 
-    //private int id_categoria;
     private String nombre;
 
     public Categoria(String nombre) {

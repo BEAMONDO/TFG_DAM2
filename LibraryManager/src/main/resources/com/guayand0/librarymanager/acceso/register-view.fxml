@@ -45,8 +45,8 @@
             <ComboBox fx:id="sexo" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: rgba(255, 255, 255, 0.8);" prefHeight="50.0" prefWidth="420.0" promptText="Sexo" />
         </HBox>
 
-        <!-- Separador de 15px antes del botón -->
         <Region prefHeight="15.0" />
+
         <VBox alignment="CENTER">
             <Button fx:id="btnRegisterUser" onAction="#actionEvent" text="Registrarse" prefWidth="150" prefHeight="45" style="-fx-font-size: 14px;" />
         </VBox>

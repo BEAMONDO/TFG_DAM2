@@ -19,24 +19,16 @@ import java.util.ResourceBundle;
 
 public class LoginViewController implements Initializable {
 
-    @FXML
-    private Button btnLoginUser;
-
-    @FXML
-    private TextField loginDNI_Email, loginPassword;
-
-    @FXML
-    private PasswordField loginPasswordMask;
-
-    @FXML
-    private CheckBox loginPasswordOpen;
+    @FXML private Button btnLoginUser;
+    @FXML private TextField loginDNI_Email, loginPassword;
+    @FXML private PasswordField loginPasswordMask;
+    @FXML private CheckBox loginPasswordOpen;
 
     private final Alertas ALERT = new Alertas();
     private final Ventanas VENTANA = new Ventanas();
     private final MostrarContrasena MC = new MostrarContrasena();
 
-    @FXML
-    protected void actionEvent(ActionEvent e) {
+    @FXML protected void actionEvent(ActionEvent e) {
         if (e.getSource().equals(btnLoginUser)) {
             String dniEmail = loginDNI_Email.getText();
             String password = loginPassword.getText();
@@ -50,7 +42,6 @@ public class LoginViewController implements Initializable {
             Usuario usuario = iniciarSesion(dniEmail, password);
 
             if (usuario != null) {
-                //ALERT.showInformation("Has iniciado sesión como: " + usuario.getNombre() + " " + usuario.getApellidos());
                 ((Stage) btnLoginUser.getScene().getWindow()).close();
                 VENTANA.mainWindow(usuario);
             } else {

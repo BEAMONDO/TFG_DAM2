@@ -8,8 +8,6 @@ import com.guayand0.librarymanager.utils.LimiteCaracteres;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-import java.util.List;
-
 public class RegistrarController {
 
     private final Alertas ALERT = new Alertas();

@@ -15,6 +15,7 @@ public class ModificarController {
     private final LimiteCaracteres LC = new LimiteCaracteres();
     private final EncriptarContrasena EC = new EncriptarContrasena();
     private final MostrarContrasena MC = new MostrarContrasena();
+    private final ComprobarDNI CDNI = new ComprobarDNI();
 
     private Usuario usuarioLogueado;
 
@@ -30,8 +31,7 @@ public class ModificarController {
         new Thread(this::cargarDatosUsuario).start();
     }
 
-    @FXML
-    public void initialize() {
+    @FXML public void initialize() {
         aplicarMascaras();
         aplicarLimitesCaracteres();
     }
@@ -69,8 +69,7 @@ public class ModificarController {
         Platform.runLater(() -> dniField.getParent().requestFocus());
     }
 
-    @FXML
-    private void onModifyClick() {
+    @FXML private void onModifyClick() {
         if (!validarCampos()) return;
 
         String dni = dniField.getText();
@@ -116,13 +115,13 @@ public class ModificarController {
         String email = emailField.getText();
         String direccion = direccionField.getText();
 
-        if (dni.isEmpty() || !dni.matches("^[0-9]{8}[A-Za-z]$")) {
-            ALERT.showWarning("DNI inválido. Debe tener 8 números y una letra.");
+        if (dni.isEmpty()) {
+            ALERT.showWarning("DNI inválido.");
             return false;
         }
 
-        if (!validarLetraDNI(dni)) {
-            ALERT.showWarning("La letra del DNI no coincide con los números.");
+        if (!CDNI.validarDNI(dni)) {
+            ALERT.showWarning("El DNI está mal formado.");
             return false;
         }
 

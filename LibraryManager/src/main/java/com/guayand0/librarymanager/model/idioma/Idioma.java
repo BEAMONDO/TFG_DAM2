@@ -2,7 +2,6 @@ package com.guayand0.librarymanager.model.idioma;
 
 public class Idioma {
 
-    //private int id_idioma;
     private String nombre;
 
     public Idioma(String nombre) {

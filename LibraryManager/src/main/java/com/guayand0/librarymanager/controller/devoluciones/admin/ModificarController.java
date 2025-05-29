@@ -1,17 +1,6 @@
-package com.guayand0.librarymanager.controller.prestamos.admin;
+package com.guayand0.librarymanager.controller.devoluciones.admin;
 
-import com.guayand0.librarymanager.model.prestamo.Prestamo;
-import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
-import com.guayand0.librarymanager.model.usuario.Usuario;
-import com.guayand0.librarymanager.utils.Alertas;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ModificarController {
 //al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados y al seleccionar el libro

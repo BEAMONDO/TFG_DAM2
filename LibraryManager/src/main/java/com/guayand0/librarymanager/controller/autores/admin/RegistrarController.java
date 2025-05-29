@@ -57,22 +57,22 @@ public class RegistrarController {
 
     private boolean validarCampos() {
         if (nombreField.getText().isEmpty()) {
-            ALERT.showWarning("Nombre de autor es obligatoria.");
+            ALERT.showWarning("Nombre de autor es obligatorio.");
             return false;
         }
 
         if (apellidoField.getText().isEmpty()) {
-            ALERT.showWarning("Apellido de autor es obligatoria.");
+            ALERT.showWarning("Apellido de autor es obligatorio.");
             return false;
         }
 
         if (paisField.getText().isEmpty()) {
-            ALERT.showWarning("Pais de autor es obligatoria.");
+            ALERT.showWarning("Pais de autor es obligatorio.");
             return false;
         }
 
         if (fechaField.getValue() == null) {
-            ALERT.showWarning("Fecha de nacimiento es obligatoria.");
+            ALERT.showWarning("Fecha de nacimiento es obligatorio.");
             return false;
         }
 
