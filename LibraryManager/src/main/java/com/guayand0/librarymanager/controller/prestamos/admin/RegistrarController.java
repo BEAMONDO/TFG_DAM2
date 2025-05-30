@@ -48,8 +48,9 @@ public class RegistrarController {
     }
 
     private void cargarLibro() {
-        Map<String, String> mapa = prestamoDAO.obtenerLibroISBNTituloMap();
+        Map<String, String> mapa = prestamoDAO.obtenerLibroISBNTituloDisponibleMap();
         libroMap.putAll(mapa);
+
         libroCombo.getItems().addAll(mapa.values());
     }
 
@@ -73,12 +74,18 @@ public class RegistrarController {
         if (registrado) {
             ALERT.showInformation("Préstamo registrado correctamente.");
             limpiarCampos();
+
+            libroCombo.getItems().clear();
+            new Thread(this::cargarLibro).start();
         } else {
             ALERT.showWarning("Error al registrar el préstamo.");
         }
     }
 
     private boolean validarCampos() {
+
+        String dias = String.valueOf(diasField.getText());
+
         if (usuarioCombo.getValue() == null) {
             ALERT.showWarning("Usuario es obligatorio.");
             return false;
@@ -86,6 +93,11 @@ public class RegistrarController {
 
         if (libroCombo.getValue() == null) {
             ALERT.showWarning("Libro es obligatorio.");
+            return false;
+        }
+
+        if (dias.isEmpty()) {
+            ALERT.showWarning("Dias es obligatorio.");
             return false;
         }
 
