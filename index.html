@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Manager</title>
+</head>
+<body>
+  <h1><span id="contador">0</span></h1>
+  <button id="btnSumar">+1</button>
+
+  <script>
+    //const API_URL = window.location.origin;
+    const API_URL = 'https://b47b-144-178-136-250.ngrok-free.app';
+
+    async function getPoints() {
+      try {
+        const res = await fetch(`${API_URL}/get`);
+        const data = await res.json();
+        document.getElementById('contador').innerText = data.points;
+      } catch {}
+    }
+
+    async function addPoint() {
+      try {
+        const res = await fetch(`${API_URL}/add`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({})
+        });
+        const data = await res.json();
+        document.getElementById('contador').innerText = data.points;
+      } catch {
+        alert("Servidor no disponible");
+      }
+    }
+
+    document.getElementById('btnSumar').onclick = addPoint;
+
+    getPoints();
+    setInterval(getPoints, 500);
+  </script>
+</body>
+</html>
