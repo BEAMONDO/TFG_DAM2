@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Maneja el clic en el contenedor de la imagen para abrir la imagen grande
-    document.querySelectorAll('.plugin-item').forEach(item => {
+    document.querySelectorAll('.librarymanager-item').forEach(item => {
         item.addEventListener('click', (e) => {
             // Verifica si el clic fue en un enlace de descarga
             if (!e.target.classList.contains('download-link')) {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlayImg = document.createElement('img');
     overlay.appendChild(overlayImg);
 
-    document.querySelectorAll('.plugin-image-container img').forEach(img => {
+    document.querySelectorAll('.librarymanager-image-container img').forEach(img => {
         img.addEventListener('click', (e) => {
             overlayImg.src = e.target.src;
             overlay.classList.add('show');
