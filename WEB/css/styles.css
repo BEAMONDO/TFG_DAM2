@@ -354,14 +354,14 @@ a:hover {
 
 /* Estilos para la columna de información de estadísticas */
 .stats-info {
-    width: 30%; /* Ancho de la columna de información */
+    width: 40%; /* Ancho de la columna de información */
     margin-right: 20px; /* Espacio entre la columna de información y la imagen */
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
 }
 
 /* Estilos para la columna de la imagen de estadísticas */
 .stats-image {
-    width: 70%; /* Ancho de la columna de la imagen */
+    width: 60%; /* Ancho de la columna de la imagen */
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
 }
 

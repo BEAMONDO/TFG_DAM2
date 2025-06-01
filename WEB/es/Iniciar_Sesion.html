@@ -11,12 +11,10 @@
     <main class="librarymanager-container-plugin">
         <div class="librarymanager-container-row">
             <div class="librarymanager-details">
-                <img class="image-resize" src="../images/MineBank.png" alt="MineBank">
-                <h2>MineBank</h2>
-                <h2>[1.8 - 1.21]</h2>
-                <br>
-                <p>Versión: 4.0.3</p>
-                <a href="https://www.spigotmc.org/resources/MineBank.119147/" class="download-link" target="_blank">Descargar</a>
+				<div class="librarymanager-image-container">
+                    <img class="image-resize" src="../images/acceso/acceso-login.png" alt="Iniciar Sesión">
+                </div>
+                <h2>Iniciar Sesión</h2>
 				<button onclick="goBack()" class="back-button">Volver</button>
             </div>
             
@@ -24,48 +22,48 @@
                 <div class="tabs">
                     <div class="tab-buttons">
 						<button class="tab-button active" data-tab="index">Inicio</button>
-                        <button class="tab-button" data-tab="features">Características</button>
+                        <!--<button class="tab-button" data-tab="features">Características</button>
 						<button class="tab-button" data-tab="placeholders">Variables</button>
                         <button class="tab-button" data-tab="commands">Comandos</button>
                         <button class="tab-button" data-tab="permissions">Permisos</button>
                         <button class="tab-button" data-tab="dependencies">Dependencias</button>
-						<button class="tab-button" data-tab="others">Otros</button>
+						<button class="tab-button" data-tab="others">Otros</button>-->
                     </div>
 
 					<div class="tab-content" id="index">
 						<h3>Inicio</h3>
 						<div class="index-list">
-							<p><a href="https://www.spigotmc.org/resources/MineBank.119147/" target="_blank">MineBank</a> - Creado por <a href="https://www.spigotmc.org/resources/authors/guayando.2109441/" target="_blank">Guayando</a></p>
-							<p>Compilado con Java 8</p>
+							<p>En ésta ventanan en la zona derecha se puede ver: dos zonas de texto, un seleccionable y un botón en la parte inferior. </p>
 							<div class="stats-container">
 								<div class="stats-info">
-									<h2 class="green"><strong>Estadisticas</strong></h2>
-									<p><strong class="blue">+600 Descargas</strong></p>
-									<div class="status-images">
-										<img src="https://img.shields.io/spiget/version/119147.svg?label=Version&logo=Minecraft&color=red" alt="Version">
-										<img src="https://img.shields.io/badge/Stars-4.5★-red.svg?label=Estrellas&logo=Minecraft&color=yellow" alt="Stars">
-									</div>
-									<div class="status-images">
-										<img src="https://img.shields.io/badge/Category-Economia-red.svg?label=Categoria&logo=Minecraft&color=pink" alt="Category">
-									</div>
-									<br>
-									<p><strong class="green">Jugando actualmente:</strong></p>
-									<div class="status-images">
-										<img src="https://img.shields.io/bstats/servers/23185?label=Servidores&logo=Minecraft&&color=blue" alt="Servers">
-										<img src="https://img.shields.io/bstats/players/23185?label=Jugadores&logo=Minecraft&color=green" alt="Players">
-									</div>
-									<p><a href="https://bstats.org/plugin/bukkit/MineBank/23185" target="_blank">Estadísticas del plugin: bStats</a></p>
+									<p>La primera zona de texto se usa para poner el <strong>DNI o el correo electronico (Email)</strong> para poder acceder a la aplicación.</p>
 								</div>
 								<div class="stats-image">
-									<img src="https://bstats.org/signatures/bukkit/MineBank.svg" alt="Estadísticas del Plugin">
+									<img src="../images/acceso/dni-email.png" alt="DNI o Email">
 								</div>
 							</div>
-							<p>Si has encontrado algun error o tienes una idea para este plugin puedes enviarlo por aqui: <a href="https://github.com/Guayand0/Minecraft-librarymanager-MineBank/issues" target="_blank">Github-Support</a></p>
+
+							<div class="stats-container">
+								<div class="stats-info">
+									<p>La segunda zona de texto se usa para poner la <strong>Contraseña de acceso</strong> para poder acceder a la aplicación.</p>
+								</div>
+								<div class="stats-image">
+									<img src="../images/acceso/contrasena_acceso.png" alt="DNI o Email">
+								</div>
+							</div>
+
+							<div class="stats-container">
+								<div class="stats-info">
+									<p>El seleccionable se usa para poder <strong>mostrar y ocultar</strong> la Contraseña de acceso.</p>
+								</div>
+								<div class="stats-image">
+									<img src="../images/acceso/ver-contrasena.png" alt="DNI o Email">
+								</div>
+							</div>
 						</div>
-						<!-- Añadir más cosas al inicio si es necesario -->
-					</div>					
+					</div>
 					
-                    <div class="tab-content" id="features">
+                    <!--<div class="tab-content" id="features">
 						<h3>Características</h3>
 						<div class="features-list">
 							<div class="feature-item">Permite almacenar dinero en el banco.</div>
@@ -89,7 +87,6 @@
 							<div class="feature-item-sub">· Haz clic en el ítem para usar un comando</div>
 							<div class="feature-item-sub">· Añade un permiso necesario para usar el comando</div>
 							<div class="feature-item-sub">· Soporte para <a href="https://wiki.placeholderapi.com/users/placeholder-list/" target="_blank">PlaceholderAPI</a>.</div>
-							<!-- Añadir más caracteristicas si es necesario -->
 						</div>
 					</div>
 
@@ -159,7 +156,6 @@
 							<div class="placeholder-item-sub">· <strong class="librarymanager-PAPI-placeholder">%minebank_player_bank_max_level%</strong> - Muestra el máximo nivel de banco</div>
 							<div class="placeholder-item-sub">· <strong class="librarymanager-PAPI-placeholder">%minebank_player_bank_top_position%</strong> - Muestra tu posición en el ranking de bancos</div>
 							<div class="placeholder-item-sub">· <strong class="librarymanager-PAPI-placeholder">%minebank_player_balance%</strong> - Muestra tu saldo en la economía</div>
-							<!-- Añadir más placeholders si es necesario -->
 						</div>
 					</div>
 
@@ -205,7 +201,6 @@
 							<p><strong>/bank level</strong> - Consulta tu nivel de banco</p>
 							<p><strong>/bank level &lt;player&gt;</strong> - Consulta el nivel de banco de otro jugador</p>
 							<p><strong>/bank levelup</strong> - Mejora el nivel de tu banco</p>
-							<!-- Añadir más comandos si es necesario -->
 						</div>
 					</div>
 					
@@ -220,7 +215,6 @@
 							<p><strong>minebank.use</strong> - Permite usar el banco</p>
 							<p><strong>minebank.bank.&lt;bankName&gt;</strong> - Establece el banco &lt;bankName&gt; para el jugador</p>
 						</div>
-                        <!-- Añadir más permisos si es necesario -->
                     </div>
 
                     <div class="tab-content" id="dependencies">
@@ -256,7 +250,7 @@
 								<p>BankInventoryManager.reloadConfig: poner un idioma que no existe en "config.inventory-language" (por ejemplo, "qwe")</p>
 							</div>
 						</div>
-                    </div>
+                    </div>-->
 
                 </div>
             </div>
