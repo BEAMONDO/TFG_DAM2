@@ -68,7 +68,7 @@ public class IdiomaDAO {
     }
 
     public boolean delete(String nombre) {
-        sql = "DELETE FROM IdiomaS WHERE nombre = ?";
+        sql = "DELETE FROM Idiomas WHERE nombre = ?";
 
         try {
             connection = ConnectionDatabase.getConnection();

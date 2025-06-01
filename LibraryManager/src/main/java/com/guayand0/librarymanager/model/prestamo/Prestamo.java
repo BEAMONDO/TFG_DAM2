@@ -1,6 +1,7 @@
 package com.guayand0.librarymanager.model.prestamo;
 
 public class Prestamo {
+
     private String usuario;
     private String libro;
     private String fechaPrestamo;

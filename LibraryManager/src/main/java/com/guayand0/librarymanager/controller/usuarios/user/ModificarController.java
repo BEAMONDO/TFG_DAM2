@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class ModificarController {
 
     private final Alertas ALERT = new Alertas();
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final LimiteCaracteres LC = new LimiteCaracteres();
     private final EncriptarContrasena EC = new EncriptarContrasena();
     private final MostrarContrasena MC = new MostrarContrasena();
@@ -90,7 +91,6 @@ public class ModificarController {
                 telefono, direccion, fechaNacimiento, sexo, permiso
         };
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
         boolean actualizado = usuarioDAO.modify(datos, EC.encriptar(contrasena), permiso);
 
         if (actualizado) {
@@ -132,11 +132,6 @@ public class ModificarController {
 
         if (email.isEmpty() || !email.matches("^[\\w+_.-]+@[\\w.-]+\\.[A-Za-z]{2,}$")) {
             ALERT.showWarning("Formato de email inválido.");
-            return false;
-        }
-
-        if (oldPasswordField.getText().isEmpty() || newPasswordField.getText().isEmpty()) {
-            ALERT.showWarning("Debe ingresar la contraseña actual y la nueva.");
             return false;
         }
 

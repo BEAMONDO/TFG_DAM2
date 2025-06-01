@@ -23,31 +23,39 @@ public class LibrosController {
     @FXML private VBox registrar, modificar, eliminar, consultar;
 
     @FXML private void onRegisterClick() {
-        resetSeleccion();
-        registrar.getStyleClass().add("seleccionado");
-        cargarVistaAdmin("libros/admin/registrar-view.fxml");
+        if (!registrar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            registrar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("libros/admin/registrar-view.fxml");
+        }
     }
 
     @FXML private void onModifyClick() {
-        resetSeleccion();
-        modificar.getStyleClass().add("seleccionado");
-        cargarVistaAdmin("libros/admin/modificar-view.fxml");
+        if (!modificar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            modificar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("libros/admin/modificar-view.fxml");
+        }
     }
 
     @FXML private void onDeleteClick() {
-        resetSeleccion();
-        eliminar.getStyleClass().add("seleccionado");
-        cargarVistaAdmin("libros/admin/eliminar-view.fxml");
+        if (!eliminar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            eliminar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("libros/admin/eliminar-view.fxml");
+        }
     }
 
     @FXML private void onConsultarClick() {
-        if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            resetSeleccion();
-            consultar.getStyleClass().add("seleccionado");
-            cargarVistaAdmin("libros/admin/consultar-view.fxml");
-        } else {
-            consultar.getStyleClass().add("seleccionado");
-            cargarVistaUser("libros/user/consultar-view.fxml");
+        if (!consultar.getStyleClass().contains("seleccionado")) {
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                resetSeleccion();
+                consultar.getStyleClass().add("seleccionado");
+                cargarVistaAdmin("libros/admin/consultar-view.fxml");
+            } else {
+                consultar.getStyleClass().add("seleccionado");
+                cargarVistaUser("libros/user/consultar-view.fxml");
+            }
         }
     }
 

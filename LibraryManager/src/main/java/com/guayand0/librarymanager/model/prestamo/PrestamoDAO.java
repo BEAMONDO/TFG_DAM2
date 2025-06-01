@@ -5,6 +5,8 @@ import com.guayand0.librarymanager.db.ConnectionDatabase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +29,7 @@ public class PrestamoDAO {
             connection = ConnectionDatabase.getConnection();
             connection.setAutoCommit(false);
 
-            // Insertar préstamo
+            // Registrar préstamo
             statement = connection.prepareStatement(sql);
             statement.setString(1, prestamo.getUsuario());
             statement.setString(2, prestamo.getLibro());
@@ -59,6 +61,33 @@ public class PrestamoDAO {
                 connection.setAutoCommit(true);
                 ConnectionDatabase.closeConnection(connection);
             }} catch (Exception ex) { ex.printStackTrace(); }
+        }
+    }
+
+    public boolean modify(String DNI, String ISBN, String fechaDevolucion) {
+        sql = "UPDATE Prestamos SET fecha_devolucion = ? WHERE usuario = ? AND libro = ?";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+
+            // Actualizar datos
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, fechaDevolucion);
+            statement.setString(2, DNI);
+            statement.setString(3, ISBN);
+
+            int rowsUpdated = statement.executeUpdate();
+            statement.close();
+
+            return rowsUpdated > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try { if (statement != null) statement.close();
+            } catch (Exception ex) {ex.printStackTrace();}
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection);
+            } catch (Exception ex) {ex.printStackTrace();}
         }
     }
 
@@ -185,10 +214,13 @@ public class PrestamoDAO {
         return mapa;
     }
 
-    public List<String> obtenerLibrosPrestados(String dni) {
+    public List<String> obtenerLibrosPrestados(String dni, String Null) {
         List<String> lista = new ArrayList<>();
+        String NUll = "NULL";
+
+        if (Null.equals("NO")) { NUll = "NOT NULL"; }
         sql = "SELECT L.titulo FROM Prestamos P JOIN Libros L ON L.ISBN = P.libro " +
-                "WHERE P.usuario = ? AND P.fecha_devolucion_real IS NULL";
+                "WHERE P.usuario = ? AND P.fecha_devolucion_real IS " + NUll;
 
         try {
             connection = ConnectionDatabase.getConnection();
@@ -211,6 +243,97 @@ public class PrestamoDAO {
         }
 
         return lista;
+    }
+
+    public String obtenerDias(String ISBN, String Null) {
+        String valor = "";
+        String NUll = "NULL";
+
+        if (Null.equals("NO")) { NUll = "NOT NULL"; }
+        String sql = "SELECT DATEDIFF(P.fecha_devolucion, P.fecha_prestamo) AS dias FROM Prestamos P " +
+                "WHERE P.libro = ? AND P.fecha_devolucion_real IS " + NUll;
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, ISBN);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                int dias = resultSet.getInt("dias");
+                valor = String.valueOf(dias);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception ex) { ex.printStackTrace(); }
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection); } catch (Exception ex) { ex.printStackTrace(); }
+        }
+
+        return valor;
+    }
+
+    public String obtenerFechaPrestamoBD(String isbn, String Null) {
+        String fecha = "";
+        String NUll = "NULL";
+
+        if (Null.equals("NO")) { NUll = "NOT NULL"; }
+        String sql = "SELECT fecha_prestamo FROM Prestamos WHERE libro = ? AND fecha_devolucion_real IS " + NUll + " ORDER BY fecha_prestamo DESC LIMIT 1";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, isbn);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Timestamp ts = resultSet.getTimestamp("fecha_prestamo");
+                fecha = ts.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception ex) { ex.printStackTrace(); }
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection); } catch (Exception ex) { ex.printStackTrace(); }
+        }
+
+        return fecha;
+    }
+
+    public String obtenerFechaDevolucionBD(String isbn, String Null) {
+        String fecha = "";
+        String NUll = "NULL";
+
+        if (Null.equals("NO")) { NUll = "NOT NULL"; }
+        String sql = "SELECT fecha_devolucion FROM Prestamos WHERE libro = ? AND fecha_devolucion_real IS " + NUll + " ORDER BY fecha_devolucion DESC LIMIT 1";
+
+        try {
+            connection = ConnectionDatabase.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, isbn);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Timestamp ts = resultSet.getTimestamp("fecha_devolucion");
+                fecha = ts.toLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (statement != null) statement.close(); } catch (Exception ex) { ex.printStackTrace(); }
+            try { if (connection != null) ConnectionDatabase.closeConnection(connection); } catch (Exception ex) { ex.printStackTrace(); }
+        }
+
+        return fecha;
     }
 
 }

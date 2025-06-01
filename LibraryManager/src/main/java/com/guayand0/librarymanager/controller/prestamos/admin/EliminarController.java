@@ -1,16 +1,11 @@
 package com.guayand0.librarymanager.controller.prestamos.admin;
 
-import com.guayand0.librarymanager.model.libro.Libro;
-import com.guayand0.librarymanager.model.prestamo.Prestamo;
 import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
 import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.utils.Alertas;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,19 +57,9 @@ public class EliminarController {
             String usuarioSeleccionado = usuarioCombo.getValue();
             if (usuarioSeleccionado == null || usuarioSeleccionado.isEmpty()) return;
 
-            String claveUsuario = null;
-            for (Map.Entry<String, String> entry : usuarioMap.entrySet()) {
-                if (entry.getValue().equals(usuarioSeleccionado)) {
-                    claveUsuario = entry.getKey();
-                    break;
-                }
-            }
-
-            if (claveUsuario == null) return;
-
             libroCombo.getItems().clear();
 
-            List<String> librosPrestados = prestamoDAO.obtenerLibrosPrestados(claveUsuario);
+            List<String> librosPrestados = prestamoDAO.obtenerLibrosPrestados(getKeyByValue(usuarioMap, usuarioSeleccionado), "SI");
             libroCombo.getItems().addAll(librosPrestados);
 
         } catch (Exception e) {

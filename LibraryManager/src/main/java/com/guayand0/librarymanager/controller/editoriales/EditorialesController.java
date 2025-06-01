@@ -23,21 +23,27 @@ public class EditorialesController {
     @FXML private VBox registrar, modificar, eliminar;
 
     @FXML private void onRegisterClick() {
-        resetSeleccion();
-        registrar.getStyleClass().add("seleccionado");
-        cargarVista("editoriales/admin/registrar-view.fxml");
+        if (!registrar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            registrar.getStyleClass().add("seleccionado");
+            cargarVista("editoriales/admin/registrar-view.fxml");
+        }
     }
 
     @FXML private void onModifyClick() {
-        resetSeleccion();
-        modificar.getStyleClass().add("seleccionado");
-        cargarVista("editoriales/admin/modificar-view.fxml");
+        if (!modificar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            modificar.getStyleClass().add("seleccionado");
+            cargarVista("editoriales/admin/modificar-view.fxml");
+        }
     }
 
     @FXML private void onDeleteClick() {
-        resetSeleccion();
-        eliminar.getStyleClass().add("seleccionado");
-        cargarVista("editoriales/admin/eliminar-view.fxml");
+        if (!eliminar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            eliminar.getStyleClass().add("seleccionado");
+            cargarVista("editoriales/admin/eliminar-view.fxml");
+        }
     }
 
     @FXML private void onBackClick() {

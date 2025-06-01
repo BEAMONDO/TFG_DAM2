@@ -23,25 +23,31 @@ public class UsuariosController {
     @FXML private VBox registrar, modificar, eliminar;
 
     @FXML private void onRegisterClick() {
-        resetSeleccion();
-        registrar.getStyleClass().add("seleccionado");
-        cargarVistaAdmin("usuarios/admin/registrar-view.fxml");
+        if (!registrar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            registrar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("usuarios/admin/registrar-view.fxml");
+        }
     }
 
     @FXML private void onModifyClick() {
-        resetSeleccion();
-        modificar.getStyleClass().add("seleccionado");
-        if (usuarioLogueado.getPermiso().equals("Administrador")) {
-            cargarVistaAdmin("usuarios/admin/modificar-view.fxml");
-        } else {
-            cargarVistaUser("usuarios/user/modificar-view.fxml");
+        if (!modificar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            modificar.getStyleClass().add("seleccionado");
+            if (usuarioLogueado.getPermiso().equals("Administrador")) {
+                cargarVistaAdmin("usuarios/admin/modificar-view.fxml");
+            } else {
+                cargarVistaUser("usuarios/user/modificar-view.fxml");
+            }
         }
     }
 
     @FXML private void onDeleteClick() {
-        resetSeleccion();
-        eliminar.getStyleClass().add("seleccionado");
-        cargarVistaAdmin("usuarios/admin/eliminar-view.fxml");
+        if (!eliminar.getStyleClass().contains("seleccionado")) {
+            resetSeleccion();
+            eliminar.getStyleClass().add("seleccionado");
+            cargarVistaAdmin("usuarios/admin/eliminar-view.fxml");
+        }
     }
 
     @FXML private void onBackClick() {

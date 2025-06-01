@@ -44,17 +44,17 @@ CREATE TABLE IF NOT EXISTS Idiomas (
 CREATE TABLE IF NOT EXISTS Libros (
     ISBN VARCHAR(20) PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
-    autor INT NOT NULL,
-    id_categoria INT,
-    id_editorial INT,
+    autor INT NULL,
+    id_categoria INT NULL,
+    id_editorial INT NULL,
     numero_paginas INT NOT NULL,
-    id_idioma INT,
+    id_idioma INT NULL,
     anio_publicacion INT NOT NULL,
     estado ENUM('disponible', 'prestado', 'deteriorado', 'bloqueado') DEFAULT 'disponible',
-    FOREIGN KEY (autor) REFERENCES Autores(ID) ON DELETE CASCADE,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria),
-    FOREIGN KEY (id_editorial) REFERENCES Editoriales(id_editorial),
-    FOREIGN KEY (id_idioma) REFERENCES Idiomas(id_idioma)
+    FOREIGN KEY (autor) REFERENCES Autores(ID) ON DELETE SET NULL,
+    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE SET NULL,
+    FOREIGN KEY (id_editorial) REFERENCES Editoriales(id_editorial) ON DELETE SET NULL,
+    FOREIGN KEY (id_idioma) REFERENCES Idiomas(id_idioma) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS Prestamos (
@@ -81,7 +81,7 @@ ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_1 FOREIGN KEY (usuario) REFE
 ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_2 FOREIGN KEY (libro) REFERENCES Libros(ISBN);
 
 
-INSERT INTO Usuarios (DNI, nombre, apellidos, email, contrasena, telefono, direccion, fecha_de_nacimiento, sexo)
+INSERT INTO Usuarios (DNI, nombre, apellidos, email, contrasena, telefono, direccion, fecha_de_nacimiento, permiso, sexo)
 VALUES
 ('12345678A', 'Juan', 'Pérez', 'juan.perez@example.com', 'qwewe', '555-1234', 'Calle Falsa 123', '1990-01-01', 'Usuario', 'Hombre'),
 ('87654321B', 'Ana', 'López', 'ana.lopez@example.com', 'qwewe', '555-5678', 'Av. Siempreviva 742', '1985-05-15', 'Usuario', 'Mujer'),

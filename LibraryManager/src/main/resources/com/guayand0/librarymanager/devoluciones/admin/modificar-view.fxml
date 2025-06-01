@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.guayand0.librarymanager.controller.devoluciones.admin.ModificarController">
+
+    <padding>
+        <Insets bottom="30" left="30" right="30" top="30" />
+    </padding>
+
+    <VBox alignment="CENTER" spacing="15">
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Usuario" />
+                <ComboBox fx:id="usuarioCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox>
+                <HBox>
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Libro" />
+                </HBox>
+
+                <ComboBox fx:id="libroCombo" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+        </HBox>
+
+        <HBox alignment="CENTER" spacing="5">
+            <VBox>
+                <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Fecha Devolución Real" />
+                <DatePicker fx:id="fechaPicker" minWidth="290" prefHeight="40" style="-fx-font-size: 14px;" />
+            </VBox>
+
+            <Region prefWidth="50" />
+
+            <VBox prefWidth="290" alignment="CENTER">
+                <Region prefHeight="30" />
+                <Button minWidth="155" onMouseClicked="#onModifyClick" style="-fx-font-size: 20px; -fx-background-color: yellow; -fx-text-fill: black; -fx-font-weight: bold; -fx-padding: 10 10 10 10;" text="Modificar" />
+            </VBox>
+        </HBox>
+    </VBox>
+</VBox>

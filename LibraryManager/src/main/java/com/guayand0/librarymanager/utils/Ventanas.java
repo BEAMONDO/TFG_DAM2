@@ -332,7 +332,7 @@ public class Ventanas {
 
             DevolucionesController controller = fxmlLoader.getController();
             controller.setUsuarioLogueado(usuarioLogueado);
-            //controller.initData();
+            controller.initData();
 
             Stage stage = new Stage();
             stage.setTitle("LibraryManager");

@@ -36,7 +36,6 @@ public class ModificarController {
     @FXML public void initialize() {
         aplicarMascaras();
         aplicarLimitesCaracteres();
-        new Thread(this::cargarDNIUsuarios).start();
         dniCombo.setOnAction(event -> cargarDatosUsuario());
     }
 
@@ -124,7 +123,8 @@ public class ModificarController {
                 fechaNacimiento, sexo, permiso
         };
 
-        boolean actualizado = usuarioDAO.modify(datos, contrasenaOriginal, usuarioLogueado.getPermiso());
+        boolean actualizado = usuarioDAO.modify(datos, contrasenaOriginal, "Administrador");
+        //boolean actualizado = usuarioDAO.modify(datos, contrasenaOriginal, usuarioLogueado.getPermiso());
 
         if (actualizado) {
             ALERT.showInformation("Datos actualizados correctamente.");

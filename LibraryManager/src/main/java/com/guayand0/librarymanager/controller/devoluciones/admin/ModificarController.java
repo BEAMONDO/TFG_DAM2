@@ -1,29 +1,48 @@
 package com.guayand0.librarymanager.controller.devoluciones.admin;
 
+import com.guayand0.librarymanager.model.devolucion.DevolucionDAO;
+import com.guayand0.librarymanager.model.prestamo.Prestamo;
+import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
+import com.guayand0.librarymanager.model.usuario.Usuario;
+import com.guayand0.librarymanager.utils.Alertas;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ModificarController {
-//al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados y al seleccionar el libro
-//cargar en dias la cantidad de dias que tiene para devolverlo, modificar el dia de devolucion del usuario para ese libro
+// Seleccionar la nueva fecha de devolucion y recalcular la multa
 
-    /*private final Alertas ALERT = new Alertas();
+    private final Alertas ALERT = new Alertas();
     private final PrestamoDAO prestamoDAO = new PrestamoDAO();
+    private final DevolucionDAO devolucionDAO = new DevolucionDAO();
 
     private Usuario usuarioLogueado;
 
-    @FXML
-    private ComboBox<String> libroCombo, usuarioCombo;
-    @FXML private TextField diasField;
+    @FXML private ComboBox<String> libroCombo, usuarioCombo;
+    @FXML private DatePicker fechaPicker;
 
     private final Map<String, String> usuarioMap = new HashMap<>();
     private final Map<String, String> libroMap = new HashMap<>();
+
 
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
     }
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
         cargarDatos();
+
+        usuarioCombo.setOnAction(event -> cargarLibros());
     }
 
     private void cargarDatos() {
@@ -42,7 +61,22 @@ public class ModificarController {
     private void cargarLibro() {
         Map<String, String> mapa = prestamoDAO.obtenerLibroISBNTituloMap();
         libroMap.putAll(mapa);
-        libroCombo.getItems().addAll(mapa.values());
+    }
+
+    private void cargarLibros() {
+        try {
+            String usuarioSeleccionado = usuarioCombo.getValue();
+            if (usuarioSeleccionado == null || usuarioSeleccionado.isEmpty()) return;
+
+            libroCombo.getItems().clear();
+
+            List<String> librosPrestados = prestamoDAO.obtenerLibrosPrestados(getKeyByValue(usuarioMap, usuarioSeleccionado), "NO");
+            libroCombo.getItems().addAll(librosPrestados);
+
+        } catch (Exception e) {
+            ALERT.showError("Error al cargar los libros prestados.");
+            e.printStackTrace();
+        }
     }
 
     @FXML private void onModifyClick() {
@@ -50,23 +84,45 @@ public class ModificarController {
 
         String usuario = usuarioCombo.getValue();
         String libro = libroCombo.getValue();
-        String fechaPrestamo = obtenerFechaPrestamo(0);
-        String fechaDevolucion = obtenerFechaPrestamo(Integer.parseInt(diasField.getText()));
 
         String usuarioDNI = getKeyByValue(usuarioMap, usuario);
         String libroISBN = getKeyByValue(libroMap, libro);
 
-        Prestamo prestamo = new Prestamo(
-                usuarioDNI, libroISBN, fechaPrestamo, fechaDevolucion, null, 0
+        LocalDate fecha = fechaPicker.getValue();
+        LocalTime horaActual = LocalTime.now();
+        LocalDateTime fechaHoraCompleta = LocalDateTime.of(fecha, horaActual);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String fechaDevolucionReal = fechaHoraCompleta.format(formatter);
+
+        String diasPrestado = prestamoDAO.obtenerDias(libroISBN, "NO");
+        String fechaPrestamo = prestamoDAO.obtenerFechaPrestamoBD(libroISBN, "NO");
+
+        //String fechaDevolucion = obtenerFechaPrestamo(fechaPrestamo, Integer.parseInt(diasPrestado));
+        String fechaDevolucion = prestamoDAO.obtenerFechaDevolucionBD(libroISBN, "NO");
+
+
+        int multa = (int) (
+                ChronoUnit.DAYS.between(
+                        LocalDateTime.parse(fechaDevolucion, formatter),
+                        LocalDateTime.parse(fechaDevolucionReal, formatter)
+                ) * 1
         );
 
-        boolean registrado = prestamoDAO.register(prestamo);
+        if (multa < 0) multa = 0;
 
-        if (registrado) {
-            ALERT.showInformation("Préstamo registrado correctamente.");
+        System.out.println(fechaPrestamo);
+        System.out.println(fechaDevolucion);
+        System.out.println(diasPrestado);
+        System.out.println(fechaDevolucionReal);
+        System.out.println(multa);
+
+        boolean modificado = devolucionDAO.modify(usuarioDNI, libroISBN, fechaDevolucionReal, multa);
+
+        if (modificado) {
+            ALERT.showInformation("Devolución modificada correctamente.");
             limpiarCampos();
         } else {
-            ALERT.showWarning("Error al registrar el préstamo.");
+            ALERT.showWarning("Error al modificar la devolución.");
         }
     }
 
@@ -87,7 +143,7 @@ public class ModificarController {
     private void limpiarCampos() {
         usuarioCombo.setValue(null);
         libroCombo.setValue(null);
-        diasField.setText("");
+        fechaPicker.setValue(null);
     }
 
     private String getKeyByValue(Map<String, String> map, String value) {
@@ -96,14 +152,14 @@ public class ModificarController {
                 return entry.getKey();
             }
         }
-        return "null"; // o lanzar excepción si es necesario
+        return "null";
     }
 
-    private String obtenerFechaPrestamo(int dias) {
-        LocalDateTime now = LocalDateTime.now().plusDays(dias);
+    private String obtenerFechaPrestamo(String fechaBase, int dias) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return now.format(formatter);
-    }*/
+        LocalDateTime base = LocalDateTime.parse(fechaBase, formatter);
+        LocalDateTime resultado = base.plusDays(dias);
+        return resultado.format(formatter);
+    }
 
-    @FXML private void onModifyClick() {}
 }

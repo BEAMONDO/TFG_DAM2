@@ -12,7 +12,7 @@ public class ConnectionDatabase {
 
         Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
         if (conn != null && !conn.isClosed()) {
-            System.out.println("Conexión abierta");
+            //System.out.println("Conexión abierta");
         }
         return conn;
     }
@@ -21,10 +21,10 @@ public class ConnectionDatabase {
         if (conn != null) {
             try {
                 conn.close();
-                System.out.println("Conexion cerrada");
+                //System.out.println("Conexion cerrada");
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.out.println("Error al cerrar conexion");
+                //System.out.println("Error al cerrar conexion");
             }
         }
     }

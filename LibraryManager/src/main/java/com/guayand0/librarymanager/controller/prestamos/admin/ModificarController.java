@@ -1,6 +1,5 @@
 package com.guayand0.librarymanager.controller.prestamos.admin;
 
-import com.guayand0.librarymanager.model.prestamo.Prestamo;
 import com.guayand0.librarymanager.model.prestamo.PrestamoDAO;
 import com.guayand0.librarymanager.model.usuario.Usuario;
 import com.guayand0.librarymanager.utils.Alertas;
@@ -11,30 +10,33 @@ import javafx.scene.control.TextField;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ModificarController {
-//al seleccionar usuario cargar en el combobox todos los libros que el usuario tenga prestados y al seleccionar el libro
-//cargar en dias la cantidad de dias que tiene para devolverlo, modificar el dia de devolucion del usuario para ese libro
 
-    /*private final Alertas ALERT = new Alertas();
+    private final Alertas ALERT = new Alertas();
     private final PrestamoDAO prestamoDAO = new PrestamoDAO();
 
     private Usuario usuarioLogueado;
 
-    @FXML
-    private ComboBox<String> libroCombo, usuarioCombo;
+    @FXML private ComboBox<String> libroCombo, usuarioCombo;
     @FXML private TextField diasField;
 
     private final Map<String, String> usuarioMap = new HashMap<>();
     private final Map<String, String> libroMap = new HashMap<>();
 
+
     public void setUsuarioLogueado(Usuario usuario) {
         this.usuarioLogueado = usuario;
     }
 
-    @FXML public void initialize() {
+    @FXML
+    public void initialize() {
         cargarDatos();
+
+        usuarioCombo.setOnAction(event -> cargarLibros());
+        libroCombo.setOnAction(event -> cargarDias());
     }
 
     private void cargarDatos() {
@@ -53,7 +55,38 @@ public class ModificarController {
     private void cargarLibro() {
         Map<String, String> mapa = prestamoDAO.obtenerLibroISBNTituloMap();
         libroMap.putAll(mapa);
-        libroCombo.getItems().addAll(mapa.values());
+    }
+
+    private void cargarLibros() {
+        try {
+            String usuarioSeleccionado = usuarioCombo.getValue();
+            if (usuarioSeleccionado == null || usuarioSeleccionado.isEmpty()) return;
+
+            libroCombo.getItems().clear();
+
+            List<String> librosPrestados = prestamoDAO.obtenerLibrosPrestados(getKeyByValue(usuarioMap, usuarioSeleccionado), "SI");
+            libroCombo.getItems().addAll(librosPrestados);
+
+        } catch (Exception e) {
+            ALERT.showError("Error al cargar los libros prestados.");
+            e.printStackTrace();
+        }
+    }
+
+    private void cargarDias() {
+        try {
+            String libroSeleccionado = libroCombo.getValue();
+            if (libroSeleccionado == null || libroSeleccionado.isEmpty()) return;
+
+            diasField.setText("");
+
+            String diasPrestado = prestamoDAO.obtenerDias(getKeyByValue(libroMap, libroSeleccionado), "SI");
+            diasField.setText(diasPrestado);
+
+        } catch (Exception e) {
+            ALERT.showError("Error al cargar el numero de dias.");
+            e.printStackTrace();
+        }
     }
 
     @FXML private void onModifyClick() {
@@ -61,23 +94,26 @@ public class ModificarController {
 
         String usuario = usuarioCombo.getValue();
         String libro = libroCombo.getValue();
-        String fechaPrestamo = obtenerFechaPrestamo(0);
-        String fechaDevolucion = obtenerFechaPrestamo(Integer.parseInt(diasField.getText()));
 
         String usuarioDNI = getKeyByValue(usuarioMap, usuario);
         String libroISBN = getKeyByValue(libroMap, libro);
 
-        Prestamo prestamo = new Prestamo(
-                usuarioDNI, libroISBN, fechaPrestamo, fechaDevolucion, null, 0
-        );
+        int dias = Integer.parseInt(diasField.getText());
 
-        boolean registrado = prestamoDAO.register(prestamo);
+        String fechaPrestamo = prestamoDAO.obtenerFechaPrestamoBD(libroISBN, "SI");
 
-        if (registrado) {
-            ALERT.showInformation("Préstamo registrado correctamente.");
+        LocalDateTime fecha = LocalDateTime.parse(fechaPrestamo, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        LocalDateTime devolucion = fecha.plusDays(dias);
+        String fechaDevolucion = devolucion.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+        boolean modificado = prestamoDAO.modify(usuarioDNI, libroISBN, fechaDevolucion);
+
+
+        if (modificado) {
+            ALERT.showInformation("Préstamo modificado correctamente.");
             limpiarCampos();
         } else {
-            ALERT.showWarning("Error al registrar el préstamo.");
+            ALERT.showWarning("Error al modificar el préstamo.");
         }
     }
 
@@ -107,14 +143,7 @@ public class ModificarController {
                 return entry.getKey();
             }
         }
-        return "null"; // o lanzar excepción si es necesario
+        return "null";
     }
 
-    private String obtenerFechaPrestamo(int dias) {
-        LocalDateTime now = LocalDateTime.now().plusDays(dias);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return now.format(formatter);
-    }*/
-
-    @FXML private void onModifyClick() {}
 }

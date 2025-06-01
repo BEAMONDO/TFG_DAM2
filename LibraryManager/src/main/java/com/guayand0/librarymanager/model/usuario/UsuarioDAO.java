@@ -112,7 +112,7 @@ public class UsuarioDAO {
                     if (!permiso.equalsIgnoreCase("Administrador")) {
                         String contrasenaEnBD = resultSet.getString("contrasena");
                         if (!contrasenaEnBD.equals(contrasenaActualEncriptada)) {
-                            ALERT.showError("La contraseña actual es incorrecta.\n" + contrasenaEnBD + "\n" + contrasenaActualEncriptada);
+                            ALERT.showError("La contraseña actual es incorrecta.");
                             return false;
                         }
                     }
