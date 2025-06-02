@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: linear-gradient(135deg, #000000dc, #000000dc),url('/img/fondo2.jpg');
+    background-size: cover;
+    color: white;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15em;
+    background: rgba(0, 0, 0, 0.603);
+    backdrop-filter: blur(2px);
+}
+
+footer {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 20px 15em;
+    background: rgba(0, 0, 0, 0.603);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+    
+}
+
+.arrow {
+    color: #6e6550;
+    font-weight: bold;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transform: 0.1s linear;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+nav a:hover {
+  color: #b6ac93;
+}
+
+nav .btn {
+    background-color: #6e6550;
+    color: rgb(255, 255, 255);
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.1s linear;
+  
+}
+
+nav .btn:hover, .btn.large:hover {
+    color: white;
+    background-color: #b6ac93;
+}
+
+main {
+  
+    padding: 80px 15em;
+}
+
+.library-manager {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54vh;
+}
+
+.library-manager-text {
+  max-width: 800px;
+      text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
+}
+
+.library-manager h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+}
+
+.library-manager-logo img{
+        
+    max-width: 400px;
+    width: 400px; /* o el tamaño máximo deseado */
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(207, 189, 149, 0.801));
+}
+
+.library-manager-logo img:hover {
+    transform: scale(1.02);
+    transition: 0.15s linear;
+}
+.library-manager-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.subheading {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #ddd;
+}
+
+.btn.large {
+    background-color: #6e6550;
+    padding: 15px 30px;
+    border-radius: 30px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+    transition: 0.1s linear;
+    box-shadow: 0px 0px 30px rgba(182, 173, 144, 0.37);
+}
+
+.utilities {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.utilities span {
+    display: block;
+    font-size: 16px;
+    font-weight: normal;
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.utilities div{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.utilities div img{
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+
+.utilities div:hover img {
+    transform: scale(1.06);
+    transition: 0.15s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  header {
+    padding: 20px 5em;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .btn{
+    display: none;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  main {
+    padding: 60px 5em;
+  }
+
+  .library-manager {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .library-manager-logo img {
+    width: 300px;
+  }
+
+  .library-manager h1 {
+    font-size: 40px;
+  }
+
+  .utilities {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    padding: 20px 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  nav {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  nav a {
+    margin: 10px 0;
+    font-size: 12px;
+  }
+
+  main {
+    padding: 40px 2em;
+  }
+
+  .library-manager h1 {
+    font-size: 32px;
+  }
+
+  .library-manager-text {
+    max-width: 100%;
+  }
+
+  .library-manager-logo img {
+    width: 220px;
+  }
+
+  .btn.large {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .utilities {
+
+    align-items: center;
+    gap: 30px;
+  }
+
+  .utilities div img {
+    width: 80px !important;
+  }
+}
