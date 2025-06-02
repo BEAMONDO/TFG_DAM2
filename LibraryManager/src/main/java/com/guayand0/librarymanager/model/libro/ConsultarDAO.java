@@ -1,6 +1,7 @@
 package com.guayand0.librarymanager.model.libro;
 
 import com.guayand0.librarymanager.db.ConnectionDatabase;
+import com.guayand0.librarymanager.utils.CapitalizarPalabra;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

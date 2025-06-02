@@ -105,19 +105,19 @@ public class MainController {
     }
 
     @FXML private void onAcercaDe() {
-        ALERT.showInformation("LibraryManager v1.0.1\nDesarrollado por David Beamonde.");
+        ALERT.showInformation("Library Manager v1.0.1\nDesarrollado por David Beamonde.");
     }
 
     @FXML private void wiki() {
         boolean confirmar = ALERT.showConfirmation("¿Desea abrir la página de la wiki con información sobre el funcionamiento de la aplicación?");
         if (confirmar) {
-            ALERT.showInformation("La página web todavia no está creada.");
-            /*try {
-                Desktop.getDesktop().browse(new URI(""));
+            //ALERT.showInformation("La página web todavia no está creada.");
+            try {
+                Desktop.getDesktop().browse(new URI("https://www.spaincraft.xyz/web/guia_de_uso"));
             } catch (IOException | java.net.URISyntaxException e) {
                 e.printStackTrace();
             }
-            ALERT.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");*/
+            ALERT.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");
         }
     }
 

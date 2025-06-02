@@ -1,37 +1,57 @@
 package com.guayand0.librarymanager.db;
 
-import java.sql.*;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionDatabase {
 
-    static final String USER = "uffejpqe95fnbppa";
-    static final String PASSWORD = "Yhwb5UkztDlyOn2CAEDy";
-    static final String URL = "jdbc:mysql://uffejpqe95fnbppa:Yhwb5UkztDlyOn2CAEDy@bwexlexwx9kllx98zihv-mysql.services.clever-cloud.com:3306/bwexlexwx9kllx98zihv?useUnicode=true&characterEncoding=UTF-8";
+    private static String USER;
+    private static String PASSWORD;
+    private static String URL;
+
+    static {
+        try {
+            Properties props = new Properties();
+            InputStream input = new FileInputStream("database.properties");
+            props.load(input);
+
+            USER = props.getProperty("USER");
+            PASSWORD = props.getProperty("PASSWORD");
+            String database = props.getProperty("DATABASE");
+            String host = props.getProperty("HOST");
+            String port = props.getProperty("PORT");
+            String params = props.getProperty("CONNECTION_PARAMS", "");
+
+            String rawUrl = props.getProperty("URL").replace("%USER%", USER).replace("%PASSWORD%", PASSWORD)
+                    .replace("%DATABASE%", database).replace("%HOST%", host).replace("%PORT%", port).replace("%CONNECTION_PARAMS%", params);
+
+            URL = "jdbc:mysql://" + rawUrl;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error cargando archivo de configuración", e);
+        }
+    }
 
     public static Connection getConnection() throws SQLException {
-
-        Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-        if (conn != null && !conn.isClosed()) {
-            //System.out.println("Conexión abierta");
-        }
-        return conn;
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
     public static void closeConnection(Connection conn) {
-        if (conn != null) {
-            try {
-                conn.close();
-                //System.out.println("Conexion cerrada");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                //System.out.println("Error al cerrar conexion");
-            }
+        try {
+            if (conn != null && !conn.isClosed()) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }
 
 /*
     static String nombreBaseDatos = "biblioteca";
-    static final String USER = "root", PASSWORD = "qwewe";
+    static final String USER = "root";
+     static final String PASSWORD = "qwewe";
     static final String URL = "jdbc:mysql://localhost/" + nombreBaseDatos;
 */

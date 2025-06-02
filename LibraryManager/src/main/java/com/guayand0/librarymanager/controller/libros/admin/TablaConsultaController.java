@@ -2,6 +2,7 @@ package com.guayand0.librarymanager.controller.libros.admin;
 
 import com.guayand0.librarymanager.model.libro.ConsultarDAO;
 import com.guayand0.librarymanager.model.usuario.Usuario;
+import com.guayand0.librarymanager.utils.CapitalizarPalabra;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -12,6 +13,7 @@ import java.util.List;
 public class TablaConsultaController {
 
     private final ConsultarDAO consultarDAO = new ConsultarDAO();
+    private final CapitalizarPalabra CP = new CapitalizarPalabra();
 
     private Usuario usuarioLogueado;
 
@@ -138,7 +140,7 @@ public class TablaConsultaController {
             return new javafx.beans.property.SimpleObjectProperty<>(intVal);
         });
 
-        estadoCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().get(8)));
+        estadoCol.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(CP.capitalizar(cellData.getValue().get(8))));
 
         librosTable.getItems().setAll(libros);
 

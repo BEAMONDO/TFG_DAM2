@@ -30,7 +30,7 @@ public class Ventanas {
             Scene scene = new Scene(fxmlLoader.load());
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -61,7 +61,7 @@ public class Ventanas {
             controller.setUsuarioLogueado(usuarioLogueado);
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -90,7 +90,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -131,7 +131,7 @@ public class Ventanas {
             }
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -161,7 +161,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -190,7 +190,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -219,7 +219,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -248,7 +248,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -277,7 +277,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -306,7 +306,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -335,7 +335,7 @@ public class Ventanas {
             controller.initData();
 
             Stage stage = new Stage();
-            stage.setTitle("LibraryManager");
+            stage.setTitle("Library Manager");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.centerOnScreen();
