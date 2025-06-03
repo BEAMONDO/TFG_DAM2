@@ -177,14 +177,14 @@ main {
 
 .projects .cuadro {
   flex: 1 1 calc(50% - 5%);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(25, 25, 25, 0.4);
   border-radius: 20px;
   padding: 30px;
   margin: 20px 0;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(25, 25, 25, 0.6);
   backdrop-filter: blur(4px);
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(25, 25, 25, 0.6);
   max-width: calc(50% - 5%);
   box-sizing: border-box;
 }
