@@ -27,7 +27,7 @@ footer {
     width: 100%;
     bottom: 0;
     left: 0;
-    padding: 20px 15em;
+    padding: 15px 15em;
     background: rgba(0, 0, 0, 0.603);
 }
 
@@ -86,7 +86,7 @@ main {
 }
 
 .library-manager-text {
-  max-width: 800px;
+  max-width: 1000px;
       text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
 }
 
@@ -166,6 +166,38 @@ main {
 .utilities div:hover img {
     transform: scale(1.06);
     transition: 0.15s ease-in-out;
+}
+
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.projects .cuadro {
+  flex: 1 1 calc(50% - 5%);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  max-width: calc(50% - 5%);
+  box-sizing: border-box;
+}
+
+.projects .cuadro a {
+  margin: 3%;
+}
+
+.projects .cuadro img {
+  max-width: 80%;
+  border-radius: 10px;
+  padding-top: 8%;
+  padding-bottom: 5%;
 }
 
 @media screen and (max-width: 1200px) {
