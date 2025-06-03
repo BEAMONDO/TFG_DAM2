@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-image: linear-gradient(135deg, #000000dc, #000000dc),url('/WEB/images/inicio/fondo2.jpg');
+    background-image: linear-gradient(135deg, #000000dc, #000000dc),url('/img/fondo2.jpg');
     background-size: cover;
     color: white;
     height: 100vh;
@@ -19,16 +19,6 @@ header {
     padding: 20px 15em;
     background: rgba(0, 0, 0, 0.603);
     backdrop-filter: blur(2px);
-}
-
-footer {
-    text-align: center;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: 15px 15em;
-    background: rgba(0, 0, 0, 0.603);
 }
 
 .logo {
@@ -86,7 +76,7 @@ main {
 }
 
 .library-manager-text {
-  max-width: 1000px;
+  max-width: 800px;
       text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
 }
 
@@ -168,6 +158,37 @@ main {
     transition: 0.15s ease-in-out;
 }
 
+/*---------------------------------------*/
+
+.library-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+
+footer {
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    padding: 15px 15em;
+    background: rgba(0, 0, 0, 0.603);
+}
+
+.about-me-text {
+    max-width: 65%;
+    text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
+    flex: 2;
+}
+
+.about-me-languages {
+    max-width: 30%;
+    text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
+    flex: 1;
+}
+
 .projects {
   display: flex;
   flex-wrap: wrap;
@@ -176,7 +197,7 @@ main {
 }
 
 .projects .cuadro {
-  flex: 1 1 calc(50% - 5%);
+  flex: 1 1 calc(45%);
   background-color: rgba(25, 25, 25, 0.4);
   border-radius: 20px;
   padding: 30px;
@@ -185,7 +206,7 @@ main {
   backdrop-filter: blur(4px);
   text-align: center;
   border: 1px solid rgba(25, 25, 25, 0.6);
-  max-width: calc(50% - 5%);
+  max-width: calc(50%);
   box-sizing: border-box;
 }
 
@@ -199,6 +220,54 @@ main {
   padding-top: 8%;
   padding-bottom: 5%;
 }
+
+.language-tags .btn {
+    padding: 5px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    transition: 0.1s linear;
+    box-shadow: 0px 0px 30px rgba(182, 173, 144, 0.37);
+}
+
+.red {
+  background-color: rgb(255, 0, 0, 0.6);
+  color: white;
+}
+
+.orange {
+  background-color: rgb(255, 166, 0, 0.6);
+  color:white;
+}
+
+.blue {
+  background-color: rgb(0, 0, 255, 0.6);
+  color: white;
+}
+
+.light-blue {
+  background-color: rgb(0, 255, 255, 0.6);
+  color: white;
+}
+
+.yellow {
+  background-color: rgb(255, 255, 0, 0.6);
+  color: white;
+}
+
+.black {
+  background-color: rgb(0, 0, 0, 0.6);
+  color: white;
+}
+
+.green {
+  background-color: rgb(0, 128, 0, 0.6);
+  color: white;
+}
+
+/*---------------------------------------*/
 
 @media screen and (max-width: 1200px) {
   header {
