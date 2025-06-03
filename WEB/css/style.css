@@ -76,7 +76,7 @@ main {
 }
 
 .library-manager-text {
-  max-width: 800px;
+  max-width: 850px;
       text-shadow: 0px 0px 10px rgba(182, 173, 144, 0.658);
 }
 
@@ -87,8 +87,8 @@ main {
 
 .library-manager-logo img{
         
-    max-width: 400px;
-    width: 400px; /* o el tamaño máximo deseado */
+    max-width: 450px;
+    width: 450px; /* o el tamaño máximo deseado */
     height: auto;
     filter: drop-shadow(0 0 10px rgba(207, 189, 149, 0.801));
 }
