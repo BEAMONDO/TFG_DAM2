@@ -69,8 +69,8 @@
         <HBox spacing="5" alignment="CENTER">
             <VBox>
                 <HBox>
-                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Contraseña" />
-                    <Region prefWidth="115" />
+                    <Label minWidth="100" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Nueva contraseña" />
+                    <Region prefWidth="60" />
                     <VBox>
                         <CheckBox fx:id="passwordCheckHide" mnemonicParsing="false" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Ver" />
                         <Region prefHeight="2"/>

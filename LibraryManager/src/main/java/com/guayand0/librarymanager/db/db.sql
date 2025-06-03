@@ -1,126 +1,157 @@
-CREATE DATABASE IF NOT EXISTS biblioteca2;
-USE biblioteca2;
+CREATE DATABASE IF NOT EXISTS library;
+USE library;
 
-CREATE TABLE IF NOT EXISTS Usuarios (
-    DNI VARCHAR(9) PRIMARY KEY,
-    nombre VARCHAR(255) NOT NULL,
-    apellidos VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    contrasena VARCHAR(255) NOT NULL,
-    telefono VARCHAR(9) NOT NULL,
-    direccion VARCHAR(255) NOT NULL,
-    fecha_de_nacimiento DATE NOT NULL,
-    fecha_de_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    permiso VARCHAR(25) NOT NULL DEFAULT 'Usuario',
-    sexo VARCHAR(25) NOT NULL
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE IF NOT EXISTS Autores (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(50) NOT NULL,
-    apellido VARCHAR(50) NOT NULL,
-    pais VARCHAR(50) NOT NULL,
-    fecha_de_nacimiento DATE NOT NULL
-);
+CREATE TABLE `Autores` (
+       `ID` int NOT NULL,
+       `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `apellido` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `pais` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `fecha_de_nacimiento` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Crear tabla de Categorías
-CREATE TABLE IF NOT EXISTS Categorias (
-    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50) UNIQUE NOT NULL
-);
+INSERT INTO `Autores` (`ID`, `nombre`, `apellido`, `pais`, `fecha_de_nacimiento`) VALUES
+       (1, 'Gabriel', 'García Márquez', 'Colombia', '1927-03-06'),
+       (2, 'Mario', 'Vargas Llosa', 'Perú', '1936-03-28'),
+       (3, 'Jorge Luis', 'Borges', 'Argentina', '1899-08-24'),
+       (4, 'Julio', 'Cortázar', 'Argentina', '1914-08-26'),
+       (5, 'Isabel', 'Allende', 'Chile', '1942-08-02');
 
--- Crear tabla de Editoriales
-CREATE TABLE IF NOT EXISTS Editoriales (
-    id_editorial INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100) UNIQUE NOT NULL
-);
+CREATE TABLE `Categorias` (
+       `id_categoria` int NOT NULL,
+       `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Crear tabla de Idiomas
-CREATE TABLE IF NOT EXISTS Idiomas (
-    id_idioma INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(50) UNIQUE NOT NULL
-);
+INSERT INTO `Categorias` (`id_categoria`, `nombre`) VALUES
+       (3, 'Biografía'),
+       (4, 'Ciencia Ficción'),
+       (1, 'Novela'),
+       (2, 'Relato');
 
-CREATE TABLE IF NOT EXISTS Libros (
-    ISBN VARCHAR(20) PRIMARY KEY,
-    titulo VARCHAR(255) NOT NULL,
-    autor INT NULL,
-    id_categoria INT NULL,
-    id_editorial INT NULL,
-    numero_paginas INT NOT NULL,
-    id_idioma INT NULL,
-    anio_publicacion INT NOT NULL,
-    estado ENUM('disponible', 'prestado', 'deteriorado', 'bloqueado') DEFAULT 'disponible',
-    FOREIGN KEY (autor) REFERENCES Autores(ID) ON DELETE SET NULL,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria) ON DELETE SET NULL,
-    FOREIGN KEY (id_editorial) REFERENCES Editoriales(id_editorial) ON DELETE SET NULL,
-    FOREIGN KEY (id_idioma) REFERENCES Idiomas(id_idioma) ON DELETE SET NULL
-);
+CREATE TABLE `Editoriales` (
+        `id_editorial` int NOT NULL,
+        `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS Prestamos (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    usuario VARCHAR(9) NOT NULL,
-    libro VARCHAR(20) NOT NULL,
-    fecha_prestamo TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    fecha_devolucion TIMESTAMP NOT NULL,
-    fecha_devolucion_real TIMESTAMP,
-    multa DECIMAL(10, 2) DEFAULT 0.00
-);
+INSERT INTO `Editoriales` (`id_editorial`, `nombre`) VALUES
+       (1, 'Edelvives'),
+       (2, 'Emecé Editores'),
+       (3, 'Plaza & Janés'),
+       (4, 'Seix Barral'),
+       (5, 'Sudamericana');
 
-ALTER TABLE Usuarios CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Libros CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Autores CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Prestamos CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Categorias CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Editoriales CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-ALTER TABLE Idiomas CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE TABLE `Idiomas` (
+       `id_idioma` int NOT NULL,
+       `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `Idiomas` (`id_idioma`, `nombre`) VALUES
+       (3, 'Español'),
+       (2, 'Francés'),
+       (1, 'Inglés');
 
-ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_1 FOREIGN KEY (usuario) REFERENCES Usuarios(DNI);
+CREATE TABLE `Libros` (
+       `ISBN` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `autor` int DEFAULT NULL,
+       `id_categoria` int DEFAULT NULL,
+       `id_editorial` int DEFAULT NULL,
+       `numero_paginas` int NOT NULL,
+       `id_idioma` int DEFAULT NULL,
+       `anio_publicacion` int NOT NULL,
+       `estado` enum('disponible','prestado','deteriorado','bloqueado') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'disponible'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-ALTER TABLE Prestamos ADD CONSTRAINT prestamos_ibfk_2 FOREIGN KEY (libro) REFERENCES Libros(ISBN);
+INSERT INTO `Libros` (`ISBN`, `titulo`, `autor`, `id_categoria`, `id_editorial`, `numero_paginas`, `id_idioma`, `anio_publicacion`, `estado`) VALUES
+       ('978-1-56619-909-4', 'Cien Años De Soledad', 1, 1, 5, 417, 3, 1967, 'disponible'),
+       ('978-84-204-8216-3', 'La Casa De Los Espíritus', 5, 1, 3, 448, 3, 1982, 'disponible'),
+       ('978-84-322-1055-6', 'Rayuela', 4, 1, 4, 736, 3, 1963, 'disponible'),
+       ('978-84-376-0493-0', 'Ficciones', 3, 2, 2, 174, 3, 1944, 'disponible'),
+       ('978-84-376-0494-7', 'La Ciudad Y Los Perros', 2, 1, 4, 384, 3, 1963, 'disponible');
 
+CREATE TABLE `Prestamos` (
+       `ID` int NOT NULL,
+       `usuario` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `libro` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `fecha_prestamo` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+       `fecha_devolucion` timestamp NOT NULL,
+       `fecha_devolucion_real` timestamp NULL DEFAULT NULL,
+       `multa` decimal(10,2) DEFAULT '0.00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO Usuarios (DNI, nombre, apellidos, email, contrasena, telefono, direccion, fecha_de_nacimiento, permiso, sexo)
-VALUES
-('12345678A', 'Juan', 'Pérez', 'juan.perez@example.com', 'qwewe', '555-1234', 'Calle Falsa 123', '1990-01-01', 'Usuario', 'Hombre'),
-('87654321B', 'Ana', 'López', 'ana.lopez@example.com', 'qwewe', '555-5678', 'Av. Siempreviva 742', '1985-05-15', 'Usuario', 'Mujer'),
-('45678912C', 'Carlos', 'Gómez', 'carlos.gomez@example.com', 'qwewe', '555-8765', 'Paseo del Sol 45', '1992-03-22', 'Usuario', 'Hombre'),
-('78912345D', 'María', 'Hernández', 'maria.hernandez@example.com', 'qwewe', '555-4321', 'Calle Luna 78', '1988-07-10', 'Usuario', 'Mujer'),
-('32165498E', 'Lucía', 'Martínez', 'lucia.martinez@example.com', 'qwewe', '555-9876', 'Calle Estrella 90', '1995-11-30', 'Usuario', 'Mujer');
+CREATE TABLE `Usuarios` (
+       `DNI` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `apellidos` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `contrasena` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `telefono` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `direccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+       `fecha_de_nacimiento` date NOT NULL,
+       `fecha_de_registro` datetime DEFAULT CURRENT_TIMESTAMP,
+       `permiso` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Usuario',
+       `sexo` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO Autores (nombre, apellido, pais, fecha_de_nacimiento)
-VALUES
-('Gabriel', 'García Márquez', 'Colombia', '1927-03-06'),
-('Isabel', 'Allende', 'Chile', '1942-08-02'),
-('Mario', 'Vargas Llosa', 'Perú', '1936-03-28'),
-('Jorge Luis', 'Borges', 'Argentina', '1899-08-24'),
-('Julio', 'Cortázar', 'Argentina', '1914-08-26');
+INSERT INTO `Usuarios` (`DNI`, `nombre`, `apellidos`, `email`, `contrasena`, `telefono`, `direccion`, `fecha_de_nacimiento`, `fecha_de_registro`, `permiso`, `sexo`) VALUES
+    ('12345678Z', 'Admin', 'Admin', 'admin@admin.es', 'jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=', '000000000', 'Admin', '2000-01-01', '2000-01-01 00:00:00', 'Administrador', 'Otro');
 
-INSERT INTO Categorias (nombre) VALUES ('Novela'), ('Relato');
+ALTER TABLE `Autores`
+    ADD PRIMARY KEY (`ID`);
 
-INSERT INTO Editoriales (nombre) VALUES ('Sudamericana'), ('Plaza & Janés'), ('Seix Barral'), ('Emecé Editores');
+ALTER TABLE `Categorias`
+    ADD PRIMARY KEY (`id_categoria`),
+    ADD UNIQUE KEY `nombre` (`nombre`);
 
-INSERT INTO Idiomas (nombre) VALUES ('Español'), ('Inglés');
+ALTER TABLE `Editoriales`
+    ADD PRIMARY KEY (`id_editorial`),
+    ADD UNIQUE KEY `nombre` (`nombre`);
 
-INSERT INTO Libros (ISBN, titulo, autor, id_categoria, id_editorial, numero_paginas, id_idioma, anio_publicacion)
-VALUES
-('978-1-56619-909-4', 'Cien años de soledad', 1, 1, 1, 471, 1, 1967),
-('978-84-204-8216-3', 'La casa de los espíritus', 2, 1, 2, 368, 2, 1982),
-('978-84-376-0494-7', 'La ciudad y los perros', 3, 1, 3, 408, 1, 1963),
-('978-84-339-0793-8', 'Ficciones', 4, 2, 4, 174, 1, 1944),
-('978-84-339-7147-2', 'Rayuela', 5, 1, 1, 736, 1, 1963);
+ALTER TABLE `Idiomas`
+    ADD PRIMARY KEY (`id_idioma`),
+    ADD UNIQUE KEY `nombre` (`nombre`);
 
-INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion)
-VALUES
-('12345678A', '978-1-56619-909-4', '2024-11-01', '2024-11-15'),
-('87654321B', '978-84-204-8216-3', '2024-11-05', '2024-11-20'),
-('45678912C', '978-84-376-0494-7', '2024-11-10', '2024-11-25'),
-('78912345D', '978-84-339-0793-8', '2024-11-12', '2024-11-26');
-INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion, fecha_devolucion_real, multa)
-VALUES
-('32165498E', '978-84-339-7147-2', '2024-11-15', '2024-11-30', '2024-12-05',
-    DATEDIFF('2024-12-05', '2024-11-30') * 1.00);
-INSERT INTO Prestamos (usuario, libro, fecha_prestamo, fecha_devolucion, fecha_devolucion_real)
-VALUES
-('45678912C', '978-84-204-8216-3', '2024-11-21', '2024-11-30', '2024-11-29');
+ALTER TABLE `Libros`
+    ADD PRIMARY KEY (`ISBN`),
+    ADD KEY `autor` (`autor`),
+    ADD KEY `id_categoria` (`id_categoria`),
+    ADD KEY `id_editorial` (`id_editorial`),
+    ADD KEY `id_idioma` (`id_idioma`);
+
+ALTER TABLE `Prestamos`
+    ADD PRIMARY KEY (`ID`),
+    ADD KEY `prestamos_ibfk_1` (`usuario`),
+    ADD KEY `prestamos_ibfk_2` (`libro`);
+
+ALTER TABLE `Usuarios`
+    ADD PRIMARY KEY (`DNI`),
+    ADD UNIQUE KEY `email` (`email`);
+
+ALTER TABLE `Autores`
+    MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `Categorias`
+    MODIFY `id_categoria` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+ALTER TABLE `Editoriales`
+    MODIFY `id_editorial` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+ALTER TABLE `Idiomas`
+    MODIFY `id_idioma` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+ALTER TABLE `Prestamos`
+    MODIFY `ID` int NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `Libros`
+    ADD CONSTRAINT `Libros_ibfk_1` FOREIGN KEY (`autor`) REFERENCES `Autores` (`ID`) ON DELETE SET NULL,
+    ADD CONSTRAINT `Libros_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `Categorias` (`id_categoria`) ON DELETE SET NULL,
+    ADD CONSTRAINT `Libros_ibfk_3` FOREIGN KEY (`id_editorial`) REFERENCES `Editoriales` (`id_editorial`) ON DELETE SET NULL,
+    ADD CONSTRAINT `Libros_ibfk_4` FOREIGN KEY (`id_idioma`) REFERENCES `Idiomas` (`id_idioma`) ON DELETE SET NULL;
+
+ALTER TABLE `Prestamos`
+    ADD CONSTRAINT `Prestamos_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `Usuarios` (`DNI`),
+    ADD CONSTRAINT `Prestamos_ibfk_2` FOREIGN KEY (`libro`) REFERENCES `Libros` (`ISBN`);
+COMMIT;

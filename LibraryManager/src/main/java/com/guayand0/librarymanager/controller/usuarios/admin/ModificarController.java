@@ -36,6 +36,7 @@ public class ModificarController {
     @FXML public void initialize() {
         aplicarMascaras();
         aplicarLimitesCaracteres();
+        new Thread(this::cargarDNIUsuarios).start();
         dniCombo.setOnAction(event -> cargarDatosUsuario());
     }
 

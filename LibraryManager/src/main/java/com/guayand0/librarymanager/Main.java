@@ -1,5 +1,6 @@
 package com.guayand0.librarymanager;
 
+import com.guayand0.librarymanager.db.ConnectionDatabase;
 import com.guayand0.librarymanager.utils.Ventanas;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -10,6 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
+        ConnectionDatabase.crearTablas();
         VENTANA.accessWindow();
     }
 
