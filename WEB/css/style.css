@@ -169,7 +169,6 @@ main {
   flex-wrap: wrap;
 }
 
-
 footer {
     text-align: center;
     bottom: 0;
@@ -232,6 +231,208 @@ footer {
     transition: 0.1s linear;
     box-shadow: 0px 0px 30px rgba(182, 173, 144, 0.37);
 }
+
+.librarymanager-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.librarymanager-item {
+    background-color: #2c2c2c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 40px); /* Ajuste para que 2 quepan en la fila */
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.librarymanager-item:hover {
+    transform: translateY(-5px);
+}
+
+.librarymanager-item img {
+    max-width: 30%;
+    height: auto; /* Mantiene la relación de aspecto de la imagen */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.librarymanager-item h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.librarymanager-item p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #b0b0b0;
+}
+
+.librarymanager-item a.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.librarymanager-item a.download-link:hover {
+    background-color: #218838;
+}
+
+.librarymanager-item a.download-link[style*="grey"] {
+    pointer-events: none; /* Desactiva clics si no está disponible */
+}
+
+/* Estilos para la imagen grande */
+.librarymanager-image-container {
+    position: relative;
+}
+
+.librarymanager-image-container img {
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    border: 5px solid white;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+.documentacion-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.documentacion-item {
+    background-color: #2c2c2c;
+    border: 1px solid #333;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: calc(80%);
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.documentacion-item .contenido-paralelo {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+    flex-wrap: wrap; /* Para que se adapten si hay poco espacio */
+}
+
+.contenido-paralelo > div {
+    flex: 1 1 45%;
+}
+
+.contenido-paralelo .border-white {
+  margin: 10px;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.documentacion-item:hover {
+    transform: translateY(-5px);
+}
+
+.documentacion-item img {
+    max-width: 30%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.documentacion-item h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.documentacion-item p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #cacaca;
+}
+
+.documentacion-item a.download-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.documentacion-item a.download-link:hover {
+    background-color: #218838;
+}
+
+.documentacion-item a.download-link[style*="grey"] {
+    pointer-events: none; /* Desactiva clics si no está disponible */
+}
+
+.documentacion-image-container {
+    text-align: center;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
 
 .red {
   background-color: rgb(255, 0, 0, 0.6);

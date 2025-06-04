@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // Maneja el clic en la imagen para mostrarla en grande
     const overlay = document.createElement('div');
     overlay.className = 'overlay';
@@ -24,11 +26,15 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation(); // Evita que el clic en la imagen redirija al plugin
         });
     });
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     overlay.addEventListener('click', () => {
         overlay.classList.remove('show');
     });
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // Maneja el cambio de idioma
     const languageSelect = document.getElementById('language-select');
     if (languageSelect) {
@@ -38,7 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = targetPage;
         });
     }
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // MineBank pestañas click tabs
     function openTab(tabId) {
         // Ocultar todos los contenidos de las pestañas
@@ -63,10 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
             activeButton.classList.add('active');
         }
     }
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // Inicializar la pestaña activa por defecto
     openTab('index');
+});
 
+document.addEventListener('DOMContentLoaded', () => {
     // Añadir eventos a los botones de pestañas
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', () => {

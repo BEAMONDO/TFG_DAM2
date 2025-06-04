@@ -5,33 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icono.png" type="image/x-icon">
     <title>Library Manager Web</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/scripts.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Library Manager</h1>
-        <div class="language-selector" id="language-selector">
-            <label for="language-select">Versión</label>
-            <p>1.0.1</p>
+  <header>
+    <div class="logo">lm<span class="arrow">↑</span></div>
+    <nav>
+      <a href="../index.html">INICIO</a>
+      <a href="sobre_mi.html">SOBRE MÍ</a>
+      <a href="documentacion.html">DOCUMENTACIÓN</a>
+      <a href="guia_de_uso.html">GUÍA DE USO</a>
+      <a href="https://github.com/BEAMONDO/TFG_DAM2/releases/tag/v1.0.1" class="btn" target="_blank">DESCARGA LA APP</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="librarymanager-container">
+        <!--Acceso-->
+        <div class="librarymanager-item" data-link="apartados/Acceso.html" data-download="#">
+          <div class="librarymanager-image-container">
+              <img src="images/acceso/acceso-login.png" alt="Acceso">
+          </div>
+              <h2>⭐ Ventana de Acceso ⭐</h2>
+              <p>Iniciar sesión o Registrarse</p>
         </div>
-    </header>
-
-    <main>
-        <div class="librarymanager-container">
-
-            <!--Acceso-->
-            <div class="librarymanager-item" data-link="es/Acceso.html" data-download="#">
-                <div class="librarymanager-image-container">
-                    <img src="images/acceso/acceso-login.png" alt="Acceso">
-                </div>
-                <h2>⭐ Ventana de Acceso ⭐</h2>
-                <p>Iniciar sesión o Registrarse</p>
-            </div>
-
-        </div>
-        <br><br><br>
-    </main>
+    </div>
+  </main>
 
     <footer>
         © 2025 - David Beamonde. Todos los derechos reservados.
