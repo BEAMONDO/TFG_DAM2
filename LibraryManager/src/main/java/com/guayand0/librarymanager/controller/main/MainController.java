@@ -109,15 +109,16 @@ public class MainController {
     }
 
     @FXML private void wiki() {
-        boolean confirmar = ALERT.showConfirmation("¿Desea abrir la página de la wiki con información sobre el funcionamiento de la aplicación?");
+        boolean confirmar = ALERT.showConfirmation("¿Desea abrir la página web oficial de Library Manager?");
         if (confirmar) {
             //ALERT.showInformation("La página web todavia no está creada.");
             try {
-                Desktop.getDesktop().browse(new URI("https://www.spaincraft.xyz/web/guia_de_uso"));
+                Desktop.getDesktop().browse(new URI("https://www.spaincraft.xyz/"));
+                ALERT.showInformation("Se ha abierto la página web en su navegador predeterminado.");
             } catch (IOException | java.net.URISyntaxException e) {
                 e.printStackTrace();
+                ALERT.showError("Ha ocurrido un error al intentar abrir la página.");
             }
-            ALERT.showInformation("Se ha abierto la página de la wiki en su navegador predeterminado.");
         }
     }
 
@@ -126,7 +127,7 @@ public class MainController {
         if (confirmar) {
             try {
                 Desktop.getDesktop().browse(new URI("https://github.com/BEAMONDO/TFG_DAM2/issues/new"));
-                ALERT.showInformation("Se ha abierto la página para reportar problemas en su navegador.");
+                ALERT.showInformation("Se ha abierto la página web en su navegador.");
             } catch (IOException | java.net.URISyntaxException e) {
                 e.printStackTrace();
                 ALERT.showError("Ha ocurrido un error al intentar abrir la página.");
