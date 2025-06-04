@@ -31,7 +31,3 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.classList.remove('show');
     });
 });
-
-function goBack() {
-    window.history.back();
-}

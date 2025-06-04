@@ -222,7 +222,7 @@ footer {
 }
 
 .language-tags .btn {
-    padding: 5px 30px;
+    padding: 3px 25px;
     border-radius: 10px;
     display: inline-block;
     text-decoration: none;
@@ -327,15 +327,6 @@ footer {
     display: flex;
 }
 
-
-
-
-
-
-
-
-
-
 .documentacion-container {
     display: flex;
     flex-wrap: wrap;
@@ -435,14 +426,6 @@ footer {
     text-align: center;
     width: 100%;
 }
-
-
-
-
-
-
-
-
 
 .red {
   background-color: rgb(255, 0, 0, 0.6);
