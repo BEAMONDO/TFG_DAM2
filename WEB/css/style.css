@@ -6,8 +6,9 @@
 
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-image: linear-gradient(135deg, #000000dc, #000000dc),url('/WEB/images/inicio/fondo2.jpg');
+    background-image: linear-gradient(135deg, #000000dc, #000000dc), url('/WEB/images/inicio/fondo2.jpg');
     background-size: cover;
+    background-attachment: fixed;
     color: white;
     height: 100vh;
 }
